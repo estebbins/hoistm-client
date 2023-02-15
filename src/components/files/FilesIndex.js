@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
+import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
+import ShowFileModal from './ShowFileModal'
 // import LoadingScreen from '../shared/LoadingScreen'
 
 // api function from our api file
@@ -23,6 +26,8 @@ const cardContainerStyle = {
 const FilesIndex = (props) => {
     const [files, setFiles] = useState(null)
     const [error, setError] = useState(false)
+    const [fileModalShow, setFileModalShow] = useState(false)
+    // const [updated, setUpdated] = useState(false)
 
     // pull the message alert (msgAlert) from props
     const { msgAlert, user } = props
@@ -60,18 +65,20 @@ const FilesIndex = (props) => {
         <Card key={file.id} style={{ width: '30%', margin: 5 }}>
             <Card.Header>{file.name}</Card.Header>
             <Card.Body>
-                <Card.Text>
-                    <Link to={`/files/${file.id}`} className='btn btn-primary'>View</Link>
-                </Card.Text>
-                { file.owner ?
-                <Card.Footer>
-                    owner: {file.owner.email} 
-                </Card.Footer>
-                : null }
+                {/* <Link to={`/files/${file._id}`}><Image src={file.url} thumbnail /></Link> */}
+                <Button className='m-2' variant='link' onClick={() => setFileModalShow(true)}><Image src={file.url} thumbnail /></Button>
             </Card.Body>
+            <ShowFileModal
+                user={user}
+                file={file}
+                show={fileModalShow}
+                handleClose={() => setFileModalShow(false)}
+                msgAlert={msgAlert}
+            />
         </Card>
+        
     ))
-
+    
     // return some jsx, a container with all the pet cards
     return (
         <div className="container-md" style={cardContainerStyle}>

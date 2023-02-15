@@ -11,3 +11,13 @@ export const getAllFiles = (user) => {
         }
     })
 }
+
+export const getOneFile = (user, id) => {
+    return axios({
+        url: `${apiUrl}/files/${id}`, 
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
