@@ -44,7 +44,13 @@ const App = () => {
 			<Fragment>
 				<Header user={user} />
 				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					
+					<Route path='/' element={
+						<RequireAuth user={user}>
+							<Home msgAlert={msgAlert} user={user}
+							/>
+						</RequireAuth>}
+					/>
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
