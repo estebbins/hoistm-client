@@ -25,21 +25,28 @@ const ShowFileModal = (props) => {
         return <p>Loading...</p>
     }
 
-    const dateFormat = new Date(file.createdAt)
-    const date = dateFormat.getDate()
-    const month = dateFormat.getMonth()
-    const year = dateFormat.getFullYear()
-    const hours = dateFormat.getHours()
-    let minutes = dateFormat.getMinutes()
-    if (minutes < 10) {
-        minutes = "0" + minutes
+    const convertTimestamps = (timestamp) => {
+        const formatted = new Date(timestamp)
+        const date = formatted.getDate()
+        const month = formatted.getMonth()
+        const year = formatted.getFullYear()
+        const hours = formatted.getHours()
+        let minutes = formatted.getMinutes()
+        if (minutes < 10) {
+            minutes = "0" + minutes
+        }
+        return `${date}/${month}/${year} ${hours}:${minutes}`
     }
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton />
+            <Modal.Header closeButton>
+                <Modal.Title>{file.name}</Modal.Title>
+            </Modal.Header>
             <Modal.Body>
-                <p>File Name: {file.name}</p>
-                <p>Hoisted On: {`${date}/${month}/${year} ${hours}:${minutes}`}</p>
+                <Image src={file.url} thumbnail className='border-0'/>
+                <p>Hoisted On: {convertTimestamps(file.createdAt)}</p>
+                <p>Last Modified: {convertTimestamps(file.updatedAt)}</p>
+                <p>Hoisted By: {file.owner.email}</p>
             </Modal.Body>
         </Modal>
     )
