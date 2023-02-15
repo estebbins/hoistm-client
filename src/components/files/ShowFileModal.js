@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
 import { getOneFile } from '../../api/files'
+import NewContributorModal from '../contributors/NewContributorModal'
 
 const ShowFileModal = (props) => {
     const { user, show, handleClose, msgAlert } = props
     
     const [file, setFile] = useState(props.file)
+    const [contributorModalShow, setContributorShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
     useEffect(() => {
         getOneFile(user, file._id)
@@ -19,7 +22,7 @@ const ShowFileModal = (props) => {
                     variant: 'danger'
                 })
             })
-    })
+    }, [updated])
 
     if (!file) {
         return <p>Loading...</p>
@@ -38,17 +41,41 @@ const ShowFileModal = (props) => {
         return `${date}/${month}/${year} ${hours}:${minutes}`
     }
     return (
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>{file.name}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Image src={file.url} thumbnail className='border-0'/>
-                <p>Hoisted On: {convertTimestamps(file.createdAt)}</p>
-                <p>Last Modified: {convertTimestamps(file.updatedAt)}</p>
-                <p>Hoisted By: {file.owner.email}</p>
-            </Modal.Body>
-        </Modal>
+        <>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{file.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Image src={file.url} thumbnail className='border-0'/>
+                    <p>Hoisted On: {convertTimestamps(file.createdAt)}</p>
+                    <p>Last Modified: {convertTimestamps(file.updatedAt)}</p>
+                    <p>Hoisted By: {file.owner.email}</p>
+                        {
+                            file.owner && user && file.owner._id === user._id
+                            ?
+                            <>
+                                <Button 
+                                    className="m-2" variant="warning"
+                                    onClick={() => setContributorShow(true)}
+                                >
+                                    Add Contributor
+                                </Button>
+                            </>
+                            :
+                            null
+                        }
+                </Modal.Body>
+            </Modal>
+            <NewContributorModal
+                user={user}
+                file={file}
+                show={contributorModalShow}
+                handleClose={() => setContributorShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            /> 
+        </>
     )
 }
 
