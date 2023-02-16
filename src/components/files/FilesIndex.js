@@ -76,7 +76,6 @@ const FilesIndex = (props) => {
                 msgAlert={msgAlert}
             />
         </Card>
-        
     ))
     
     // return some jsx, a container with all the pet cards
