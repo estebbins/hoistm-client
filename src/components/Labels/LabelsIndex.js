@@ -22,9 +22,11 @@ const LabelsIndex = (props) => {
 
     // return some jsx, a container with all the pet cards
     return (
-        <div className="container-sm" >
-            { labelButtons }
-        </div>
+        <>
+            <div className="container-sm" >
+                { labelButtons }
+            </div>
+        </>
     )
 }
 
