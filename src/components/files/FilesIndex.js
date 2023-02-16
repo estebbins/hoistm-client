@@ -15,8 +15,6 @@ const FilesIndex = (props) => {
 
     const { msgAlert, user, files, filesError } = props
 
-    console.log('files: ', files)
-
     const [fileModalShow, setFileModalShow] = useState(false)
     // const [updated, setUpdated] = useState(false)
     
