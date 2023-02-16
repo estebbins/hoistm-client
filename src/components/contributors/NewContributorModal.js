@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import ContributorForm from '../shared/ContributorForm'
-import { createContributor, getFilteredUsers } from '../../api/contributors'
-import messages from '../shared/AutoDismissAlert/messages'
+import { createContributor } from '../../api/contributors'
+// import messages from '../shared/AutoDismissAlert/messages'
 
 // In ShowFile:
 // {/* <NewContributorModal
@@ -19,8 +19,6 @@ const NewContributorModal = (props) => {
 
     const [contributor, setContributor] = useState({})
     const [filterValue, setFilterValue] = useState('')
-    // const [userList, setUserList] = useState([])
-    // const [error, setError] = useState(false)
 
     const onChoice = (e) => {
         e.persist()

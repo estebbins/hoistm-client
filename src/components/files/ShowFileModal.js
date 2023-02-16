@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
 import { getOneFile, updateFile } from '../../api/files'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
+import ContributorsIndex from '../contributors/ContributorsIndex'
+import ShowContributor from '../contributors/ShowContributor.js'
 
 const ShowFileModal = (props) => {
     const { user, show, handleClose, msgAlert } = props
@@ -42,6 +44,24 @@ const ShowFileModal = (props) => {
         }
         return `${date}/${month}/${year} ${hours}:${minutes}`
     }
+
+    let contributorList
+    if (file) {
+        if (file.contributors.length > 0) {
+            contributorList = file.contributors.map(cont => (
+                <ShowContributor 
+                    key={cont._id}
+                    contributor={cont}
+                    user={user}
+                    file={file}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+                )    
+            )
+        }
+    }
+
     return (
         <>
             <Modal show={show} onHide={handleClose}>
@@ -70,6 +90,15 @@ const ShowFileModal = (props) => {
                                     Edit File
                                 </Button>
                             </>
+                            :
+                            null
+                        }
+                        { 
+                            file.owner && user && file.owner._id === user._id && file.contributors 
+                            ?
+                            <Container>
+                                { contributorList }
+                            </Container>
                             :
                             null
                         }
