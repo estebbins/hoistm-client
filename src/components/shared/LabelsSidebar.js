@@ -1,75 +1,21 @@
-import { useState } from 'react'
-import { Modal } from 'react-bootstrap'
-import {getOneFile} from '../..api/files'
-const NewLabelModal = (props) => {
-    const { show, handleClose, msgAlert, triggerRefresh } = props
+import { useState, useEffect } from 'react'
+// import { Modal } from 'react-bootstrap'
 
-    const [toy, setToy] = useState({})
+import LabelsIndex from '../Labels/LabelsIndex'
 
-    const onChange = (e) => {
-        e.persist()
-        
-        setToy(prevToy => {
-            const updatedName = e.target.name
-            let updatedValue = e.target.value
-
-            // to handle a checkbox, we can check the name, and change the value that is output. Checkboxes only know if they are checked or not
-            if (updatedName === 'isSqueaky' && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === 'isSqueaky' && !e.target.checked) {
-                updatedValue = false
-            }
-            
-            const updatedToy = {
-                [updatedName] : updatedValue
-            }
-            
-            console.log('the toy', updatedToy)
-            console.log('the toy (state)', toy)
-
-            return {
-                ...prevToy, ...updatedToy
-            }
-        })
-    }
-
-    const onSubmit = (e) => {
-        e.preventDefault()
-        createLabel(pet.id, toy)
-            // first we'll close the modal
-            .then(() => handleClose())
-            // we'll also send a success message
-            .then(() => {
-                msgAlert({
-                    heading: 'Oh Yeah!',
-                    message: messages.createToySuccess,
-                    variant: 'success'
-                })
-            })
-            .then(() => triggerRefresh())
-            // if there is an error, tell the user about it
-            .catch(() => {
-                msgAlert({
-                    heading: 'Oh No!',
-                    message: messages.createToyFailure,
-                    variant: 'danger'
-                })
-            })
-    }
+const LabelsSidebar = (props) => {
+    const { user, msgAlert, labels, labelsError } = props
 
     return (
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton />
-            <Modal.Body>
-                <ToyForm 
-                    toy={toy}
-                    handleChange={onChange}
-                    handleSubmit={onSubmit}
-                    heading={`Give ${pet.name} a toy!`}
-                />
-            </Modal.Body>
-        </Modal>
+        <div className="container-sm">
+            <LabelsIndex
+                user={user}
+                msgAlert={msgAlert}
+                labels={labels}
+                labelsError={labelsError}
+            />
+        </div>
     )
 }
 
-export default NewLabelsModal
+export default LabelsSidebar
