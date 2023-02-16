@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import {Card, Button} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 // import LoadingScreen from '../shared/LoadingScreen'
 
 // api function from our api file
@@ -9,7 +7,6 @@ import { getAllLabels } from '../../api/labels'
 
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
-
 
 // PetsIndex will make a request to the API for all pets
 // once it receives a response, display a card for each pet
@@ -28,8 +25,9 @@ const LabelsIndex = (props) => {
             .then(res => setLabels(res.data.labels))
             .catch(err => {
                 msgAlert({
-                    heading: 'Error getting files',
-                    message: messages.getLablesFailure,
+                    heading: 'Error getting labels',
+                    // ! message: messages.getLabelsFailure
+                    message: 'Sorry about your labels',
                     variant: 'danger'
                 })
                 setError(true)
@@ -48,20 +46,13 @@ const LabelsIndex = (props) => {
         return <p>No lables to show!</p>
     } 
     const labelButtons = labels.map(label => {
-        return <Button className="m-2" style={{backgroundColor:`${label.color}`}}key={label.id}>{label.name}</Button>
-
-
-
+        return <Button className="m-2" style={{backgroundColor:`${label.color}`}}key={label._id}>{label.name}</Button>
     })
-
-    
-
-
 
     // return some jsx, a container with all the pet cards
     return (
         <div className="container-md" >
-            { labelButtons}
+            { labelButtons }
         </div>
     )
 }
