@@ -9,8 +9,8 @@ export const deleteLabel = (user,label) => {
             Authorization: `Token token=${user.token}`
         },
     });
-
 }
+
 export const editLabel = (user,newLabel) => {
     return axios({
         url: `${apiUrl}/labels/${newLabel._id}`, 
@@ -47,7 +47,8 @@ export const createLabel = (user,newLabel) => {
 
 }
 export const getAllLabels = (user) => {
-    return axios({url: `${apiUrl}/labels`, 
+    return axios({
+    url: `${apiUrl}/labels`, 
     method: 'GET',
     headers: {
         Authorization: `Token token=${user.token}`
