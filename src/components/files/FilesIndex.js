@@ -45,7 +45,7 @@ const FilesIndex = (props) => {
                 })
                 setError(true)
             })
-    }, [])
+    }, )
 
     // if error, display an error
     if (error) {
