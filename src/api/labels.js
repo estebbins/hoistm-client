@@ -33,7 +33,7 @@ export const showLabel = (user,newLabel) => {
     
     });
 }
-export const createLabel = (user,newLabel) => {
+export const createLabel = (user, newLabel) => {
     return axios({
         url: `${apiUrl}/labels`, 
         method: 'POST',

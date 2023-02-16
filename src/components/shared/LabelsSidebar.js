@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
-// import { Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import LabelsIndex from '../Labels/LabelsIndex'
+import NewLabelModal from '../Labels/NewLabelModal'
 
 const LabelsSidebar = (props) => {
-    const { user, msgAlert, labels, labelsError } = props
+    const { user, msgAlert, labels, triggerRefresh, labelsError } = props
+    
+    const [modalShow, setModalShow] = useState(false)
 
     return (
         <div className="container-sm">
@@ -13,6 +16,14 @@ const LabelsSidebar = (props) => {
                 msgAlert={msgAlert}
                 labels={labels}
                 labelsError={labelsError}
+            />
+            <Button className="m-2" onClick={()=>setModalShow(true)}>Create New Label</Button>
+            <NewLabelModal 
+                user={user}
+                show={modalShow}
+                msgAlert={msgAlert}
+                handleClose={()=>setModalShow(false)}
+                triggerRefresh={triggerRefresh}
             />
         </div>
     )

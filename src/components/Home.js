@@ -24,6 +24,8 @@ const Home = (props) => {
 
 	const [newFileModalShow, setNewFileModalShow] = useState(false)
 
+    const [updated, setUpdated] = useState(false)
+
 	useEffect(() => {
         getAllFiles(user)
             .then(res => setFiles(res.data.files))
@@ -35,7 +37,7 @@ const Home = (props) => {
                 })
                 setFilesError(true)
             })
-    }, [])
+    }, [updated])
 
 	useEffect(() => {
         getAllLabels(user)
@@ -49,7 +51,7 @@ const Home = (props) => {
                 })
                 setLabelsError(true)
             })
-    }, [])
+    }, [updated])
 
 	return (
 		<>
@@ -57,7 +59,7 @@ const Home = (props) => {
 				<Row>
 					<Col md={2} >
 						<p>Labels</p>
-						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} />
+						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} triggerRefresh={() => setUpdated(prev => !prev)}/>
 					</Col>
 					<Col md={10} >
 						<Row>
