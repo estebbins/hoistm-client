@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
-import { getOneFile } from '../../api/files'
+import { getOneFile, updateFile } from '../../api/files'
 import NewContributorModal from '../contributors/NewContributorModal'
+import EditFileModal from './EditFileModal'
 
 const ShowFileModal = (props) => {
     const { user, show, handleClose, msgAlert } = props
     
     const [file, setFile] = useState(props.file)
     const [contributorModalShow, setContributorShow] = useState(false)
+    const [editFileModalShow, setEditFileModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     useEffect(() => {
@@ -61,6 +63,12 @@ const ShowFileModal = (props) => {
                                 >
                                     Add Contributor
                                 </Button>
+                                <Button 
+                                    className="m-2" variant="warning"
+                                    onClick={() => setEditFileModalShow(true)}
+                                >
+                                    Edit File
+                                </Button>
                             </>
                             :
                             null
@@ -75,6 +83,15 @@ const ShowFileModal = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
             /> 
+            <EditFileModal
+                user={user}
+                file={file}
+                updateFile={updateFile}
+                show={editFileModalShow}
+                handleClose={() => setEditFileModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
         </>
     )
 }
@@ -87,3 +104,9 @@ export default ShowFileModal
 
 // edit and delete components nested in Modal.Footer
 
+// user
+// show
+// handleClose
+// updateFile
+// msgAlert
+// triggerRefresh

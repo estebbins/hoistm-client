@@ -21,3 +21,14 @@ export const getOneFile = (user, id) => {
         }
     })
 }
+
+export const updateFile = (user, updatedFile) => {
+    return axios({
+        url: `${apiUrl}/files/${updatedFile._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { file: updatedFile }
+    })
+}
