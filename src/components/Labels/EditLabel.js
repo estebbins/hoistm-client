@@ -20,7 +20,7 @@ const EditLabel = (props) => {
     };
 
     axios.put(`/labels/${props.match.params.id}`, updatedLabel)
-      .then(res => {
+      .then(response.label.id => {
         window.location = '/';
       })
       .catch(err => console.log(err));
@@ -35,7 +35,7 @@ const EditLabel = (props) => {
           <input type="text" required className="form-control" value={label} onChange={(e) => setLabel(e.target.value)} />
         </div>
         <div className="form-group">
-          <input type="submit" value="Update Label" className="btn btn-primary" />
+          <input type="submit" value="Update Label" className="btn btn-dark" />
         </div>
       </form>
     </div>
