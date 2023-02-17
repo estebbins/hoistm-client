@@ -62,22 +62,6 @@ const ShowFileModal = (props) => {
         }
     }
 
-    // let labelsList
-    // if (labels) {
-    //     if (labels.fileRef.length > 0) {
-    //         for (let i=0; i < labels.fileRef.length; i++) {
-    //             if(labels.fileRef[i]._id === file._id) {
-    //                 return labelsList.push(
-    //                     <ShowLabel 
-    //                         label={labels[i]}
-
-    //                     />
-    //                 )
-    //             }
-    //         }
-    //     }
-    // }
-
     return (
         <>
             <Modal show={show} onHide={handleClose}>

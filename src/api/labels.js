@@ -55,3 +55,23 @@ export const getAllLabels = (user) => {
     },
 
 })}
+
+export const addFileToLabel = (user, file, label) => {
+    return axios({
+        url: `${apiUrl}/labels/${file._id}/${label._id}`, 
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
+
+export const getLabelsOnFile = (user, file) => {
+    return axios({
+        url: `${apiUrl}/filelabels/${file._id}`, 
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
