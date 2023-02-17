@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap'
+import { Container, Image } from 'react-bootstrap'
 
 const LabelsIndex = (props) => {
     const { msgAlert, user, labels, labelsError } = props
@@ -17,7 +17,10 @@ const LabelsIndex = (props) => {
     }
 
     const labelButtons = labels.map(label => {
-        return <Button className="m-2" style={{backgroundColor:`${label.color}`}}key={label._id}>{label.name}</Button>
+        return <Container className="m-2 d-flex justify-content-center" style={{ backgroundColor: `${label.color}`, width: '100%' }} key={label._id}>
+            <Image id='label-icon' src='/icons/label_white_24dp.svg' style={{ maxWidth: '20px' }} className='me-1'/>
+            <span>{label.name}</span>
+        </Container>
     })
 
     // return some jsx, a container with all the pet cards
