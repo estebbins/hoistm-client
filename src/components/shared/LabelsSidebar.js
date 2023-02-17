@@ -10,7 +10,7 @@ const LabelsSidebar = (props) => {
     const [modalShow, setModalShow] = useState(false)
 
     return (
-        <div className="container-sm">
+        <div id='labels-sidebar' className="container-sm d-flex flex-column align-items-center justify-content-start p-0">
             <LabelsIndex
                 user={user}
                 msgAlert={msgAlert}

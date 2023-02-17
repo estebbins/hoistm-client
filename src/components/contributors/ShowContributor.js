@@ -28,7 +28,7 @@ const ShowContributor = (props) => {
                 msgAlert({
                     heading: 'Contributor Deleted', 
                     // !message: messages.contributerDeleteSuccess
-                    message: 'Bye Bye Baby!',
+                    message: messages.contributerDeleteSuccess,
                     variant: 'success'
                 })
             ])
@@ -37,9 +37,9 @@ const ShowContributor = (props) => {
         // upon failure, send appropriate message
             .catch(() => [
                 msgAlert({
-                    heading: 'Ruh Roh', 
+                    heading: 'Oh No!', 
                     // !message: messages.contributerDeleteFailure
-                    message: 'Something went wrong!',
+                    message: messages.contributerDeleteFailure,
                     variant: 'danger'
                 })
             ])
