@@ -2,27 +2,32 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
-import { updateFile } from '../../api/files'
+import { updateFile, getOneFile } from '../../api/files'
 import { getLabelsOnFile } from '../../api/labels'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
-// import ContributorsIndex from '../contributors/ContributorsIndex'
 import ShowContributor from '../contributors/ShowContributor.js'
+import AddLabelModal from '../Labels/AddLabelModal.js'
 
 const ShowFileModal = (props) => {
-    const { user, show, handleClose, msgAlert, triggerRefresh } = props
+    const { user, show, allLabels, handleClose, msgAlert, triggerRefresh } = props
     // console.log('show props.file', props.file)
     const [file, setFile] = useState({})
     const [contributorModalShow, setContributorShow] = useState(false)
     const [editFileModalShow, setEditFileModalShow] = useState(false)
+    const [addLabelModalShow, setAddLabelModalShow] = useState(false)
     const [labels, setLabels] = useState([])
+    const [updated, setUpdated] = useState(false)
     // console.log('show file file', file)
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
     useEffect(() => {
+        // set file to the file passed down from FileIndex & re-render
         setFile(props.file)
     }, [props.file])
+
     useEffect(() => {
+        // !Don't want to delete yet!
         // console.log('props.file._id', props.file._id)
         // getOneFile(user, props.file._id)
         //     .then(res => setFile(res.data.file))
@@ -47,7 +52,20 @@ const ShowFileModal = (props) => {
             })
     }, [file])
 
-    console.log('show file modal labels')
+    useEffect(() => {
+        getOneFile(user, props.file._id)
+            .then(res => setFile(res.data.file))
+            .then(()=>triggerRefresh())
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error getting File',
+                    message: 'something went wrong',
+                    variant: 'danger'
+                })
+            })
+    }, [updated])
+
+    // console.log('show file modal labels')
 
     // useEffect(() => {
     //     getLabelsOnFile(user, file)
@@ -91,6 +109,20 @@ const ShowFileModal = (props) => {
             )
         }
     }
+    let labelsList
+    if (labels && labels.length > 0) {
+        labelsList = labels.map((label, i) => (
+            <Button
+                id='label-buttons'    
+                className="m-2"
+                style={{backgroundColor:`${label.color}`}}
+                key={label._id}
+                // onClick={onClick}
+                value={JSON.stringify(label)}
+            ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
+        ))
+    }
+
     if (!file) {
         return <p>Loading...</p>
     }
@@ -105,11 +137,11 @@ const ShowFileModal = (props) => {
                     <Image src={file.url} thumbnail className='border-0'/>
                     <p>Hoisted On: {convertTimestamps(file.createdAt)}</p>
                     <p>Last Modified: {convertTimestamps(file.updatedAt)}</p>
-                    {/* <p>Hoisted By: {file.owner.email}</p> */}
                         {
                             file.owner && user && file.owner._id === user._id
                             ?
                             <>
+                                <p>Hoisted By: {file.owner.email}</p>
                                 <Button 
                                     className="m-2" variant="warning"
                                     onClick={() => setContributorShow(true)}
@@ -122,7 +154,22 @@ const ShowFileModal = (props) => {
                                 >
                                     Edit File
                                 </Button>
+                                <Button 
+                                    className="m-2" variant="warning"
+                                    onClick={() => setAddLabelModalShow(true)}
+                                >
+                                    Add Label
+                                </Button>
                             </>
+                            :
+                            null
+                        }
+                        {
+                            labels && labels.length > 0
+                            ?
+                            <Container>
+                                { labelsList }
+                            </Container>
                             :
                             null
                         }
@@ -135,6 +182,7 @@ const ShowFileModal = (props) => {
                             :
                             null
                         }
+
                 </Modal.Body>
             </Modal>
             <NewContributorModal
@@ -153,6 +201,15 @@ const ShowFileModal = (props) => {
                 handleClose={() => setEditFileModalShow(false)}
                 msgAlert={msgAlert}
                 triggerRefresh={triggerRefresh}
+            />
+            <AddLabelModal 
+                file={file}
+                user={user}
+                labels={allLabels}
+                show={addLabelModalShow}
+                handleClose={() => setAddLabelModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             />
         </>
     )

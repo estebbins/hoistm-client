@@ -18,7 +18,7 @@ const homeContainerStyles = {
 }
 
 const Home = (props) => {
-	console.log('props in home', props)
+	// console.log('props in home', props)
 
 	const { msgAlert, user } = props
 

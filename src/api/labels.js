@@ -57,8 +57,10 @@ export const getAllLabels = (user) => {
 })}
 
 export const addFileToLabel = (user, file, label) => {
+    console.log('axios label', label)
+    console.log('axios file', file)
     return axios({
-        url: `${apiUrl}/labels/${file._id}/${label._id}`, 
+        url: `${apiUrl}/labels/${label._id}/${file._id}`, 
         method: 'PATCH',
         headers: {
             Authorization: `Token token=${user.token}`

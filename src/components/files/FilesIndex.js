@@ -13,13 +13,14 @@ const cardContainerStyle = {
 
 const FilesIndex = (props) => {
 
-    const { msgAlert, user, files, filesError, triggerRefresh } = props
+    const { msgAlert, labels, user, files, filesError, triggerRefresh } = props
 
     const [fileModalShow, setFileModalShow] = useState(false)
     const [showFile, setShowFile] = useState({})
+    const [updated, setUpdated] = useState(false)
     // const [updated, setUpdated] = useState(false)
-    console.log('index files', files)
-    console.log('index file', showFile)
+    // console.log('index files', files)
+    // console.log('index file', showFile)
     if (filesError) {
         return <p>Loading...</p>
     }
@@ -32,8 +33,9 @@ const FilesIndex = (props) => {
 	}
 
     const onClick = (e) => {
-        console.log('e', e.target)
-        console.log('file index e value', e.target.value)
+        // console.log('e', e.target)
+        e.preventDefault()
+        // console.log('file index e value', e.target.value)
         setShowFile(JSON.parse(e.target.value))
         setFileModalShow(true)
     }
@@ -62,9 +64,10 @@ const FilesIndex = (props) => {
                 user={user}
                 file={showFile}
                 show={fileModalShow}
+                allLabels={labels}
                 handleClose={() => setFileModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={triggerRefresh}
+                triggerRefresh={()=> setUpdated(prev => !prev)}
             />
         </>
     )
