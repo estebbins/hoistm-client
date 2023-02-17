@@ -12,8 +12,8 @@ const EditContributorModal = (props) => {
     const [contributor, setContributor] = useState(props.contributor)
     const [filterValue, setFilterValue] = useState(props.filterValue)
     // console.log(contributor.userRef.email)
-    console.log('props.filter', props.filterValue)
-    console.log('editcontmodal contributor', contributor)
+    // console.log('props.filter', props.filterValue)
+    // console.log('editcontmodal contributor', contributor)
     const onChoice = (e) => {
         e.persist()
         
@@ -36,8 +36,8 @@ const EditContributorModal = (props) => {
 
     const onChange = (e) => {
         setFilterValue(e.target.value)
-        console.log('edit cont modal on change filter value', e.target.value)
-        console.log('edit cont modal filtervalue', filterValue)
+        // console.log('edit cont modal on change filter value', e.target.value)
+        // console.log('edit cont modal filtervalue', filterValue)
     }
 
     const onSubmit = (e) => {

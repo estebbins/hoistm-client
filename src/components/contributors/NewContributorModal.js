@@ -33,10 +33,10 @@ const NewContributorModal = (props) => {
     const onChange = (e) => {
         e.preventDefault()
         // const filter = e.target.value
-        console.log(e.target.value)
-        console.log('filterValue', filterValue)
+        // console.log(e.target.value)
+        // console.log('filterValue', filterValue)
         setFilterValue(e.target.value)
-        console.log('filterValue', filterValue)
+        // console.log('filterValue', filterValue)
 
     }
 

@@ -6,7 +6,7 @@ import FilesIndex from '../files/FilesIndex'
 const FilesContainer = (props) => {
     const { user, labels, msgAlert, files, filesError, triggerRefresh } = props
     
-    console.log('files in filesContainer: ', files)
+    // console.log('files in filesContainer: ', files)
 
     return (
         <div className="container-fluid">
