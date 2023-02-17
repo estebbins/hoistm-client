@@ -19,13 +19,6 @@ const EditLabel = (props) => {
       label: label
     };
 
-    axios.put(`/labels/${props.match.params.id}`, updatedLabel)
-      .then(response.label.id => {
-        window.location = '/';
-      })
-      .catch(err => console.log(err));
-  };
-
   return (
     <div>
       <h3>Edit Label</h3>
