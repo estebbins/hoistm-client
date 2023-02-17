@@ -11,7 +11,7 @@ const NewFileModal = (props) => {
 
     const onChange = (e) => {
         e.preventDefault()
-        console.log(e)
+        console.log(e.ta)
         setSelectedFile(e.target.files[0])
         console.log('file in onChange from newFileModal', selectedFile)
     }
@@ -20,7 +20,10 @@ const NewFileModal = (props) => {
         e.preventDefault()
         console.log('selectedFile name in onSubmit', selectedFile)
 
-        createFile(user, selectedFile)
+        const formData = new FormData()
+        formData.append('file', selectedFile)
+
+        createFile(user, formData)
             // first we'll handle closing the modal
             .then(() => handleClose())
             // we'll also send a success message
@@ -34,6 +37,7 @@ const NewFileModal = (props) => {
             // if everything goes according to plan, we need a refresh of the show page
             // we'll build a function in the ShowPet component that does this for us, and we'll import that here as a prop
             .then(() => triggerRefresh())
+            // maybe useNavigate to redirect to this page instead of triggerRefresh
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
