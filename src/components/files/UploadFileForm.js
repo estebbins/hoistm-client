@@ -7,7 +7,7 @@ const UploadFileForm = (props) => {
 
     return (
         <Container className="justify-content-center">
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} encType='multipart/form-data'>
                 <Form.Group className="m-2">
                     <Form.Label>Choose File:</Form.Label>
                     <Form.Control

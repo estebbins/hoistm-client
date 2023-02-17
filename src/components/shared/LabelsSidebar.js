@@ -16,6 +16,7 @@ const LabelsSidebar = (props) => {
                 msgAlert={msgAlert}
                 labels={labels}
                 labelsError={labelsError}
+                triggerRefresh={triggerRefresh}
             />
             <Button className="m-2" onClick={()=>setModalShow(true)}>Create New Label</Button>
             <NewLabelModal 

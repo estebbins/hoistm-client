@@ -5,11 +5,11 @@ import messages from '../shared/AutoDismissAlert/messages'
 import { getOneFile, updateFile } from '../../api/files'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
-import ContributorsIndex from '../contributors/ContributorsIndex'
+// import ContributorsIndex from '../contributors/ContributorsIndex'
 import ShowContributor from '../contributors/ShowContributor.js'
 
 const ShowFileModal = (props) => {
-    const { user, show, handleClose, msgAlert } = props
+    const { user, labels, show, handleClose, msgAlert } = props
     
     const [file, setFile] = useState(props.file)
     const [contributorModalShow, setContributorShow] = useState(false)

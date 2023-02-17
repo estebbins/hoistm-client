@@ -11,6 +11,11 @@ import NewFileModal from './files/NewFileModal'
 
 import messages from '../components/shared/AutoDismissAlert/messages'
 
+const homeContainerStyles = {
+	backgroundColor: '#000000',
+	color: '#ffffff'
+}
+
 const Home = (props) => {
 	console.log('props in home', props)
 
@@ -55,10 +60,11 @@ const Home = (props) => {
 
 	return (
 		<>
-			<Container fluid className="m-2">
+			<Container fluid className="m-2" style={homeContainerStyles}>
 				<Row>
 					<Col md={2} >
-						<p>Labels</p>
+						<p className='fs-3 mt-1 mb-2'>Labels</p>
+						<hr className='mt-0 border'/>
 						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} triggerRefresh={() => setUpdated(prev => !prev)}/>
 					</Col>
 					<Col md={10} >
@@ -69,12 +75,13 @@ const Home = (props) => {
                                     className="m-2" variant="dark" onClick={() => setNewFileModalShow(true)}
                                 >
                                     Hoist New File
-                                </Button>
+								</Button>
+								<hr className='mt-0 border'/>
 							</Container>
 						</Col>
 						</Row>
 						<Row>
-							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} />
+							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} />
 						</Row>
 					</Col>
 				</Row>
