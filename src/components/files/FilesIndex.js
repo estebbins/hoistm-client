@@ -13,11 +13,13 @@ const cardContainerStyle = {
 
 const FilesIndex = (props) => {
 
-    const { msgAlert, user, files, labels, filesError, triggerRefresh } = props
+    const { msgAlert, user, files, filesError, triggerRefresh } = props
 
     const [fileModalShow, setFileModalShow] = useState(false)
+    const [showFile, setShowFile] = useState({})
     // const [updated, setUpdated] = useState(false)
-    
+    console.log('index files', files)
+    console.log('index file', showFile)
     if (filesError) {
         return <p>Loading...</p>
     }
@@ -29,28 +31,42 @@ const FilesIndex = (props) => {
         return <p>No files yet, go add some!</p>
 	}
 
-    const fileCards = files.map(file => (
-        <Card key={file._id} style={{ width: '30%' }}>
-            <Card.Header>{file.name}</Card.Header>
-            <Card.Body>
-                <Button className='m-2' variant='link' onClick={() => setFileModalShow(true)}><Image src={file.url} thumbnail /></Button>
-            </Card.Body>
-            <ShowFileModal
-                user={user}
-                file={file}
-                labels={labels}
-                show={fileModalShow}
-                handleClose={() => setFileModalShow(false)}
-                msgAlert={msgAlert}
-            />
-        </Card>
-    ))
+    const onClick = (e) => {
+        console.log('e', e.target)
+        console.log('file index e value', e.target.value)
+        setShowFile(JSON.parse(e.target.value))
+        setFileModalShow(true)
+    }
+
+    const fileCards = files.map((file, i) => {
+        return (
+            <>
+                <Card key={i} style={{ width: '30%' }}>
+                    <Card.Header>{file.name}</Card.Header>
+                    <Card.Body>
+                        <Image src={file.url} thumbnail/>
+                        <Button type='submit' className='m-2' onClick={onClick} value={JSON.stringify(file)}>View File</Button>
+                    </Card.Body>
+                </Card>
+            </>
+        )
+    })
     
     // return some jsx, a container with all the pet cards
     return (
-        <div className="container-fluid" style={cardContainerStyle}>
-            { fileCards }
-        </div>
+        <>
+            <div className="container-fluid" style={cardContainerStyle}>
+                { fileCards }
+            </div>
+            <ShowFileModal
+                user={user}
+                file={showFile}
+                show={fileModalShow}
+                handleClose={() => setFileModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={triggerRefresh}
+            />
+        </>
     )
 }
 
