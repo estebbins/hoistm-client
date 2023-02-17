@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap'
+import { Button, Image } from 'react-bootstrap'
 import EditLabelModal from './EditLabelModal'
 import { useState, useEffect } from 'react'
 
@@ -34,13 +34,14 @@ const LabelsIndex = (props) => {
         // console.log('mapped labels', label)
         return (
             <>
-                <Button 
-                    className="m-2" 
+                <Button
+                    id='label-buttons'    
+                    className="m-2"
                     style={{backgroundColor:`${label.color}`}}
                     key={label._id}
                     onClick={onClick}
                     value={JSON.stringify(label)}
-                >{label.name}</Button>
+                ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
 
             </>
         )
@@ -49,7 +50,7 @@ const LabelsIndex = (props) => {
     // return some jsx, a container with all the pet cards
     return (
         <>
-            <div className="container-sm" >
+            <div className="container-sm d-flex flex-column justify-content-start p-0" >
                 { labelButtons }
             </div>
             <EditLabelModal

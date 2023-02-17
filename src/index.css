@@ -23,6 +23,63 @@ code {
   background-color: #000000;
 }
 
+#navbar {
+  background-color: #052F15!important;
+}
+
+#labels-column {
+  background-color: #031F0E;
+  padding: 0;
+  padding-left: .5rem;
+  padding-right: .1rem;
+}
+
+#utilities-row {
+  background-color: #021007;
+  padding: 0;
+}
+
+#label-buttons {
+  border: none;
+  font-weight: 600;
+  width: 6em;
+  padding: .15em;
+  text-align: left;
+  color: #000000;
+}
+
 #label-icon {
-  filter: opacity(.5) drop-shadow(0 0 0 red);
+  width: 1.5em;
+  margin-right: .45em
+}
+
+#title-label-icon {
+  width: 1.25em;
+  margin-right: .45em
+}
+
+#hoist-m {
+  color: #16DB65;
+  font-size: .80em;
+  font-weight: 700;
+}
+
+#hoist-m:hover {
+  color: #6416DA;
+}
+
+span.logo-brackets {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: .80em;
+  padding: .05em;
+}
+
+span.logo-brackets:hover {
+  color: #000000;
+}
+
+#logo:hover {
+  color: #16DB65!important;
+  transition: .4s;
 }
