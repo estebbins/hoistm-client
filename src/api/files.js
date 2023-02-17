@@ -33,13 +33,14 @@ export const updateFile = (user, updatedFile) => {
     })
 }
 
-export const createFile = (user, newFile) => {
+export const createFile = (user, file) => {
+    console.log('file in axios:', file)
     return axios({
         url: `${apiUrl}/files`,
         method: 'POST',
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: { file: newFile }
+        data: file,
     })
 }

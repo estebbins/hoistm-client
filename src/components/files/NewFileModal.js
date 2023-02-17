@@ -7,22 +7,20 @@ const NewFileModal = (props) => {
     // destructure our props
     const { user, show, handleClose, msgAlert, triggerRefresh } = props
     
-    const [file, setFile] = useState('')
-
-    console.log('file in new file modal: ', file)
+    const [selectedFile, setSelectedFile] = useState({})
 
     const onChange = (e) => {
         e.preventDefault()
         console.log(e)
-        console.log('file in onChange from newFileModal', file)
-        setFile(e.target.files[0])
+        setSelectedFile(e.target.files[0])
+        console.log('file in onChange from newFileModal', selectedFile)
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
+        console.log('selectedFile name in onSubmit', selectedFile)
 
-        // updateFile(user, file)
-        createFile(user, file)
+        createFile(user, selectedFile)
             // first we'll handle closing the modal
             .then(() => handleClose())
             // we'll also send a success message
@@ -52,7 +50,6 @@ const NewFileModal = (props) => {
                 <Modal.Header closeButton />
                 <Modal.Body>
                     <UploadFileForm
-                        file={file}
                         handleChange={onChange}
                         handleSubmit={onSubmit}
                     />
