@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import ContributorForm from '../shared/ContributorForm'
 import { createContributor } from '../../api/contributors'
-// import messages from '../shared/AutoDismissAlert/messages'
+import messages from '../shared/AutoDismissAlert/messages'
 
 // In ShowFile:
 // {/* <NewContributorModal
@@ -47,66 +47,9 @@ const NewContributorModal = (props) => {
         console.log('filterValue', filterValue)
         setFilterValue(e.target.value)
         console.log('filterValue', filterValue)
-        // const removedFruitList = props.fruits.filter(fruit => {return !fruit.toLowerCase().includes(filterValue.toLowerCase())})
-        // setFruitsToDisplay(filteredFruitList)
-        // setRemovedFruits(removedFruitList)
-        // console.log('filter', filter)
 
-        // getFilteredUsers(user, filterValue)
-        //     .then(res => {setUserList(res.data.users)})
-        //     .then(() => triggerRefresh())
-        //     .catch(err => {
-        //         msgAlert({
-        //             heading: 'Error getting users',
-        //             // !message: messages.getUserFailure
-        //             message: 'Unable to get users',
-        //             variant: 'danger'
-        //         })
-        //         setError(true)
-        // })
-        
-    //     if (error) {
-    //         return <p>Error!</p>
-    //     }
-        
-    //     if (!users) {
-    //         // if no users loaded yet, display 'loading'
-    //         // return <LoadingScreen />
-    //         return 
-    //     } else if (users.length === 0) {
-    //         // otherwise if there ARE no pets, display that message
-    //         return <p>No pets yet, go add some!</p>
-    //     }
-    // }
-    // useEffect MAY not work here because it's when component mounts
-    // useEffect(() => {
-    //     getFilteredUsers(filterValue)
-    //         .then(res => setUserList(res.data.users))
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error getting users',
-    //                 // !message: messages.getUserFailure
-    //                 message: 'Unable to get users',
-    //                 variant: 'danger'
-    //             })
-    //             setError(true)
-    //         })
-    // }, [])
     }
-    // useEffect(() => {
-    //     getFilteredUsers(user, filterValue)
-    //     .then(res => {setUserList(res.data.users)})
-    //     .then(() => triggerRefresh())
-    //     .catch(err => {
-    //         msgAlert({
-    //             heading: 'Error getting users',
-    //             // !message: messages.getUserFailure
-    //             message: 'Unable to get users',
-    //             variant: 'danger'
-    //         })
-    //         setError(true)
-    //     })
-    // }, [filterValue])
+
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -118,7 +61,7 @@ const NewContributorModal = (props) => {
                 msgAlert({
                     heading: 'Hoist with someone elses petard!',
                     // !message: messages.createContributorSuccess
-                    message: 'Contributor successfully added!',
+                    message: messages.createContributorSuccess,
                     variant: 'success'
                 })
             })
@@ -128,7 +71,7 @@ const NewContributorModal = (props) => {
                 msgAlert({
                     heading: 'Oh No! Hoisted by our petard!',
                     // !message: messages.createContributorFailure
-                    message: 'Contributor not added',
+                    message: messages.createContributorFailure,
                     variant: 'danger'
                 })
             })

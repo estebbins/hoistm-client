@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import ContributorForm from '../shared/ContributorForm'
 import { updateContributor } from '../../api/contributors'
-// import messages from '../shared/AutoDismissAlert/messages'
+import messages from '../shared/AutoDismissAlert/messages'
 
 const EditContributorModal = (props) => {
     const { user, file, show, handleClose, msgAlert, triggerRefresh } = props
@@ -50,7 +50,7 @@ const EditContributorModal = (props) => {
                 msgAlert({
                     heading: 'Hoist with someone elses petard!',
                     // !message: messages.updateContributorSuccess
-                    message: 'Contributor successfully edited!',
+                    message: messages.contributorSuccess,
                     variant: 'success'
                 })
             })
@@ -60,7 +60,7 @@ const EditContributorModal = (props) => {
                 msgAlert({
                     heading: 'Oh No! Hoisted by our petard!',
                     // !message: messages.updateContributorFailure
-                    message: 'Contributor not edited',
+                    message: messages.updateContributorFailure,
                     variant: 'danger'
                 })
             })
