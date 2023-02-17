@@ -11,7 +11,7 @@ export const deleteLabel = (user,label) => {
     });
 }
 
-export const editLabel = (user,newLabel) => {
+export const updateLabel = (user, newLabel) => {
     return axios({
         url: `${apiUrl}/labels/${newLabel._id}`, 
         method: 'PATCH',
@@ -23,7 +23,7 @@ export const editLabel = (user,newLabel) => {
         }
     });
 }
-export const showLabel = (user,newLabel) => {
+export const showLabel = (user, newLabel) => {
     return axios({
         url: `${apiUrl}/labels/${newLabel._id}`, 
         method: 'GET',
