@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import FilesIndex from '../files/FilesIndex'
 
 const FilesContainer = (props) => {
-    const { user, labels, msgAlert, files, filesError } = props
+    const { user, labels, msgAlert, files, filesError, triggerRefresh } = props
     
     console.log('files in filesContainer: ', files)
 
@@ -16,6 +16,7 @@ const FilesContainer = (props) => {
                 files={files}
                 filesError={filesError}
                 labels={labels}
+                triggerRefresh={triggerRefresh}
             />
         </div>
     )

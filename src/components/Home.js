@@ -81,7 +81,7 @@ const Home = (props) => {
 						</Col>
 						</Row>
 						<Row>
-							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} />
+							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} triggerRefresh={() => setUpdated(prev => !prev)} />
 						</Row>
 					</Col>
 				</Row>
@@ -91,6 +91,7 @@ const Home = (props) => {
                 show={newFileModalShow}
                 handleClose={() => setNewFileModalShow(false)}
                 msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             />
 		</>
 	)
