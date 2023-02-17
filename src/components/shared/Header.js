@@ -44,10 +44,10 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='dark' variant='dark' expand='md'>
+	<Navbar id="navbar"bg='dark' variant='dark' expand='md'>
 		<Navbar.Brand className='m-2'>
-            <Link to='/' style={linkStyle}>
-                hoistm
+            <Link to='/' style={linkStyle} id='logo' className='fs-4 fw-semibold'>
+				hoist<span className='logo-brackets'>&#x7B;</span><span id='hoist-m'>m</span><span className='logo-brackets'>&#x7D;</span>
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
