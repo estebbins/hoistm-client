@@ -41,15 +41,7 @@ const LabelsIndex = (props) => {
                     onClick={onClick}
                     value={JSON.stringify(label)}
                 >{label.name}</Button>
-                <EditLabelModal
-                    key={i}
-                    user={user}
-                    editLabel={updateLabel}
-                    msgAlert={msgAlert}
-                    triggerRefresh={triggerRefresh}
-                    show={editModalShow}
-                    handleClose={() => setEditModalShow(false)}
-                />
+
             </>
         )
 })
@@ -60,6 +52,14 @@ const LabelsIndex = (props) => {
             <div className="container-sm" >
                 { labelButtons }
             </div>
+            <EditLabelModal
+                    user={user}
+                    editLabel={updateLabel}
+                    msgAlert={msgAlert}
+                    triggerRefresh={triggerRefresh}
+                    show={editModalShow}
+                    handleClose={() => setEditModalShow(false)}
+                />
         </>
     )
 }

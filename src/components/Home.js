@@ -74,7 +74,7 @@ const Home = (props) => {
 						</Col>
 						</Row>
 						<Row>
-							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} />
+							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} />
 						</Row>
 					</Col>
 				</Row>

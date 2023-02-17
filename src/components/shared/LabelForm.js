@@ -1,7 +1,7 @@
 import { Container, Form, Button } from 'react-bootstrap'
 
 const LabelForm = (props) => {
-    const { user, label, handleSubmit, handleChange, heading } = props
+    const { label, handleSubmit, handleChange, heading } = props
     console.log('labelform label', label)
 
     return (
@@ -14,7 +14,7 @@ const LabelForm = (props) => {
                         placeholder="What is the name of the label"
                         name="name"
                         id="name"
-                        defaultValue={label.name}
+                        value={label.name}
                         onChange={handleChange}
                     />
                 </Form.Group>
@@ -24,7 +24,7 @@ const LabelForm = (props) => {
                         type="color"
                         name="color"
                         id="type"
-                        defaultValue={label.color}
+                        value={label.color}
                         onChange={handleChange}
                     />
                 </Form.Group>

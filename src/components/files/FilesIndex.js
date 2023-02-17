@@ -13,7 +13,7 @@ const cardContainerStyle = {
 
 const FilesIndex = (props) => {
 
-    const { msgAlert, user, files, filesError } = props
+    const { msgAlert, user, files, labels, filesError } = props
 
     const [fileModalShow, setFileModalShow] = useState(false)
     // const [updated, setUpdated] = useState(false)
@@ -38,6 +38,7 @@ const FilesIndex = (props) => {
             <ShowFileModal
                 user={user}
                 file={file}
+                labels={labels}
                 show={fileModalShow}
                 handleClose={() => setFileModalShow(false)}
                 msgAlert={msgAlert}

@@ -9,7 +9,7 @@ import EditFileModal from './EditFileModal'
 import ShowContributor from '../contributors/ShowContributor.js'
 
 const ShowFileModal = (props) => {
-    const { user, show, handleClose, msgAlert } = props
+    const { user, labels, show, handleClose, msgAlert } = props
     
     const [file, setFile] = useState(props.file)
     const [contributorModalShow, setContributorShow] = useState(false)
@@ -61,6 +61,22 @@ const ShowFileModal = (props) => {
             )
         }
     }
+
+    // let labelsList
+    // if (labels) {
+    //     if (labels.fileRef.length > 0) {
+    //         for (let i=0; i < labels.fileRef.length; i++) {
+    //             if(labels.fileRef[i]._id === file._id) {
+    //                 return labelsList.push(
+    //                     <ShowLabel 
+    //                         label={labels[i]}
+
+    //                     />
+    //                 )
+    //             }
+    //         }
+    //     }
+    // }
 
     return (
         <>

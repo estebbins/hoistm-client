@@ -8,10 +8,14 @@ const EditLabelModal = (props) => {
     const { user, editLabel, show, handleClose, msgAlert, triggerRefresh } = props
 
     // console.log('props.label', props.label)
-    const [label, setLabel] = useState(editLabel)
-    console.log('basical props.label', editLabel)
+    const [label, setLabel] = useState({})
+    console.log('basically props.label', editLabel)
 
     console.log('editcontmodal label', label)
+    useEffect(() => {
+        setLabel(editLabel)
+        console.log('use effect edit label', editLabel)
+    }, [editLabel])
 
     const onChange = (e) => {
         e.persist()
