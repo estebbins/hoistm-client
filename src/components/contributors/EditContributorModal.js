@@ -49,7 +49,6 @@ const EditContributorModal = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Hoist with someone elses petard!',
-                    // !message: messages.updateContributorSuccess
                     message: messages.contributorSuccess,
                     variant: 'success'
                 })
@@ -59,7 +58,6 @@ const EditContributorModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No! Hoisted by our petard!',
-                    // !message: messages.updateContributorFailure
                     message: messages.updateContributorFailure,
                     variant: 'danger'
                 })

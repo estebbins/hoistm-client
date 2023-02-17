@@ -6,7 +6,6 @@ import { updateFile } from '../../api/files'
 import { getLabelsOnFile } from '../../api/labels'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
-// import ContributorsIndex from '../contributors/ContributorsIndex'
 import ShowContributor from '../contributors/ShowContributor.js'
 
 const ShowFileModal = (props) => {
@@ -20,9 +19,12 @@ const ShowFileModal = (props) => {
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
     useEffect(() => {
+        // set file to the file passed down from FileIndex & re-render
         setFile(props.file)
     }, [props.file])
+
     useEffect(() => {
+        // !Don't want to delete yet!
         // console.log('props.file._id', props.file._id)
         // getOneFile(user, props.file._id)
         //     .then(res => setFile(res.data.file))

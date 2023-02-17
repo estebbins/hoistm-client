@@ -4,16 +4,6 @@ import ContributorForm from '../shared/ContributorForm'
 import { createContributor } from '../../api/contributors'
 import messages from '../shared/AutoDismissAlert/messages'
 
-// In ShowFile:
-// {/* <NewContributorModal
-//     user={user}
-//     file={file}
-//     show={contributorModalShow}
-//     handleClose={() => setContributorShow(false)}
-//     msgAlert={msgAlert}
-//     triggerRefresh={() => setUpdated(prev => !prev)}
-// /> */}
-
 const NewContributorModal = (props) => {
     const { user, file, show, handleClose, msgAlert, triggerRefresh } = props
 
@@ -60,7 +50,6 @@ const NewContributorModal = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Hoist with someone elses petard!',
-                    // !message: messages.createContributorSuccess
                     message: messages.createContributorSuccess,
                     variant: 'success'
                 })
@@ -70,7 +59,6 @@ const NewContributorModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No! Hoisted by our petard!',
-                    // !message: messages.createContributorFailure
                     message: messages.createContributorFailure,
                     variant: 'danger'
                 })
@@ -82,7 +70,6 @@ const NewContributorModal = (props) => {
             <Modal.Header closeButton />
             <Modal.Body>
                 <ContributorForm
-                    // userList={userList}
                     user={user}
                     filterValue={filterValue}
                     contributor={contributor}
