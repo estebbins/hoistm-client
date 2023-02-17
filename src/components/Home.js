@@ -73,7 +73,7 @@ const Home = (props) => {
 						<Col md={12} id='utilities-row'>
 							<Container fluid>
 							<Button 
-                                    className="m-2" variant="dark" onClick={() => setNewFileModalShow(true)}
+                                    className="m-2" id='new-file-button' onClick={() => setNewFileModalShow(true)}
                                 >
                                     Hoist New File
 								</Button>

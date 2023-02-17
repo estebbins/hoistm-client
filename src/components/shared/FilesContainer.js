@@ -9,7 +9,7 @@ const FilesContainer = (props) => {
     console.log('files in filesContainer: ', files)
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid p-0">
             <FilesIndex
                 user={user}
                 msgAlert={msgAlert}
