@@ -24,18 +24,18 @@ code {
 }
 
 #navbar {
-  background-color: #052F15!important;
+  background-color: #063E1D!important;
 }
 
 #labels-column {
-  background-color: #031F0E;
+  background-color: #052F15;
   padding: 0;
   padding-left: .5rem;
   padding-right: .1rem;
 }
 
 #utilities-row {
-  background-color: #021007;
+  background-color: #031F0E;
   padding: 0;
 }
 
@@ -65,7 +65,7 @@ code {
 }
 
 #hoist-m:hover {
-  color: #6416DA;
+  color: #DA168C;
 }
 
 span.logo-brackets {
@@ -82,4 +82,76 @@ span.logo-brackets:hover {
 #logo:hover {
   color: #16DB65!important;
   transition: .4s;
+}
+
+.file-card {
+  background-color: #000000!important;
+  border: none!important;
+  border-radius: 0!important;
+  max-width: 20%!important;
+  margin: .5rem;
+}
+
+.file-card-header {
+  /* padding-bottom: 0!important; */
+  background-color: #021007!important;
+  /* color: #000000!important; */
+  font-weight: 500;
+  font-size: .8rem;
+  border-bottom: none!important;
+  border-radius: 0!important;
+}
+
+.file-card-body {
+  padding-top: 0.25em!important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0!important;
+}
+
+.file-card-image {
+  background-color: #021007!important;
+  margin: 0 0 .2rem 0!important;
+  border: none!important;
+  border-radius: 0!important;
+  padding: 0.5em!important;
+}
+
+.file-card-button {
+  background-color: #16DB65!important;
+  width: 6em;
+  border-width: .15rem!important;
+  border-color: #000000!important;
+  /* border-radius: 0!important; */
+  margin-top: 0.1em;
+  margin-bottom: .5em;
+  padding: 0em!important;
+  font-weight: 500!important;
+  /* padding-bottom: .15em!important; */
+  letter-spacing: .05rem;
+  color: #000000!important;
+}
+
+.file-card-button:hover {
+  background-color: #000000!important;
+  color:#16DB65!important;
+  font-weight: 500!important;
+  border-color: #16DB65!important;
+}
+
+#new-file-button {
+  background-color: #16DB65;
+  border-color:#16DB65;
+  margin-left: 0!important;
+  font-weight: 500;
+  color: #000000;
+  border-width: .15rem!important;
+}
+
+#new-file-button:hover {
+  background-color: #000000!important;
+  color:#16DB65!important;
+  font-weight: 500!important;
+  border-color: #16DB65!important;
 }

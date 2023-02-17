@@ -41,11 +41,11 @@ const FilesIndex = (props) => {
     const fileCards = files.map((file, i) => {
         return (
             <>
-                <Card key={i} style={{ width: '30%' }}>
-                    <Card.Header>{file.name}</Card.Header>
-                    <Card.Body>
-                        <Image src={file.url} thumbnail/>
-                        <Button type='submit' className='m-2' onClick={onClick} value={JSON.stringify(file)}>View File</Button>
+                <Card className='file-card' key={i} style={{ width: '20%' }}>
+                    <Card.Header className='file-card-header'>{file.name}</Card.Header>
+                    <Card.Body className='file-card-body'>
+                        <Image className='file-card-image'src={file.url} thumbnail/>
+                        <Button type='submit' className='file-card-button' onClick={onClick} value={JSON.stringify(file)}>View File</Button>
                     </Card.Body>
                 </Card>
             </>
@@ -55,7 +55,7 @@ const FilesIndex = (props) => {
     // return some jsx, a container with all the pet cards
     return (
         <>
-            <div className="container-fluid" style={cardContainerStyle}>
+            <div className="container-fluid p-0" style={cardContainerStyle}>
                 { fileCards }
             </div>
             <ShowFileModal
