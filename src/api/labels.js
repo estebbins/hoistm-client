@@ -11,7 +11,7 @@ export const deleteLabel = (user,label) => {
     });
 }
 
-export const editLabel = (user,newLabel) => {
+export const updateLabel = (user, newLabel) => {
     return axios({
         url: `${apiUrl}/labels/${newLabel._id}`, 
         method: 'PATCH',
@@ -23,7 +23,7 @@ export const editLabel = (user,newLabel) => {
         }
     });
 }
-export const showLabel = (user,newLabel) => {
+export const showLabel = (user, newLabel) => {
     return axios({
         url: `${apiUrl}/labels/${newLabel._id}`, 
         method: 'GET',
@@ -55,3 +55,23 @@ export const getAllLabels = (user) => {
     },
 
 })}
+
+export const addFileToLabel = (user, file, label) => {
+    return axios({
+        url: `${apiUrl}/labels/${file._id}/${label._id}`, 
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
+
+export const getLabelsOnFile = (user, file) => {
+    return axios({
+        url: `${apiUrl}/filelabels/${file._id}`, 
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
