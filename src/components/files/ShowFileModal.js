@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
-import { getOneFile, updateFile } from '../../api/files'
+import { updateFile } from '../../api/files'
 import { getLabelsOnFile } from '../../api/labels'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
@@ -11,14 +11,13 @@ import ShowContributor from '../contributors/ShowContributor.js'
 
 const ShowFileModal = (props) => {
     const { user, show, handleClose, msgAlert, triggerRefresh } = props
-    console.log('show props.file', props.file)
+    // console.log('show props.file', props.file)
     const [file, setFile] = useState({})
     const [contributorModalShow, setContributorShow] = useState(false)
     const [editFileModalShow, setEditFileModalShow] = useState(false)
-    const [updated, setUpdated] = useState(false)
     const [labels, setLabels] = useState([])
-    console.log('show file file', file)
-    console.log('show file labels', labels)
+    // console.log('show file file', file)
+    // console.log('show file labels', labels)
     // console.log('email', file.owner)
     useEffect(() => {
         setFile(props.file)
