@@ -36,12 +36,12 @@ const LabelsIndex = (props) => {
             <>
                 <Button
                     id='label-buttons'    
-                    className="m-2"
+                    className='m-2'
                     style={{backgroundColor:`${label.color}`}}
                     key={label._id}
                     onClick={onClick}
                     value={JSON.stringify(label)}
-                ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
+                >{<p id='label-text'>{label.name}</p>}</Button>
 
             </>
         )
@@ -50,7 +50,7 @@ const LabelsIndex = (props) => {
     // return some jsx, a container with all the pet cards
     return (
         <>
-            <div className="container-sm d-flex flex-column justify-content-start p-0" >
+            <div className='container-sm d-flex flex-column justify-content-start p-0' >
                 { labelButtons }
             </div>
             <EditLabelModal

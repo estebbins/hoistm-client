@@ -13,11 +13,10 @@ const cardContainerStyle = {
 
 const FilesIndex = (props) => {
 
-    const { msgAlert, labels, user, files, filesError, triggerRefresh } = props
+    const { msgAlert, user, files, filesError, triggerRefresh } = props
 
     const [fileModalShow, setFileModalShow] = useState(false)
     const [showFile, setShowFile] = useState({})
-    const [updated, setUpdated] = useState(false)
     // const [updated, setUpdated] = useState(false)
     // console.log('index files', files)
     // console.log('index file', showFile)
@@ -48,11 +47,11 @@ const FilesIndex = (props) => {
     const fileCards = files.map((file, i) => {
         return (
             <>
-                <Card className='file-card' key={i} style={{ width: '20%' }}>
+                <Card className='file-card' key={i}>
                     <Card.Header className='file-card-header'>{file.name}</Card.Header>
                     <Card.Body className='file-card-body'>
-                        <Image className='file-card-image'src={file.url} thumbnail/>
-                        <Button type='submit' className='file-card-button' onClick={onClick} value={JSON.stringify(file)}>View File</Button>
+                        <Image style={{ width: '138px', height: '134px' }} className='file-card-image'src={file.url} thumbnail/>
+                        <Button type='submit' className='file-card-button pe-1' onClick={onClick} value={JSON.stringify(file)}><Image style={{ width: '25%' }} className='pe-1' src='/icons/outline_launch_white_24dp.png' />View File</Button>
                     </Card.Body>
                 </Card>
             </>
@@ -69,10 +68,9 @@ const FilesIndex = (props) => {
                 user={user}
                 file={showFile}
                 show={fileModalShow}
-                allLabels={labels}
                 handleClose={() => setFileModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={()=> setUpdated(prev => !prev)}
+                triggerRefresh={triggerRefresh}
             />
         </>
     )
