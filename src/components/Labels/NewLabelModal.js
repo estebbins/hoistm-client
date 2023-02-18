@@ -1,25 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
-// import { useNavigate } from 'react-router-dom'
 import LabelForm from '../shared/LabelForm'
 import { createLabel } from '../../api/labels'
-// import messages from '../shared/AutoDismissAlert/messages'
-
-// In ShowFile:
-// {/* <NewLabelModal
-//     user={user}
-//     show={labelModalShow}
-//     handleClose={() => setLabelShow(false)}
-//     msgAlert={msgAlert}
-//     triggerRefresh={() => setUpdated(prev => !prev)}
-// /> */}
+import messages from '../shared/AutoDismissAlert/messages'
 
 const NewLabelModal = (props) => {
     const { user, show, handleClose, msgAlert, triggerRefresh } = props
 
-    const [label, setLabel] = useState({})
+    const [label, setLabel] = useState(null)
 
     // const navigate = useNavigate()
+
+    useEffect(() => {
+        setLabel({})
+    }, [show])
 
     const onChange = (e) => {
         e.persist()
@@ -50,8 +44,7 @@ const NewLabelModal = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Hoist with someone elses petard!',
-                    // !message: messages.createLabelSuccess
-                    message: 'Label successfully added!',
+                    message: messages.createLabelSuccess,
                     variant: 'success'
                 })
             })
@@ -61,8 +54,7 @@ const NewLabelModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No! Hoisted by our petard!',
-                    // !message: messages.createLabelFailure
-                    message: 'Label not added',
+                    message: messages.createLabelFailure,
                     variant: 'danger'
                 })
             })
