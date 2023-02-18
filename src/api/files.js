@@ -13,6 +13,7 @@ export const getAllFiles = (user) => {
 }
 
 export const getOneFile = (user, id) => {
+    console.log('getonefile', id)
     return axios({
         url: `${apiUrl}/files/${id}`, 
         method: 'GET',

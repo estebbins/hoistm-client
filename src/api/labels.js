@@ -68,9 +68,10 @@ export const addFileToLabel = (user, file, label) => {
     })
 }
 
-export const getLabelsOnFile = (user, file) => {
+export const getLabelsOnFile = (user, fileId) => {
+    console.log('getlabelsonfile', fileId)
     return axios({
-        url: `${apiUrl}/filelabels/${file._id}`, 
+        url: `${apiUrl}/filelabels/${fileId}`, 
         method: 'GET',
         headers: {
             Authorization: `Token token=${user.token}`

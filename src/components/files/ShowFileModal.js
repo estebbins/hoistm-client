@@ -10,61 +10,94 @@ import ShowContributor from '../contributors/ShowContributor.js'
 import AddLabelModal from '../Labels/AddLabelModal.js'
 
 const ShowFileModal = (props) => {
-    const { user, show, allLabels, handleClose, msgAlert, triggerRefresh } = props
+    console.log('showfilemodal props', props)
+    const { user, show, fileId, allLabels, handleClose, msgAlert, triggerRefresh } = props
     // console.log('show props.file', props.file)
-    const [file, setFile] = useState({})
+    console.log('showFileModal fielId', fileId)
+    const [file, setFile] = useState(null)
     const [contributorModalShow, setContributorShow] = useState(false)
     const [editFileModalShow, setEditFileModalShow] = useState(false)
     const [addLabelModalShow, setAddLabelModalShow] = useState(false)
     const [labels, setLabels] = useState([])
-    const [updated, setUpdated] = useState(false)
+    const [updatedFile, setUpdatedFile] = useState(false)
+    const [updatedLabels, setUpdatedLabels] = useState(false)
     // console.log('show file file', file)
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
 
     useEffect(() => {
-        // set file to the file passed down from FileIndex & re-render
-        setFile(props.file)
-    }, [props.file])
+        if (fileId) {
+            getOneFile(user, fileId)
+                .then(res => setFile(res.data.file))
+                .then(() => setUpdatedLabels(prev => !prev))
+                .catch(err => {
+                    msgAlert({
+                        heading: 'Error getting File',
+                        message: 'something went wrong',
+                        variant: 'danger'
+                    })
+                })
+        }
+    }, [fileId, updatedFile])
 
     useEffect(() => {
-        // !Don't want to delete yet!
-        // console.log('props.file._id', props.file._id)
-        // getOneFile(user, props.file._id)
-        //     .then(res => setFile(res.data.file))
-        //     .then(()=>triggerRefresh())
-        //     .catch(err => {
-        //         msgAlert({
-        //             heading: 'Error getting File',
-        //             message: 'something went wrong',
-        //             variant: 'danger'
-        //         })
-        //     })
-        getLabelsOnFile(user, file)
-            .then(res => setLabels(res.data.labels))
-            .then(()=>triggerRefresh())
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error getting labels',
-                    // ! message: messages.getLabelsOnFileFailure
-                    message: 'Oops! Could not retrieve labels!',
-                    variant: 'danger'
+        if (fileId) {
+            getLabelsOnFile(user, fileId)
+                .then(res => setLabels(res.data.labels))
+                .catch(err => {
+                    msgAlert({
+                        heading: 'Error getting labels',
+                        // ! message: messages.getLabelsOnFileFailure
+                        message: 'Oops! Could not retrieve labels!',
+                        variant: 'danger'
+                    })
                 })
-            })
-    }, [file, updated])
+        }
+    }, [fileId, updatedLabels])
 
-    useEffect(() => {
-        getOneFile(user, props.file._id)
-            .then(res => setFile(res.data.file))
-            .then(()=>triggerRefresh())
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error getting File',
-                    message: 'something went wrong',
-                    variant: 'danger'
-                })
-            })
-    }, [updated])
+    // useEffect(() => {
+    //     // set file to the file passed down from FileIndex & re-render
+    //     setFile(props.file)
+    // }, [props.file])
+
+    // useEffect(() => {
+    //     // !Don't want to delete yet!
+    //     // console.log('props.file._id', props.file._id)
+    //     // getOneFile(user, props.file._id)
+    //     //     .then(res => setFile(res.data.file))
+    //     //     .then(()=>triggerRefresh())
+    //     //     .catch(err => {
+    //     //         msgAlert({
+    //     //             heading: 'Error getting File',
+    //     //             message: 'something went wrong',
+    //     //             variant: 'danger'
+    //     //         })
+    //     //     })
+    //     getLabelsOnFile(user, fileId)
+    //         .then(res => setLabels(res.data.labels))
+    //         // .then(()=>triggerRefresh())
+    //         .catch(err => {
+    //             msgAlert({
+    //                 heading: 'Error getting labels',
+    //                 // ! message: messages.getLabelsOnFileFailure
+    //                 message: 'Oops! Could not retrieve labels!',
+    //                 variant: 'danger'
+    //             })
+    //         })
+    // }, [updatedLabels])
+
+    // useEffect(() => {
+    //     getOneFile(user, props.file._id)
+    //         .then(res => setFile(res.data.file))
+    //         .then(()=>triggerRefresh())
+    //         .catch(err => {
+    //             msgAlert({
+    //                 heading: 'Error getting File',
+    //                 message: 'something went wrong',
+    //                 variant: 'danger'
+    //             })
+    //         })
+    // }, [updated])
 
     // console.log('show file modal labels')
 
@@ -125,7 +158,7 @@ const ShowFileModal = (props) => {
                     user={user}
                     file={file}
                     msgAlert={msgAlert}
-                    triggerRefresh={triggerRefresh}
+                    triggerRefresh={() => setUpdatedFile(prev => !prev)}
                 />
                 )    
             )
@@ -214,7 +247,8 @@ const ShowFileModal = (props) => {
                 show={contributorModalShow}
                 handleClose={() => setContributorShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
+                //! IS SETUPDATEDFILECORRECT??
+                triggerRefresh={() => setUpdatedFile(prev => !prev)}
             /> 
             <EditFileModal
                 user={user}
@@ -222,7 +256,7 @@ const ShowFileModal = (props) => {
                 show={editFileModalShow}
                 handleClose={() => setEditFileModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
+                triggerRefresh={() => setUpdatedFile(prev => !prev)}
             />
             <AddLabelModal 
                 file={file}
@@ -231,7 +265,7 @@ const ShowFileModal = (props) => {
                 show={addLabelModalShow}
                 handleClose={() => setAddLabelModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
+                triggerRefresh={() => setUpdatedLabels(prev => !prev)}
             />
         </>
     )

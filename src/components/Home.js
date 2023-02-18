@@ -22,8 +22,8 @@ const Home = (props) => {
 
 	const { msgAlert, user } = props
 
-	const [files, setFiles] = useState(null)
-	const [filesError, setFilesError] = useState(false)
+	// const [files, setFiles] = useState(null)
+	// const [filesError, setFilesError] = useState(false)
 	
 	const [labels, setLabels] = useState(null)
 	const [labelsError, setLabelsError] = useState(false)
@@ -33,17 +33,8 @@ const Home = (props) => {
     const [updatedFiles, setUpdatedFiles] = useState(false)
     const [updatedLabels, setUpdatedLabels] = useState(false)
 
-	useEffect(() => {
-        getAllFiles(user)
-            .then(res => setFiles(res.data.files))
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error getting files',
-                    message: 'failed to get files',
-                    variant: 'danger'
-                })
-                setFilesError(true)
-            })
+    useEffect(() => {
+
     }, [updatedFiles])
 
 	useEffect(() => {
@@ -83,7 +74,9 @@ const Home = (props) => {
 						</Col>
 						</Row>
 						<Row>
-							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} triggerRefresh={() => setUpdatedFiles(prev => !prev)} />
+							<FilesContainer msgAlert={msgAlert} user={user} labels={labels} 
+                            triggerRefresh={() => setUpdatedFiles(prev => !prev)} 
+                            />
 						</Row>
 					</Col>
 				</Row>

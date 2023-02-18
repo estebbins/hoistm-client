@@ -13,23 +13,26 @@ const cardContainerStyle = {
 
 const FilesIndex = (props) => {
 
+    console.log('filesindex props', props)
     const { msgAlert, user, files, labels, filesError, triggerRefresh } = props
 
     const [fileModalShow, setFileModalShow] = useState(false)
-    const [showFile, setShowFile] = useState({})
+    const [fileId, setFileId] = useState(null)
     const [updated, setUpdated] = useState(false)
     // console.log('index files', files)
     // console.log('index file', showFile)
-
-    useEffect(()=> {
-        triggerRefresh()
-    },[updated])
+    console.log('index fileId', fileId)
+    // useEffect(()=> {
+    //     console.log('!!FilesIndex UseEffect Triggered!!!')
+    //     triggerRefresh()
+    // },[updated])
 
     const onClick = (e) => {
         // console.log('e', e.target)
+        console.log('!!!!!filesindex onClick Event!!!!!!')
         e.preventDefault()
         // console.log('file index e value', e.target.value)
-        setShowFile(JSON.parse(e.target.value))
+        setFileId(e.target.value)
         setFileModalShow(true)
     }
 
@@ -51,7 +54,7 @@ const FilesIndex = (props) => {
                     <Card.Header className='file-card-header'>{file.name}</Card.Header>
                     <Card.Body className='file-card-body'>
                         <Image style={{ width: '138px', height: '134px' }} className='file-card-image'src={file.url} thumbnail/>
-                        <Button type='submit' className='file-card-button pe-1' onClick={onClick} value={JSON.stringify(file)}><Image style={{ width: '25%' }} className='pe-1' src='/icons/outline_launch_white_24dp.png' />View File</Button>
+                        <Button type='submit' className='file-card-button pe-1' onClick={onClick} value={file._id}><Image style={{ width: '25%' }} className='pe-1' src='/icons/outline_launch_white_24dp.png' />View File</Button>
                     </Card.Body>
                 </Card>
             </>
@@ -66,7 +69,7 @@ const FilesIndex = (props) => {
             </div>
             <ShowFileModal
                 user={user}
-                file={showFile}
+                fileId={fileId}
                 show={fileModalShow}
                 handleClose={() => setFileModalShow(false)}
                 msgAlert={msgAlert}
