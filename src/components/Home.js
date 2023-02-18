@@ -30,7 +30,8 @@ const Home = (props) => {
 
 	const [newFileModalShow, setNewFileModalShow] = useState(false)
 
-    const [updated, setUpdated] = useState(false)
+    const [updatedFiles, setUpdatedFiles] = useState(false)
+    const [updatedLabels, setUpdatedLabels] = useState(false)
 
 	useEffect(() => {
         getAllFiles(user)
@@ -43,7 +44,7 @@ const Home = (props) => {
                 })
                 setFilesError(true)
             })
-    }, [updated])
+    }, [updatedFiles])
 
 	useEffect(() => {
         getAllLabels(user)
@@ -57,7 +58,7 @@ const Home = (props) => {
                 })
                 setLabelsError(true)
             })
-    }, [updated])
+    }, [updatedLabels])
 
 	return (
 		<>
@@ -66,7 +67,7 @@ const Home = (props) => {
 					<Col md={2} id='labels-column' className='pe-2'>
 						<p className='fs-3 mt-1 mb-2 fw-semibold align-middle'><Image id='title-label-icon' className='pb-1' src='/icons/label_white_24dp.svg'/>Labels</p>
 						<hr className='mt-0 border'/>
-						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} triggerRefresh={() => setUpdated(prev => !prev)}/>
+						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} triggerRefresh={() => setUpdatedLabels(prev => !prev)}/>
 					</Col>
 					<Col md={10}>
 						<Row>
@@ -82,7 +83,7 @@ const Home = (props) => {
 						</Col>
 						</Row>
 						<Row>
-							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} triggerRefresh={() => setUpdated(prev => !prev)} />
+							<FilesContainer msgAlert={msgAlert} user={user} files={files} filesError={filesError} labels={labels} triggerRefresh={() => setUpdatedFiles(prev => !prev)} />
 						</Row>
 					</Col>
 				</Row>
@@ -92,7 +93,7 @@ const Home = (props) => {
                 show={newFileModalShow}
                 handleClose={() => setNewFileModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
+                triggerRefresh={() => setUpdatedFiles(prev => !prev)}
             />
 		</>
 	)
