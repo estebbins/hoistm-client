@@ -179,7 +179,7 @@ const ShowFileModal = (props) => {
     }
 
     if (!file) {
-        return <p>Loading...</p>
+        return <></>
     }
 
     return (

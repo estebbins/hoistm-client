@@ -42,11 +42,11 @@ const FilesIndex = (props) => {
     }
 
     if (filesError) {
-        return <p>Loading...</p>
+        return <p>Error...</p>
     }
     // if no pets loaded yet, display 'loading'
     if (!files) {
-        return <p>Loading...</p>
+        return <p>Files Loading...</p>
         // otherwise if there are no pets, display that message
     } else if (files.length === 0) {
         return <p>No files yet, go add some!</p>

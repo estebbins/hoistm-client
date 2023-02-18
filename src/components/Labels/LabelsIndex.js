@@ -13,11 +13,11 @@ const LabelsIndex = (props) => {
     // console.log('labels: ', labels)
 
     if (labelsError) {
-        return <p>Loading...</p>
+        return <p>Labels error...</p>
     }
     // if no pets loaded yet, display 'loading'
     if (!labels) {
-        return <p>Loading...</p>
+        return <p>Loading Labels...</p>
         // otherwise if there are no pets, display that message
     } else if (labels.length === 0) {
         return <p>No files yet, go add some!</p>
@@ -38,7 +38,7 @@ const LabelsIndex = (props) => {
                     id='label-buttons'    
                     className='m-2'
                     style={{backgroundColor:`${label.color}`}}
-                    key={label._id}
+                    key={i}
                     onClick={onClick}
                     value={JSON.stringify(label)}
                 >{label.name}</Button>
