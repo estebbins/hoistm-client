@@ -58,7 +58,7 @@ code {
 }
 
 #hoist-m:hover {
-  color: #DA168C;
+  color: #E91E63;
 }
 
 span.logo-brackets {
@@ -69,11 +69,11 @@ span.logo-brackets {
 }
 
 span.logo-brackets:hover {
-  color: #000000;
+  color: #272Ab0;
 }
 
 #logo:hover {
-  color: #16DB65!important;
+  color: #57dcbd!important;
   transition: .4s;
 }
 
@@ -118,7 +118,7 @@ span.logo-brackets:hover {
 
 .file-card-image {
   background-color: #0D0D0D!important;
-  margin: 0 0 .2rem 0!important;
+  /* margin: 0 0 .2rem 0!important; */
   border: none!important;
   border-radius: 0!important;
   padding: 0.5em!important;
@@ -133,7 +133,7 @@ span.logo-brackets:hover {
   border-width: .15rem!important;
   border-color: #0D0D0D!important;
   /* border-radius: 0!important; */
-  margin-top: 0.1em;
+  /* margin-top: 0.1em; */
   margin-bottom: .5em;
   padding: .2em!important;
   font-weight: 400!important;
@@ -160,9 +160,9 @@ span.logo-brackets:hover {
 
 #new-file-button:hover {
   background-color: #000000!important;
-  color:#16DB65!important;
+  color:#ffffff!important;
   font-weight: 500!important;
-  border-color: #16DB65!important;
+  border-color: #5727af!important;
 }
 
 #new-label-button {
@@ -175,7 +175,8 @@ span.logo-brackets:hover {
 }
 
 #label-buttons {
-  border: none;
+  /* border: none; */
+  border: 1px solid #5A5A5A!important;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
   clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
@@ -184,8 +185,13 @@ span.logo-brackets:hover {
   padding: 5px;
   /* padding-right: 20px!important; */
   text-align: left;
-  color: #000000;
+  color: #ffffff;
+  font-weight: 500;
   /* font-size: .9rem!important; */
+}
+
+#label-buttons:hover {
+  color: #000000;
 }
 
 #label-text {
