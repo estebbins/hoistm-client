@@ -3,7 +3,7 @@ import { Modal, Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
 import { deleteFile, getOneFile } from '../../api/files'
-import { getLabelsOnFile } from '../../api/labels'
+import { getLabelsOnFile, removeFileFromLabel } from '../../api/labels'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
 import ShowContributor from '../contributors/ShowContributor.js'
@@ -21,6 +21,7 @@ const ShowFileModal = (props) => {
     const [labels, setLabels] = useState([])
     const [updatedFile, setUpdatedFile] = useState(false)
     const [updatedLabels, setUpdatedLabels] = useState(false)
+    const [removeLabelId, setRemoveLabelId] = useState(null)
     // console.log('show file file', file)
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
@@ -54,6 +55,30 @@ const ShowFileModal = (props) => {
                 })
         }
     }, [fileId, updatedLabels])
+
+    useEffect(() => {
+        if(removeLabelId) {
+            removeFileFromLabel(user, file, removeLabelId)
+                .then(() => {
+                    setRemoveLabelId(null)
+                    setUpdatedFile(prev => !prev)
+                    setUpdatedLabels(prev => !prev)
+                    triggerRefresh()
+                })
+                .catch(err => {
+                    msgAlert({
+                        heading: 'Error removing label',
+                        message: 'something went wrong with removing the label',
+                        variant: 'danger'
+                    })
+                })
+        }
+    }, [removeLabelId])
+
+    const onClick = (e) => {
+        e.preventDefault()
+        setRemoveLabelId(e.target.value)
+    }
 
     // useEffect(() => {
     //     // set file to the file passed down from FileIndex & re-render
@@ -172,8 +197,8 @@ const ShowFileModal = (props) => {
                 className="m-2"
                 style={{backgroundColor:`${label.color}`}}
                 key={label._id}
-                // onClick={onClick}
-                value={JSON.stringify(label)}
+                onClick={onClick}
+                value={label._id}
             ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
         ))
     }
@@ -266,7 +291,10 @@ const ShowFileModal = (props) => {
                 show={addLabelModalShow}
                 handleClose={() => setAddLabelModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdatedLabels(prev => !prev)}
+                triggerRefresh={() => {
+                    setUpdatedLabels(prev => !prev)
+                    setUpdatedFile(prev => !prev)
+                }}
             />
         </>
     )

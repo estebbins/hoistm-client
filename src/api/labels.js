@@ -78,3 +78,15 @@ export const getLabelsOnFile = (user, fileId) => {
         }
     })
 }
+
+export const removeFileFromLabel = (user, file, labelId) => {
+    console.log('axios label', labelId)
+    console.log('axios file', file)
+    return axios({
+        url: `${apiUrl}/removeLabel/${labelId}/${file._id}`, 
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
