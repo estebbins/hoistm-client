@@ -8,13 +8,13 @@ const AddLabelModal = (props) => {
 
     const [label, setLabel] = useState({})
 
-    useEffect(() => {
-        console.log(label)
-    }, [label])
+    // useEffect(() => {
+    //     console.log(label)
+    // }, [label])
 
     const onClick = (e) => {
         e.preventDefault()
-        setLabel(JSON.parse(e.target.value))
+        // setLabel(JSON.parse(e.target.value))
         console.log('label in onclick', label)
         let addLabel = JSON.parse(e.target.value)
         addFileToLabel(user, file, addLabel)
@@ -50,10 +50,8 @@ const AddLabelModal = (props) => {
                 onClick={onClick}
                 value={JSON.stringify(label)}
             ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
-
         ))
     }
-
     return (
         <>
             <Modal show={show} onHide={handleClose}>
