@@ -36,6 +36,11 @@ const FilesIndex = (props) => {
         setFileModalShow(true)
     }
 
+    const handleClose = () => {
+        setFileModalShow(false)
+        setFileId(null)
+    }
+
     if (filesError) {
         return <p>Loading...</p>
     }
@@ -71,7 +76,7 @@ const FilesIndex = (props) => {
                 user={user}
                 fileId={fileId}
                 show={fileModalShow}
-                handleClose={() => setFileModalShow(false)}
+                handleClose={handleClose}
                 msgAlert={msgAlert}
                 triggerRefresh={triggerRefresh}
                 allLabels={labels}
