@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
-import { updateFile, getOneFile } from '../../api/files'
+import { deleteFile, getOneFile } from '../../api/files'
 import { getLabelsOnFile } from '../../api/labels'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
@@ -21,6 +21,7 @@ const ShowFileModal = (props) => {
     // console.log('show file file', file)
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
+
     useEffect(() => {
         // set file to the file passed down from FileIndex & re-render
         setFile(props.file)
@@ -50,7 +51,7 @@ const ShowFileModal = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [file])
+    }, [file, updated])
 
     useEffect(() => {
         getOneFile(user, props.file._id)
@@ -79,6 +80,27 @@ const ShowFileModal = (props) => {
     //             })
     //         })
     // }, [])
+
+    const removeFile = () => {
+        deleteFile(user, file)
+            .then(() => handleClose())
+            .then(() => {
+                msgAlert({
+                    heading: 'Hoist with someone elses petard!',
+                    message: messages.fileDeleteSuccess,
+                    variant: 'success'
+                })
+            })
+            .then(() => triggerRefresh())
+            // if there is an error, tell the user about it
+            .catch(() => {
+                msgAlert({
+                    heading: 'Oh No! Hoisted by our petard!',
+                    message: messages.fileDeleteFailure,
+                    variant: 'danger'
+                })
+            })
+    }
 
     const convertTimestamps = (timestamp) => {
         const formatted = new Date(timestamp)
@@ -154,6 +176,7 @@ const ShowFileModal = (props) => {
                                 >
                                     Edit File
                                 </Button>
+                                <Button className='m-2' variant='danger' onClick={() => removeFile()}>Delete</Button>
                                 <Button 
                                     className="m-2" variant="warning"
                                     onClick={() => setAddLabelModalShow(true)}
@@ -191,16 +214,15 @@ const ShowFileModal = (props) => {
                 show={contributorModalShow}
                 handleClose={() => setContributorShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={triggerRefresh}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             /> 
             <EditFileModal
                 user={user}
                 file={file}
-                updateFile={updateFile}
                 show={editFileModalShow}
                 handleClose={() => setEditFileModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={triggerRefresh}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             />
             <AddLabelModal 
                 file={file}

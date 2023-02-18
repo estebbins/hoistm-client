@@ -44,3 +44,13 @@ export const createFile = (user, file) => {
         data: file,
     })
 }
+
+export const deleteFile = (user, file) => {
+    return axios({
+        url: `${apiUrl}/files/${file._id}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}

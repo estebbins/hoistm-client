@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap'
 import LabelForm from '../shared/LabelForm'
-import { updateLabel } from '../../api/labels'
-// import messages from '../shared/AutoDismissAlert/messages'
+import { updateLabel, deleteLabel } from '../../api/labels'
+import messages from '../shared/AutoDismissAlert/messages'
 
 const EditLabelModal = (props) => {
     const { user, editLabel, show, handleClose, msgAlert, triggerRefresh } = props
@@ -11,6 +12,7 @@ const EditLabelModal = (props) => {
     const [label, setLabel] = useState({})
     // console.log('basically props.label', editLabel)
 
+    const navigate = useNavigate()
     // console.log('editcontmodal label', label)
     useEffect(() => {
         setLabel(editLabel)
@@ -45,9 +47,8 @@ const EditLabelModal = (props) => {
             // send a success message
             .then(() => {
                 msgAlert({
-                    heading: 'Hoist with someone elses petard!',
-                    // !message: messages.updateLabelSuccess
-                    message: 'Label successfully edited!',
+                    heading: "Hoist with someone else's petard!",
+                    message: messages.updateLabelSuccess,
                     variant: 'success'
                 })
             })
@@ -55,14 +56,32 @@ const EditLabelModal = (props) => {
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh No! Hoisted by our petard!',
-                    // !message: messages.updateLabelFailure
-                    message: 'Label not edited',
+                    heading: "Oh No! Hoisted by the developers' petard!",
+                    message: messages.updateLabelFailure,
                     variant: 'danger'
                 })
             })
     }
-
+    const removeLabel = () => {
+        deleteLabel(user, label)
+        .then(() => handleClose())
+        .then(() => {
+            msgAlert({
+                heading: 'Begone! Label delete success!',
+                message: messages.labelDeleteSuccess,
+                variant: 'success'
+            })
+        })
+        .then(() => triggerRefresh())
+        // if there is an error, tell the user about it
+        .catch(() => {
+            msgAlert({
+                heading: 'Oh No! Could not delete label',
+                message: messages.labelDeleteFailure,
+                variant: 'danger'
+            })
+        })
+    }
 
     return (
     <Modal show={show} onHide={handleClose}>
@@ -74,6 +93,7 @@ const EditLabelModal = (props) => {
                 handleSubmit={onSubmit}
                 heading={'Edit Label'}
             />
+            <Button className='m-2' variant='warning' onClick={() => removeLabel()}>Delete</Button>
         </Modal.Body>
     </Modal>
     )

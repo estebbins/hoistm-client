@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Modal } from 'react-bootstrap'
+import { updateFile, deleteFile } from '../../api/files'
 import FileForm from '../shared/FileForm'
 import messages from '../shared/AutoDismissAlert/messages'
 
 const EditFileModal = (props) => {
     // destructure our props
-    const { user, show, handleClose, updateFile, msgAlert, triggerRefresh } = props
-    
-    const [file, setFile] = useState(props.file)
+    const { user, show, handleClose, msgAlert, triggerRefresh } = props
+    console.log('the file in edit file', props.file)
+    const [file, setFile] = useState({})
+
+    useEffect(() => {
+        setFile(props.file)
+    }, [props.file])
 
     const onChange = (e) => {
         e.persist()
-        console.log(file)
+        console.log('onchange edit file', file)
         setFile(prevFile => {
             const updatedName = e.target.name
             let updatedValue = e.target.value 
@@ -37,7 +42,7 @@ const EditFileModal = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Oh yeah!',
-                    message: 'successfully updated file',
+                    message: messages.fileUpdateSuccess,
                     variant: 'success'
                 })
             })
@@ -48,7 +53,7 @@ const EditFileModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: 'failed to update file',
+                    message: messages.fileUpdateFailure,
                     variant: 'danger'
                 })
             })
@@ -63,6 +68,7 @@ const EditFileModal = (props) => {
                         file={file}
                         handleChange={onChange}
                         handleSubmit={onSubmit}
+                        heading={'Edit File Details'}
                     />
                 </Modal.Body>
             </Modal>

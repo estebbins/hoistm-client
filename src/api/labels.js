@@ -1,7 +1,7 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const deleteLabel = (user,label) => {
+export const deleteLabel = (user, label) => {
     return axios({
         url: `${apiUrl}/labels/${label._id}`, 
         method: 'DELETE',

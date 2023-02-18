@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
@@ -21,6 +21,19 @@ const FilesIndex = (props) => {
     // const [updated, setUpdated] = useState(false)
     // console.log('index files', files)
     // console.log('index file', showFile)
+
+    useEffect(()=> {
+        triggerRefresh()
+    },[updated])
+
+    const onClick = (e) => {
+        // console.log('e', e.target)
+        e.preventDefault()
+        // console.log('file index e value', e.target.value)
+        setShowFile(JSON.parse(e.target.value))
+        setFileModalShow(true)
+    }
+
     if (filesError) {
         return <p>Loading...</p>
     }
@@ -31,14 +44,6 @@ const FilesIndex = (props) => {
     } else if (files.length === 0) {
         return <p>No files yet, go add some!</p>
 	}
-
-    const onClick = (e) => {
-        // console.log('e', e.target)
-        e.preventDefault()
-        // console.log('file index e value', e.target.value)
-        setShowFile(JSON.parse(e.target.value))
-        setFileModalShow(true)
-    }
 
     const fileCards = files.map((file, i) => {
         return (

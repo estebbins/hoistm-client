@@ -44,7 +44,8 @@ const messages = {
 
 	//Home.js            |  40    | messeges.getFilesFailure
 	getFilesFailure: 'Failed to get files',
-
+    fileDeleteSuccess: 'delete success!',
+    fileDeleteFailure: 'could not delete file',
 
 
 
