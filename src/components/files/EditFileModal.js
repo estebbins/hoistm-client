@@ -6,7 +6,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 const EditFileModal = (props) => {
     // destructure our props
-    const { user, show, handleClose, msgAlert, triggerRefresh } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh, triggerFileRefresh } = props
     console.log('the file in edit file', props.file)
     const [file, setFile] = useState({})
 
@@ -48,6 +48,7 @@ const EditFileModal = (props) => {
             })
             // if everything goes according to plan, we need a refresh of the show page
             // we'll build a function in the ShowPet component that does this for us, and we'll import that here as a prop
+            .then(() => triggerFileRefresh())
             .then(() => triggerRefresh())
             // if there is an error, tell the user about it
             .catch(() => {

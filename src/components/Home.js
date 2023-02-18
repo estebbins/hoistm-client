@@ -33,9 +33,9 @@ const Home = (props) => {
     const [updatedFiles, setUpdatedFiles] = useState(false)
     const [updatedLabels, setUpdatedLabels] = useState(false)
 
-    useEffect(() => {
-
-    }, [updatedFiles])
+    // useEffect(() => {
+    //     console.log(updatedFiles)
+    // }, [updatedFiles])
 
 	useEffect(() => {
         getAllLabels(user)
@@ -76,6 +76,7 @@ const Home = (props) => {
 						<Row>
 							<FilesContainer msgAlert={msgAlert} user={user} labels={labels} 
                             triggerRefresh={() => setUpdatedFiles(prev => !prev)} 
+                            updatedFiles={updatedFiles}
                             />
 						</Row>
 					</Col>

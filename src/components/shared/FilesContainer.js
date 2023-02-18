@@ -5,7 +5,7 @@ import { getAllFiles } from '../../api/files'
 import FilesIndex from '../files/FilesIndex'
 
 const FilesContainer = (props) => {
-    const { user, labels, msgAlert, triggerRefresh } = props
+    const { user, updatedFiles, labels, msgAlert, triggerRefresh } = props
     
     // console.log('files in filesContainer: ', files)
 
@@ -23,7 +23,7 @@ const FilesContainer = (props) => {
                 })
                 setFilesError(true)
             })
-    }, [])
+    }, [updatedFiles])
 
     return (
         <div className="container-fluid p-0">

@@ -256,7 +256,8 @@ const ShowFileModal = (props) => {
                 show={editFileModalShow}
                 handleClose={() => setEditFileModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdatedFile(prev => !prev)}
+                triggerFileRefresh={() => setUpdatedFile(prev => !prev)}
+                triggerRefresh={triggerRefresh}
             />
             <AddLabelModal 
                 file={file}
