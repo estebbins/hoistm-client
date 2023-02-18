@@ -17,7 +17,7 @@ const FilesIndex = (props) => {
 
     const [fileModalShow, setFileModalShow] = useState(false)
     const [showFile, setShowFile] = useState({})
-    // const [updated, setUpdated] = useState(false)
+    const [updated, setUpdated] = useState(false)
     // console.log('index files', files)
     // console.log('index file', showFile)
 

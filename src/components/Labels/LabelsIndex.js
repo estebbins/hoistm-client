@@ -41,7 +41,7 @@ const LabelsIndex = (props) => {
                     key={label._id}
                     onClick={onClick}
                     value={JSON.stringify(label)}
-                >{<p id='label-text'>{label.name}</p>}</Button>
+                >{label.name}</Button>
 
             </>
         )
