@@ -33,21 +33,21 @@ const LabelsIndex = (props) => {
     const labelButtons = labels.map((label, i) => {
         // console.log('mapped labels', label)
         return (
-            <Container id='label-container-index'>
+            <Container id='label-container-index' className='mb-3 px-0'>
+                
                 <Button
                     id='label-buttons'    
                     className='m-2'
-                    style={{backgroundColor:`${label.color}`}}
                     key={i}
                     onClick={onClick}
                     value={JSON.stringify(label)}
-                >{label.name}</Button>
+                ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
                 <Button
                     // onClick={() => setEditModalShow(true)}
                     variant="warning"
                     className="m-2"
                     id="show-contributor-edit"
-                ><Image style={{width: '100%'}} src='/icons/baseline_edit_white_24dp.png'/>
+                ><Image style={{ width: '90%'}} src='/icons/baseline_edit_white_24dp.png'/>
                 </Button>
             </Container>
         )

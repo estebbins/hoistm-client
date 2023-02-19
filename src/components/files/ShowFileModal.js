@@ -192,14 +192,21 @@ const ShowFileModal = (props) => {
     let labelsList
     if (labels && labels.length > 0) {
         labelsList = labels.map((label, i) => (
+            // <Button
+            //     id='label-buttons'    
+            //     className="m-2"
+            //     style={{backgroundColor:`${label.color}`}}
+            //     key={label._id}
+            //     onClick={onClick}
+            //     value={label._id}
+            // >{label.name}</Button>
             <Button
-                id='label-buttons'    
-                className="m-2"
-                style={{backgroundColor:`${label.color}`}}
-                key={label._id}
-                onClick={onClick}
-                value={label._id}
-            >{label.name}</Button>
+                    id='label-buttons'    
+                    className='m-2 p-1'
+                    key={label._id}
+                    onClick={onClick}
+                    value={label._id}
+                ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
         ))
     }
 
@@ -212,13 +219,19 @@ const ShowFileModal = (props) => {
             <Modal id='show-file-modal' show={show} onHide={handleClose}>
                 <Modal.Header id='show-file-header' closeButton closeVariant='white'>
                     <Modal.Title>{file.name}</Modal.Title>
+                    <Button
+                    // onClick={() => setEditModalShow(true)}
+                    variant="warning"
+                    id="download"
+                ><Image style={{ width: '80%'}} src='/icons/baseline_download_white_48dp.png'/>
+                </Button>
                 </Modal.Header>
                 <Modal.Body id='show-file-body'>
                     <Image id='show-file-image' src={file.url} thumbnail className='border-0' style={{ width: '100%', maxHeight: '400px' }} />
                     {
                         labels && labels.length > 0
                         ?
-                        <Container className='p-0 pb-2'>
+                        <Container className='p-0 pb-2 d-flex flex-wrap'>
                             { labelsList }
                         </Container>
                         :
