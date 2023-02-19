@@ -526,7 +526,7 @@ span.logo-brackets:hover {
   margin-right: .45em;
   margin-top: .25em;
   pointer-events: none;
-  box-shadow: .5px -.5px 1.5px 1.25px rgb(0, 0, 0, .5) inset;
+  box-shadow: .5px -.5px 1.5px 1.25px rgb(0, 0, 0, .7) inset;
 }
 
 #download {

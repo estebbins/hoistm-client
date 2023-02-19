@@ -218,13 +218,24 @@ const ShowFileModal = (props) => {
         // console.log('blob', blob)
         let a = new FileReader()
         // console.log('a:', a)
+        let link = document.createElement('a')
 
+        let linkArray = file.awsKey.split('_')
+        linkArray.pop()
+        let downloadLink = linkArray.join('')
+        console.log(downloadLink)
+        link.download = downloadLink
+        // console.log('split awsKey', file.awsKey.split('_'))
         a.onload = function (e) {
             // console.log('e.target.result', e.target.result)
-            let targetResult = e.target.result
-            callback(targetResult)
+            link.href = e.target.result
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            // let targetResult = e.target.result
+            callback(link.href)
             // Code for window.open: https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab
-            window.open(targetResult, '_blank')
+            // window.open(targetResult, '_blank')
         }
         a.readAsDataURL(blob)
     }
@@ -232,6 +243,7 @@ const ShowFileModal = (props) => {
     const downloadFileFromAWS = (e) => {
         downloadFile(file)
             .then((response) => {
+                console.log('download response: ', response)
                 blobToDataUrl(response.data, function(dataurl) {
                     // console.log('dataurl', dataurl)
                     setImgFromStorage(dataurl)
