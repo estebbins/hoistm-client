@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
 import ShowFileModal from './ShowFileModal'
@@ -18,7 +17,6 @@ const FilesIndex = (props) => {
 
     const [fileModalShow, setFileModalShow] = useState(false)
     const [fileId, setFileId] = useState(null)
-    const [updated, setUpdated] = useState(false)
     // console.log('index files', files)
     // console.log('index file', showFile)
     console.log('index fileId', fileId)
@@ -44,10 +42,10 @@ const FilesIndex = (props) => {
     if (filesError) {
         return <p>Error...</p>
     }
-    // if no pets loaded yet, display 'loading'
+    // if no files loaded yet, display 'loading'
     if (!files) {
         return <p>Files Loading...</p>
-        // otherwise if there are no pets, display that message
+        // otherwise if there are no files, display that message
     } else if (files.length === 0) {
         return <p>No files yet, go add some!</p>
 	}

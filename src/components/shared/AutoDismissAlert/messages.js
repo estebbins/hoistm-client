@@ -12,40 +12,19 @@ const messages = {
 	createContributorFailure:'Contributor not added',
 	contributerDeleteSuccess:'Bye Bye Baby!',
 	contributerDeleteFailure:'Something went wrong!',
-
-	////////////Legend/////////////////////
-	// file:    |    ln:   |   messages:    //
-	//////////////////////////////////////
-
-	//EditFileModal.js  |   40   | messeges.fileUpdateSuccess
 	fileUpdateSuccess: 'successfully updated file',
-	
-	//EditFileModal.js  |   51   | messages.fileUpdateFailure
 	fileUpdateFailure: 'failed to update file',
-
-	//NewFileModal.js   |  33	 | messeges.fileCreateSuccess
 	fileCreateSuccess: 'successfully created file',
-
-	//NewFileModal.js   |  45	 | messeges.fileCreateFailure
 	fileCreateFailure: 'failed to create file',
-
-	//EditLabelModal.js |  50   | messages.updateLabelSuccess
+    fileDeleteSuccess: 'delete success!',
+    fileDeleteFailure: 'could not delete file',
+	getFilesFailure: 'Failed to get files',
 	updateLabelSuccess: 'Label successfully edited!',
-
-	////
-
 	updateLabelFailure:'Label not edited',
 	createLabelSuccess:'Label successfully added!',
 	createLabelFailure:'Label not added',
-	getUserFailure:'Unable to get users',
 	getLabelsFailure: 'Sorry about your labels',
-
-	////
-
-	//Home.js            |  40    | messeges.getFilesFailure
-	getFilesFailure: 'Failed to get files',
-    fileDeleteSuccess: 'delete success!',
-    fileDeleteFailure: 'could not delete file',
+	getUserFailure:'Unable to get users',
 
 
 

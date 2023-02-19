@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
-import { updateFile, deleteFile } from '../../api/files'
+import { updateFile} from '../../api/files'
 import FileForm from '../shared/FileForm'
 import messages from '../shared/AutoDismissAlert/messages'
 

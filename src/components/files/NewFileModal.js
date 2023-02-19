@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import UploadFileForm from './UploadFileForm'
 import { createFile } from '../../api/files'
+import messages from '../shared/AutoDismissAlert/messages'
 
 const NewFileModal = (props) => {
     // destructure our props
@@ -30,7 +31,7 @@ const NewFileModal = (props) => {
             .then(() => {
                 msgAlert({
                     heading: 'Oh yeah!',
-                    message: 'successfully updated file',
+                    message:  messages.fileCreateSuccess,
                     variant: 'success'
                 })
             })
@@ -42,7 +43,7 @@ const NewFileModal = (props) => {
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: 'failed to update file',
+                    message: messages.fileCreateFailure,
                     variant: 'danger'
                 })
             })
