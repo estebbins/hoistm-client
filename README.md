@@ -8,7 +8,7 @@ Project requirements: https://github.com/estebbins/hoistm-api#project-requiremen
 Project planning documentation: https://github.com/estebbins/hoistm-api#project-planning 
 
 ## Overview
-This app allows users to upload files into a virtual file system where the user can search and filter their files. Users can create custom labels as the singular & simple method for file organization. This is a full-stack MERN app using AWS S3 cloud storage and Multer middleware for file upload. This app features user authentication, encryption for file uploads, and file owners can control contributor access and rights.
+This app allows users to upload files into a virtual file system where the user can save and download their files. Users can create custom labels as the singular & simple method for file organization. This is a full-stack MERN app using AWS S3 cloud storage and Multer middleware for file upload. This app features user authentication, encryption for file uploads, and file owners can control contributor access and rights.
 
 ### Technologies Used:
 - Mongoose
@@ -42,9 +42,8 @@ This app allows users to upload files into a virtual file system where the user 
     - owner (user who uploaded the file)
     - name
 - As a signed in user, I would like to be able to create and associate custom labels to files
-- As a signed in user, I would like to search my files based on data above & custom filters
 - As a signed in user, I would like to download files from AWS
-
+- As a signed in user, I would like to search my files based on data above & custom filters
 ## Wireframes/Screenshots (J)
 
 #### Sign Up
@@ -79,5 +78,7 @@ This app allows users to upload files into a virtual file system where the user 
 **Using the application**
 
 ## Unsolved problems
+-.dmg files will upload successfully but can not be downloaded, attempt of download of such a file type will result in a fatal error that will crash app.   
 
+- When saving to the cloud, the last uploaded file will be re-uploade to the cloud if the user  leaves the file selection section blank and selects upload.
 ## Media sources

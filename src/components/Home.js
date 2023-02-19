@@ -6,10 +6,8 @@ import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import FilesContainer from './shared/FilesContainer.js'
 import LabelsSidebar from './shared/LabelsSidebar'
-import { getAllFiles } from '../api/files'
 import { getAllLabels } from '../api/labels'
 import NewFileModal from './files/NewFileModal'
-
 import messages from '../components/shared/AutoDismissAlert/messages'
 
 const homeContainerStyles = {
@@ -43,8 +41,7 @@ const Home = (props) => {
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting labels',
-                    // ! message: messages.getLabelsFailure
-                    message: 'Sorry about your labels',
+                    message: messages.getLabelsFailure,
                     variant: 'danger'
                 })
                 setLabelsError(true)

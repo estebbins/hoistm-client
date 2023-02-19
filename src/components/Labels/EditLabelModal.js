@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Modal, Button, Container } from 'react-bootstrap'
 import LabelForm from '../shared/LabelForm'
 import { updateLabel, deleteLabel } from '../../api/labels'
@@ -12,7 +11,7 @@ const EditLabelModal = (props) => {
     const [label, setLabel] = useState({})
     // console.log('basically props.label', editLabel)
 
-    const navigate = useNavigate()
+  
     // console.log('editcontmodal label', label)
     useEffect(() => {
         setLabel(editLabel)
