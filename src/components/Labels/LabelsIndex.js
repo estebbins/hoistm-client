@@ -33,7 +33,7 @@ const LabelsIndex = (props) => {
     const labelButtons = labels.map((label, i) => {
         // console.log('mapped labels', label)
         return (
-            <Container id='label-container-index' className='mb-3 px-0'>
+            <Container id='label-container-index' className='mb-2 px-0'>
                 
                 <Button
                     id='label-buttons'    
@@ -45,7 +45,7 @@ const LabelsIndex = (props) => {
                 <Button
                     // onClick={() => setEditModalShow(true)}
                     variant="warning"
-                    className="m-2"
+                    className="m-"
                     id="show-contributor-edit"
                 ><Image style={{ width: '90%', pointerEvents: 'none'}} src='/icons/baseline_edit_white_24dp.png'/>
                 </Button>
