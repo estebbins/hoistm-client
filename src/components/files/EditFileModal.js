@@ -63,8 +63,10 @@ const EditFileModal = (props) => {
     return (
         <>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton />
-                <Modal.Body>
+                <Modal.Header closeButton closeVariant='white' id='edit-file-header'>
+                    <Modal.Title>Edit File Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body id='edit-file-body'>
                     <FileForm
                         file={file}
                         handleChange={onChange}

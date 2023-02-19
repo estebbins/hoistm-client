@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Image } from 'react-bootstrap'
 import { deleteContributor, updateContributor } from '../../api/contributors'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditContributorModal from './EditContributorModal'
@@ -14,9 +14,9 @@ const ShowContributor = (props) => {
     // we'll pass the results of this function to a style prop in our card
     const setBgCondition = (cond) => {
         if (cond === 'read and write') {
-            return({width: '4rem', backgroundColor: 'red'})
+            return({ border: '1px solid #60c689', backgroundColor: '#000000'})
         } else if (cond === 'read only') {
-            return({width: '4rem', backgroundColor: 'orange'})
+            return({ border: '1px solid #c21858', backgroundColor: '#000000'})
         }
     }
     // Delete, similar to delete for pets, all we have to do is ensure that the user is the pet's owner, and make the api call passing in the right args
@@ -47,9 +47,9 @@ const ShowContributor = (props) => {
 
     return (
         <>
-            <Card className="m-2" style={setBgCondition(contributor.permissionLevel)}>
-                <Card.Body>
-                    <small>{contributor.userRef.email}</small>
+            <Card id='show-contributor-card' className="m-2" style={setBgCondition(contributor.permissionLevel)}>
+                <Card.Body id='show-contributor-body'>
+                    <p id='contributor-email'>{contributor.userRef.email}</p>
                     {
                         user && user._id === file.owner?._id
                         ?
@@ -58,14 +58,16 @@ const ShowContributor = (props) => {
                                 onClick={() => setEditModalShow(true)}
                                 variant="warning"
                                 className="m-2"
+                                id="show-contributor-edit"
                             >
-                                Edit Contributor
+                                <Image style={{width: '90%'}} src='/icons/baseline_edit_white_24dp.png'/>
                             </Button>
                             <Button
                                 onClick={() => destroyContributor()}
                                 variant="danger"
                                 className="m-2"
-                            >Delete Contributor</Button>
+                                id="show-contributor-delete"
+                            ><Image style={{width: '90%'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button>
                         </>
                         :
                         null

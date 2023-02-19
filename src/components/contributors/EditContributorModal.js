@@ -66,8 +66,10 @@ const EditContributorModal = (props) => {
 
     return (
     <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton />
-        <Modal.Body>
+            <Modal.Header closeButton closeVariant='white' id='contributor-edit-header'>
+                <Modal.Title>Edit Contributor</Modal.Title>
+        </Modal.Header>
+        <Modal.Body id='contributor-edit-body'>
             <ContributorForm
                 user={user}
                 filterValue={filterValue}

@@ -8,8 +8,7 @@ const UploadFileForm = (props) => {
     return (
         <Container className="justify-content-center">
             <Form onSubmit={handleSubmit} encType='multipart/form-data'>
-                <Form.Group className="m-2">
-                    <Form.Label>Choose File:</Form.Label>
+                <Form.Group className="m-2 upload-form-group">
                     <Form.Control
                         type='file'
                         name='file'
@@ -42,7 +41,7 @@ const UploadFileForm = (props) => {
                         onChange={handleChange}
                     />
                 </Form.Group> */}
-                <Button className="m-2" type='submit'>Submit</Button>
+                <Button className="m-2" id='upload-file-button' type='submit'>Submit</Button>
             </Form>
         </Container>
     )

@@ -163,14 +163,14 @@ const ShowFileModal = (props) => {
     const convertTimestamps = (timestamp) => {
         const formatted = new Date(timestamp)
         const date = formatted.getDate()
-        const month = formatted.getMonth()
+        const month = formatted.getMonth() + 1;
         const year = formatted.getFullYear()
         const hours = formatted.getHours()
         let minutes = formatted.getMinutes()
         if (minutes < 10) {
             minutes = "0" + minutes
         }
-        return `${date}/${month}/${year} ${hours}:${minutes}`
+        return `${month}/${date}/${year} ${hours}:${minutes}`
     }
 
     let contributorList
@@ -199,7 +199,7 @@ const ShowFileModal = (props) => {
                 key={label._id}
                 onClick={onClick}
                 value={label._id}
-            ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
+            >{label.name}</Button>
         ))
     }
 
@@ -209,34 +209,49 @@ const ShowFileModal = (props) => {
 
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+            <Modal id='show-file-modal' show={show} onHide={handleClose}>
+                <Modal.Header id='show-file-header' closeButton closeVariant='white'>
                     <Modal.Title>{file.name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <Image src={file.url} thumbnail className='border-0'/>
-                    <p>Hoisted On: {convertTimestamps(file.createdAt)}</p>
-                    <p>Last Modified: {convertTimestamps(file.updatedAt)}</p>
+                <Modal.Body id='show-file-body'>
+                    <Image id='show-file-image' src={file.url} thumbnail className='border-0' style={{ width: '100%', maxHeight: '400px' }} />
+                    {
+                        labels && labels.length > 0
+                        ?
+                        <Container className='p-0 pb-2'>
+                            { labelsList }
+                        </Container>
+                        :
+                        null
+                    }
+                    {   file.description
+                        ?
+                        <p><span className='show-span'>Description:</span> {file.description}</p>
+                        :
+                        null
+                    }
+                    <p><span className='show-span'>Hoisted On:</span>    {convertTimestamps(file.createdAt)}</p>
+                    <p><span className='show-span'>Last Modified:</span>  {convertTimestamps(file.updatedAt)}</p>
                         {
                             file.owner && user && file.owner._id === user._id
                             ?
                             <>
-                                <p>Hoisted By: {file.owner.email}</p>
+                                <p><span className='show-span'>Owner:</span> {file.owner.email}</p>
                                 <Button 
-                                    className="m-2" variant="warning"
+                                    className="m-2 show-file-button" variant="warning" id='add-contributor-button'
                                     onClick={() => setContributorShow(true)}
                                 >
                                     Add Contributor
                                 </Button>
                                 <Button 
-                                    className="m-2" variant="warning"
+                                    className="m-2 show-file-button" variant="warning" id='edit-file-button'
                                     onClick={() => setEditFileModalShow(true)}
                                 >
                                     Edit File
                                 </Button>
-                                <Button className='m-2' variant='danger' onClick={() => removeFile()}>Delete</Button>
+                                <Button className='m-2 show-file-button' variant='danger' id='delete-file-button' onClick={() => removeFile()}>Delete</Button>
                                 <Button 
-                                    className="m-2" variant="warning"
+                                    className="m-2 show-file-button" variant="warning" id='add-label-button'
                                     onClick={() => setAddLabelModalShow(true)}
                                 >
                                     Add Label
@@ -245,19 +260,11 @@ const ShowFileModal = (props) => {
                             :
                             null
                         }
-                        {
-                            labels && labels.length > 0
-                            ?
-                            <Container>
-                                { labelsList }
-                            </Container>
-                            :
-                            null
-                        }
+                        
                         { 
                             file.owner && user && file.owner._id === user._id && file.contributors 
                             ?
-                            <Container>
+                            <Container id='contributor-container'>
                                 { contributorList }
                             </Container>
                             :

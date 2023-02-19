@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, Container } from 'react-bootstrap'
 import LabelForm from '../shared/LabelForm'
 import { updateLabel, deleteLabel } from '../../api/labels'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -85,15 +85,19 @@ const EditLabelModal = (props) => {
 
     return (
     <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton />
-        <Modal.Body>
+        <Modal.Header closeButton closeVariant='white' id='edit-label-header'>
+            <Modal.Title>Edit Label</Modal.Title>
+        </Modal.Header>
+        <Modal.Body id='edit-label-body'>
             <LabelForm
                 label={label}
                 handleChange={onChange}
                 handleSubmit={onSubmit}
                 heading={'Edit Label'}
             />
-            <Button className='m-2' variant='warning' onClick={() => removeLabel()}>Delete</Button>
+            <Container className='d-flex flex-row justify-content-end'>
+                <Button id='delete-file-button' className='m-2 text-white' variant='warning' onClick={() => removeLabel()}>Delete</Button>
+            </Container>
         </Modal.Body>
     </Modal>
     )

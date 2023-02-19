@@ -6,11 +6,12 @@ const FileForm = (props) => {
 
     return (
         <Container className='justify-content-center'>
-            <h3>{heading}</h3>
+            {/* <h3>{heading}</h3> */}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='m-2'>
                     <Form.Label>Name:</Form.Label>
                     <Form.Control
+                        className='edit-form-control'
                         placeholder='File name...'
                         name='name'
                         id='name'
@@ -21,6 +22,7 @@ const FileForm = (props) => {
                 <Form.Group className='m-2'>
                     <Form.Label>Description:</Form.Label>
                     <Form.Control
+                        className='edit-form-control'
                         placeholder='File description...'
                         name='description'
                         id='description'
@@ -28,7 +30,7 @@ const FileForm = (props) => {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button className='m-2' type='submit'>Submit</Button>
+                <Button className='m-2' id='edit-file-submit' type='submit'>Submit</Button>
             </Form>
         </Container>
     )

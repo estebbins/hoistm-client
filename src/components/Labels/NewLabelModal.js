@@ -62,8 +62,10 @@ const NewLabelModal = (props) => {
 
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton />
-            <Modal.Body>
+            <Modal.Header closeButton closeVariant='white' id='new-label-header'>
+                <Modal.Title>New Label</Modal.Title>
+            </Modal.Header>
+            <Modal.Body id='new-label-body'>
                 <LabelForm
                     user={user}
                     label={label}
