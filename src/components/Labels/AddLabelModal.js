@@ -74,14 +74,16 @@ const AddLabelModal = (props) => {
                 key={i}
                 onClick={onClick}
                 value={JSON.stringify(label)}
-            ><Image id='label-icon' src='/icons/label_FILL1_wght400_GRAD0_opsz48.svg'/>{label.name}</Button>
+            >{label.name}</Button>
         ))
     }
     return (
         <>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton />
-                <Modal.Body>
+                <Modal.Header closeButton closeVariant='white' id='add-label-header'>
+                    <Modal.Title>Add Label</Modal.Title>
+                </Modal.Header>
+                <Modal.Body id='add-label-body'>
                     { labelsList }
                 </Modal.Body>
             </Modal>

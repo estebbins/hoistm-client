@@ -37,7 +37,7 @@ const ContributorForm = (props) => {
 
     return (
         <Container className="justify-content-center">
-            <h3>{heading}</h3>
+            {/* <h3>{heading}</h3> */}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-2">
                     <Form.Label>Search for user by e-mail</Form.Label>
@@ -53,6 +53,7 @@ const ContributorForm = (props) => {
                     <Form.Label>Select user or continue typing in search bar to narrow results</Form.Label>
                     { props.contributor ? 
                         <Form.Select 
+                            className="contributor-select"
                             aria-label="email"
                             name="userRef"
                             defaultValue={props.contributor.email}
@@ -63,6 +64,7 @@ const ContributorForm = (props) => {
                         </Form.Select>
                         :
                         <Form.Select 
+                        className="contributor-select"
                             aria-label="email"
                             name="userRef"
                             onChange={handleChoice}
@@ -74,6 +76,7 @@ const ContributorForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Select 
+                        className="contributor-select"
                         aria-label="permission level"
                         name="permissionLevel"
                         defaultValue={props.contributor.permissionLevel}
@@ -84,7 +87,7 @@ const ContributorForm = (props) => {
                         <option value="read and write">read and write</option>
                     </Form.Select>
                 </Form.Group>
-                <Button className="m-2" type="submit">Submit</Button>
+                <Button className="m-2" id='contributor-add-submit' type="submit">Submit</Button>
             </Form>
         </Container>
     )

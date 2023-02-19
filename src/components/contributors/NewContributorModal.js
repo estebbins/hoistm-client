@@ -72,8 +72,10 @@ const NewContributorModal = (props) => {
 
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton />
-            <Modal.Body>
+            <Modal.Header closeButton closeVariant='white' id='contributor-modal-header'>
+                <Modal.Title>Add Contributor</Modal.Title>
+            </Modal.Header>
+            <Modal.Body id='contributor-modal-body'>
                 <ContributorForm
                     user={user}
                     filterValue={filterValue}

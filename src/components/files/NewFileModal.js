@@ -51,8 +51,10 @@ const NewFileModal = (props) => {
     return (
         <>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton />
-                <Modal.Body>
+                <Modal.Header closeButton closeVariant='white' id='new-file-header'>
+                    <Modal.Title id='new-file-title'>Hoist New File</Modal.Title>
+                </Modal.Header>
+                <Modal.Body id='new-file-body'>
                     <UploadFileForm
                         handleChange={onChange}
                         handleSubmit={onSubmit}

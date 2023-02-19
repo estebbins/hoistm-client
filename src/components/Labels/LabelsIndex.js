@@ -1,4 +1,4 @@
-import { Button, Image } from 'react-bootstrap'
+import { Button, Image, Container } from 'react-bootstrap'
 import EditLabelModal from './EditLabelModal'
 import { useState, useEffect } from 'react'
 
@@ -33,7 +33,7 @@ const LabelsIndex = (props) => {
     const labelButtons = labels.map((label, i) => {
         // console.log('mapped labels', label)
         return (
-            <>
+            <Container id='label-container-index'>
                 <Button
                     id='label-buttons'    
                     className='m-2'
@@ -42,8 +42,14 @@ const LabelsIndex = (props) => {
                     onClick={onClick}
                     value={JSON.stringify(label)}
                 >{label.name}</Button>
-
-            </>
+                <Button
+                    // onClick={() => setEditModalShow(true)}
+                    variant="warning"
+                    className="m-2"
+                    id="show-contributor-edit"
+                ><Image style={{width: '100%'}} src='/icons/baseline_edit_white_24dp.png'/>
+                </Button>
+            </Container>
         )
 })
 
