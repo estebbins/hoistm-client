@@ -210,24 +210,30 @@ const ShowFileModal = (props) => {
                 ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
         ))
     }
-    console.log(imgFromStorage)
+    // console.log(imgFromStorage)
 
-    function blobToDataUrl(blob, callback) {
+    // source code for downloads: https://stackoverflow.com/questions/70534780/convert-weird-image-characters-for-use-in-image-src
+
+    const blobToDataUrl = (blob, callback) => {
+        // console.log('blob', blob)
         let a = new FileReader()
+        // console.log('a:', a)
+
         a.onload = function (e) {
-            console.log('e.target.result', e.target.result)
-            callback(e.target.result)
+            // console.log('e.target.result', e.target.result)
+            let targetResult = e.target.result
+            callback(targetResult)
             // Code for window.open: https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab
-            // e.target.result.download = 'test_name'
-            window.open(e.target.result, '_blank')
+            window.open(targetResult, '_blank')
         }
         a.readAsDataURL(blob)
-        console.log('a', a.readAsDataURL(blob) )
     }
+
     const downloadFileFromAWS = (e) => {
         downloadFile(file)
             .then((response) => {
                 blobToDataUrl(response.data, function(dataurl) {
+                    // console.log('dataurl', dataurl)
                     setImgFromStorage(dataurl)
                 })
             })
