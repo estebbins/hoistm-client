@@ -47,7 +47,7 @@ const LabelsIndex = (props) => {
                     variant="warning"
                     className="m-2"
                     id="show-contributor-edit"
-                ><Image style={{ width: '90%'}} src='/icons/baseline_edit_white_24dp.png'/>
+                ><Image style={{ width: '90%', pointerEvents: 'none'}} src='/icons/baseline_edit_white_24dp.png'/>
                 </Button>
             </Container>
         )
