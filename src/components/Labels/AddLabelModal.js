@@ -68,13 +68,12 @@ const AddLabelModal = (props) => {
     if (labels && labels.length > 0) {
         labelsList = labels.map((label, i) => (
             <Button
-                id='label-buttons'    
-                className="m-2"
-                style={{backgroundColor:`${label.color}`}}
-                key={i}
-                onClick={onClick}
-                value={JSON.stringify(label)}
-            >{label.name}</Button>
+                    id='label-buttons'    
+                    className='m-2 px-2'
+                    key={i}
+                    onClick={onClick}
+                    value={JSON.stringify(label)}
+                ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
         ))
     }
     return (
