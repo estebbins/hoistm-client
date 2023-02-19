@@ -1,5 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
+import { AccordionCollapse } from 'react-bootstrap'
 
 // may need to add auth to this, treat it like a /mine route, send userId possibly
 export const getAllFiles = (user) => {
@@ -53,5 +54,13 @@ export const deleteFile = (user, file) => {
         headers: {
             Authorization: `Token token=${user.token}`
         }
+    })
+}
+
+
+
+export const downloadFile = (file) => {
+    return axios.get(`${apiUrl}/files/download/${file._id}`, {
+        responseType: 'blob'
     })
 }
