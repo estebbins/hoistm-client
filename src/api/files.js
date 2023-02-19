@@ -57,22 +57,10 @@ export const deleteFile = (user, file) => {
     })
 }
 
-function blobToDataUrl(blob, callback) {
-    let a = new FileReader()
-    a.onload = function (e) {
-        callback(e.target.result)
-    }
-    a.readAsDataURL(blob)
-}
+
 
 export const downloadFile = (file) => {
-    return axios.get(`${apiUrl}/files/${file.awsKey}`, {
+    return axios.get(`${apiUrl}/files/download/${file._id}`, {
         responseType: 'blob'
     })
-        .then((response) => {
-            blobToDataUrl(response.data, function(dataurl) {
-                setImgFromStorage(dataurl)
-            })
-        })
-        .catch(err => console.log(err))
 }

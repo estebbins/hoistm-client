@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import messages from '../shared/AutoDismissAlert/messages'
-import { deleteFile, getOneFile } from '../../api/files'
+import { deleteFile, getOneFile, downloadFile } from '../../api/files'
 import { getLabelsOnFile, removeFileFromLabel } from '../../api/labels'
 import NewContributorModal from '../contributors/NewContributorModal'
 import EditFileModal from './EditFileModal'
@@ -22,6 +22,7 @@ const ShowFileModal = (props) => {
     const [updatedFile, setUpdatedFile] = useState(false)
     const [updatedLabels, setUpdatedLabels] = useState(false)
     const [removeLabelId, setRemoveLabelId] = useState(null)
+    const [imgFromStorage, setImgFromStorage] = useState('')
     // console.log('show file file', file)
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
@@ -209,6 +210,30 @@ const ShowFileModal = (props) => {
                 ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
         ))
     }
+    console.log(imgFromStorage)
+
+    function blobToDataUrl(blob, callback) {
+        let a = new FileReader()
+        a.onload = function (e) {
+            console.log('e.target.result', e.target.result)
+            callback(e.target.result)
+            // Code for window.open: https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab
+            // e.target.result.download = 'test_name'
+            window.open(e.target.result, '_blank')
+        }
+        a.readAsDataURL(blob)
+        console.log('a', a.readAsDataURL(blob) )
+    }
+    const downloadFileFromAWS = (e) => {
+        downloadFile(file)
+            .then((response) => {
+                blobToDataUrl(response.data, function(dataurl) {
+                    setImgFromStorage(dataurl)
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
 
     if (!file) {
         return <></>
@@ -220,9 +245,11 @@ const ShowFileModal = (props) => {
                 <Modal.Header id='show-file-header' closeButton closeVariant='white'>
                     <Modal.Title>{file.name}</Modal.Title>
                     <Button
-                    // onClick={() => setEditModalShow(true)}
+                    type="submit"
+                    onClick={downloadFileFromAWS}
                     variant="warning"
                     id="download"
+                    value={JSON.stringify(file)}
                 ><Image style={{ width: '80%'}} src='/icons/baseline_download_white_48dp.png'/>
                 </Button>
                 </Modal.Header>
