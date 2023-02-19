@@ -39,14 +39,16 @@ const LabelsIndex = (props) => {
                     id='label-buttons'    
                     className='m-2'
                     key={i}
-                    onClick={onClick}
-                    value={JSON.stringify(label)}
+                    // onClick={onClick}
+                    // value={JSON.stringify(label)}
                 ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
                 <Button
                     // onClick={() => setEditModalShow(true)}
                     variant="warning"
                     className="m-"
                     id="show-contributor-edit"
+                    onClick={onClick}
+                    value={JSON.stringify(label)}
                 ><Image style={{ width: '90%', pointerEvents: 'none'}} src='/icons/baseline_edit_white_24dp.png'/>
                 </Button>
             </Container>
