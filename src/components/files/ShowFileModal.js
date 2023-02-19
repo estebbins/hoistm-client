@@ -223,7 +223,7 @@ const ShowFileModal = (props) => {
                     // onClick={() => setEditModalShow(true)}
                     variant="warning"
                     id="download"
-                ><Image style={{ width: '80%'}} src='/icons/baseline_download_white_48dp.png'/>
+                ><Image style={{ width: '70%'}} src='/icons/baseline_download_white_48dp.png'/>
                 </Button>
                 </Modal.Header>
                 <Modal.Body id='show-file-body'>
