@@ -30,7 +30,9 @@ const FileForm = (props) => {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button className='m-2' id='edit-file-submit' type='submit'>Submit</Button>
+                <Container className='d-flex justify-content-end p-0'>
+                    <Button className='m-2' id='edit-file-submit' type='submit'>Submit</Button>
+                </Container>
             </Form>
         </Container>
     )

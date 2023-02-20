@@ -85,7 +85,7 @@ const EditLabelModal = (props) => {
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton closeVariant='white' id='edit-label-header'>
             <Button     
-                className='m-1 show-file-button' 
+                className='show-file-button me-3' 
                 variant='danger' 
                 id='delete-file-button' 
                 onClick={() => removeLabel()}

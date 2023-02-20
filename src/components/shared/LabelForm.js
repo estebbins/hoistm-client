@@ -30,7 +30,9 @@ const LabelForm = (props) => {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button type='submit' className='m-2' id='label-form-submit'>Submit</Button>
+                <Container className='d-flex justify-content-end p-0'>
+                    <Button type='submit' className='m-2' id='label-form-submit'>Submit</Button>
+                </Container>
             </Form>
         </Container>
     )

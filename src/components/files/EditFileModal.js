@@ -65,7 +65,7 @@ const EditFileModal = (props) => {
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton closeVariant='white' id='edit-file-header'>
                     <Button 
-                        className='m-1 show-file-button' 
+                        className='show-file-button me-3' 
                         variant='danger' 
                         id='delete-file-button' 
                         onClick={() => {
