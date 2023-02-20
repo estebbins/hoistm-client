@@ -352,7 +352,7 @@ span.logo-brackets:hover {
 #upload-file-button {
   background-color: #5727B0!important;
   border: 1px solid #5727B0;
-  box-shadow: 5px 5px 5px 0px red!important;
+  box-shadow: 2px 2px 0px 0px #5A5A5A, 3px 3px 0px 0px #4A4A4A!important;
 }
 
 #upload-file-button:hover {

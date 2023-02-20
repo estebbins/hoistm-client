@@ -83,7 +83,7 @@ const NewContributorModal = (props) => {
                     handleChange={onChange}
                     handleSubmit={onSubmit}
                     handleChoice={onChoice}
-                    heading={'Add Contributor'}
+                    // heading={'Add Contributor'}
                     triggerRefresh={()=> triggerRefresh()}
                     msgAlert={msgAlert}
                 />
