@@ -80,7 +80,7 @@ code {
 }
 
 #logo {
-  text-shadow: 4px 4px 4px #000000;
+  text-shadow: .75px .75px 1px #2A2A2A, 1.25px 1.25px 0px #4A4A4A!important
 }
 
 #hoist-m:hover {
@@ -615,7 +615,7 @@ span.logo-brackets:hover {
 .auth-header {
   color: #ffffff;
   font-size: 4em!important;
-  text-shadow: 2px 2px 0px #4A4A4A, 3px 3px 1px #5a5a5a!important;
+  text-shadow: 1px 1px 1px #5A5A5A, 2px 2px 0px #4a4a4a!important;
   margin-bottom: .5em;
 }
 
