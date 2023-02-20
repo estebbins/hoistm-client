@@ -6,6 +6,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 const ChangePassword = (props) => {
 	// constructor(props) {
@@ -55,34 +56,42 @@ const ChangePassword = (props) => {
     return (
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Change Password</h3>
-                <Form onSubmit={onChangePassword}>
-                    <Form.Group controlId='oldPassword'>
-                        <Form.Label>Old password</Form.Label>
-                        <Form.Control
-                            required
-                            name='oldPassword'
-                            value={oldPassword}
-                            type='password'
-                            placeholder='Old Password'
-                            onChange={e => setOldPassword(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='newPassword'>
-                        <Form.Label>New Password</Form.Label>
-                        <Form.Control
-                            required
-                            name='newPassword'
-                            value={newPassword}
-                            type='password'
-                            placeholder='New Password'
-                            onChange={e => setNewPassword(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Button variant='dark' type='submit'>
-                        Submit
-                    </Button>
-                </Form>
+            <h1 className='fw-semibold text-center auth-header fs-1'>
+				Change Password
+                </h1>
+                <Container className='auth-container'>
+                    <Form onSubmit={onChangePassword} className='auth-form'>
+                        <Form.Group controlId='oldPassword'>
+                            <Form.Label>Old password</Form.Label>
+                            <Form.Control
+                                required
+                                name='oldPassword'
+                                value={oldPassword}
+                                className='auth-form-control'
+                                type='password'
+                                placeholder='Old Password'
+                                onChange={e => setOldPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId='newPassword'>
+                            <Form.Label>New Password</Form.Label>
+                            <Form.Control
+                                required
+                                name='newPassword'
+                                value={newPassword}
+                                className='auth-form-control mb-4'
+                                type='password'
+                                placeholder='New Password'
+                                onChange={e => setNewPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Container className='d-flex justify-content-center'>
+                            <Button variant='dark' type='submit' className='auth-submit'>
+                                Submit
+                            </Button>
+                        </Container>
+                    </Form>
+                </Container>
             </div>
         </div>
     )
