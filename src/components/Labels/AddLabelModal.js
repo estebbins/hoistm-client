@@ -67,9 +67,8 @@ const AddLabelModal = (props) => {
     let labelsList
     if (labels && labels.length > 0) {
         labelsList = labels.map((label, i) => (
-            <Button
-                    id='label-buttons'    
-                    className='m-2 px-2'
+            <Button   
+                    className='m-1 label-buttons mb-0'
                     key={i}
                     onClick={onClick}
                     value={JSON.stringify(label)}

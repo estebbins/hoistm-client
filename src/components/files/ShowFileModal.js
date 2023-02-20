@@ -202,8 +202,7 @@ const ShowFileModal = (props) => {
             //     value={label._id}
             // >{label.name}</Button>
             <Button
-                    id='label-buttons'    
-                    className='m-2 p-1'
+                    className='m-1 label-buttons mb-0'
                     key={label._id}
                     onClick={onClick}
                     value={label._id}
