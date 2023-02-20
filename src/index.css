@@ -232,6 +232,10 @@ span.logo-brackets:hover {
   color: #57dcbd;
   /* text-shadow: 2px 2px 2px #ffffff; */
 }
+#label-container-index:hover {
+    color: #57dcbd!important;
+    /* text-shadow: 2px 2px 2px #ffffff; */
+  }
 
 #label-text {
   margin: 0;
