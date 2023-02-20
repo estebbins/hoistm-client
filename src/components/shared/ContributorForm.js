@@ -1,6 +1,7 @@
 import { Form, Button, Container } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import { getFilteredUsers } from '../../api/contributors'
+import messages from '../shared/AutoDismissAlert/messages'
 
 const ContributorForm = (props) => {
     const { user, filterValue, handleChange, handleSubmit, handleChoice, heading, triggerRefresh, msgAlert } = props
@@ -11,19 +12,21 @@ const ContributorForm = (props) => {
     console.log('cont form contributor', contributor)
 
     useEffect(() => {
-        console.log('useeffect filterValue', filterValue)
-        getFilteredUsers(user, filterValue)
-            .then(res => {setUserList(res.data.users)})
-            .then(() => triggerRefresh())
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error getting users',
-                    // !message: messages.getUserFailure
-                    message: 'Unable to get users',
-                    variant: 'danger'
+        // console.log('useeffect filterValue', filterValue)
+        // If there is a filterValue, then get a list of users that matches that filter value
+        if (filterValue) {
+            getFilteredUsers(user, filterValue)
+                .then(res => {setUserList(res.data.users)})
+                .then(() => triggerRefresh())
+                .catch(err => {
+                    msgAlert({
+                        heading: 'Error!',
+                        message: messages.getUserFailure,
+                        variant: 'danger'
+                    })
+                    setError(true)
                 })
-                setError(true)
-            })
+        }
     }, [filterValue])
 
     useEffect(() => {

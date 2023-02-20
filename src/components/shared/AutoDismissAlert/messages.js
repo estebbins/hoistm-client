@@ -24,9 +24,9 @@ const messages = {
 	createLabelSuccess:'Label successfully added!',
 	createLabelFailure:'Label not added',
 	getLabelsFailure: 'Sorry about your labels',
+    labelDeleteSuccess: 'Label successfully deleted!',
 	getUserFailure:'Unable to get users',
     getFilesFromLabelFailure: 'Unable to get files with this label', 
-    labelDeleteSuccess: 'Label successfully deleted!',
 
 
 
