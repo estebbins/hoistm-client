@@ -710,3 +710,35 @@ span.logo-brackets:hover {
   background-color: #c21858!important;
   border: 2px solid #c21858!important;
 }
+
+#show-file-label-buttons:hover {
+  color: #c21858!important;
+  text-decoration: line-through!important;
+  transition: .4s;
+}
+
+#filtered-on {
+  margin: 0 2em 0 3em;
+  display: inline-block;
+  color: #ffffff!important;
+  font-weight: 500;
+  /* border-left: 1px solid red; */
+  /* line-height: 35%; */
+}
+
+#clear-filter-button {
+  background-color: #c21858;
+  border: 1px solid #c21858!important;
+  border: none;
+  padding: .05em .25em .25em .25em;
+  box-shadow: 2px 2px 0px 0px #5A5A5A, 3px 3px 0px 0px #4A4A4A;
+}
+
+#clear-filter-button:hover {
+  background-color: #000000!important;
+  border: 1px solid #c21858;
+}
+
+#label-name-span {
+  color: #57dcbd;
+}

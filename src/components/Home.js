@@ -93,8 +93,10 @@ const Home = (props) => {
                                     filterOn && labelName
                                     ?
                                     <>
-                                        <p>Filtered on: {labelName}</p>
-                                        <Button onClick={() => clearLabelFilter()}>Clear Filter</Button>
+										<p id='filtered-on'>Filtered on: <span id='label-name-span'>{labelName}</span></p>
+										<Button id='clear-filter-button' onClick={() => clearLabelFilter()}><Image style={{ maxWidth: '18px', pointerEvents: 'none' }} src='/icons/baseline_label_off_white_24dp.png' /></Button>
+                            			<p className='fs-6 m-0 fw-semibold align-middle d-inline ms-2' id='view-file-text'>Clear Filter</p>
+												
                                     </>
                                     :
                                     null

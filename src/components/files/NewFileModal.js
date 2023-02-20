@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import UploadFileForm from './UploadFileForm'
 import { createFile } from '../../api/files'
@@ -12,6 +12,11 @@ const NewFileModal = (props) => {
     // Set selectedFile to empty object
     const [selectedFile, setSelectedFile] = useState({})
 
+    // resets selected file when show changes for modal
+    useEffect(() => {
+        setSelectedFile({})
+    }, [show])
+
     const onChange = (e) => {
         // Set selected file to the file in the target array
         e.preventDefault()
@@ -22,7 +27,8 @@ const NewFileModal = (props) => {
     const onSubmit = (e) => {
         e.preventDefault()
         // console.log('selectedFile name in onSubmit', selectedFile)
-        // ! JORDAN ADD PSUEDO CODE FOR THESE TWO ROWS
+
+        // append selected file to a new formData object in order for it to be properly passed for upload
         const formData = new FormData()
         formData.append('file', selectedFile)
 
