@@ -33,14 +33,13 @@ const LabelsIndex = (props) => {
     const labelButtons = labels.map((label, i) => {
         // console.log('mapped labels', label)
         return (
-            <Container id='label-container-index' className='mb-2 px-0'>
+            <Container className='mb-2 px-0 label-container-index'>
                 <Button
-                    id='label-buttons'    
-                    className='m-2'
+                    className='label-buttons m-0'
                     key={i}
                     onClick={onLabelFilter}
                     value={label._id}
-                ><div id='label-tag' style={{backgroundColor:`${label.color}`, boxShadow: `inset -6px 0px 0px 0px ${label.color}, 2px -2px 0px 0px #5A5A5A inset, 1px -1px 0px 0px #4A4A4A inset`}}></div>{label.name}<small style={{color: '#1a1a1a'}}>({label.fileRef.length})</small></Button>
+                ><div id='label-tag' style={{ backgroundColor: `${label.color}`, boxShadow: `inset -6px 0px 0px 0px ${label.color}, 2px -2px 0px 0px #5A5A5A inset, 1px -1px 0px 0px #4A4A4A inset` }}></div>{label.name}<small style={{pointerEvents: 'none'}} className='label-length'>{label.fileRef.length}</small></Button>
                 <Button
                     // onClick={() => setEditModalShow(true)}
                     variant="warning"
@@ -48,7 +47,7 @@ const LabelsIndex = (props) => {
                     id="show-contributor-edit"
                     onClick={onClick}
                     value={JSON.stringify(label)}
-                ><Image style={{ width: '90%', pointerEvents: 'none', opacity: '.5'}} src='/icons/baseline_edit_white_24dp.png'/>
+                ><Image style={{ width: '80%', pointerEvents: 'none', opacity: '.5'}} src='/icons/baseline_edit_white_24dp.png'/>
                 </Button>
             </Container>
         )

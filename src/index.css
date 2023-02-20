@@ -209,34 +209,26 @@ span.logo-brackets:hover {
   border: 1px solid #60c689;
 }
 
-#label-buttons {
-  border: none;
+.label-buttons {
+  border: none!important;
   /* border: 1px solid #5A5A5A!important; */
   /* border-top-right-radius: 5%;
   border-bottom-right-radius: 5%; */
   /* clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%); */
   /* font-weight: 600; */
   /* max-width: 6rem!important; */
-  background-color: rgb(0, 0, 0, 0);
-  padding: 0;
+  background-color: rgb(0, 0, 0, 0)!important;
+  padding: 0!important;
   margin: 0!important;
   /* margin-bottom: 10px!important; */
   /* padding-right: 20px!important; */
-  text-align: left;
-  color: #ffffff;
-  font-weight: 600;
+  text-align: left!important;
+  font-size: 1rem!important;
+  /* color: #ffffff!; */
+  /* font-weight: 600; */
   /* font-size: .9rem!important; */
-  text-shadow: 2px 2px 2px #000000;
+  /* text-shadow: 2px 2px 2px #000000; */
 }
-
-#label-buttons:hover {
-  color: #57dcbd;
-  /* text-shadow: 2px 2px 2px #ffffff; */
-}
-#label-container-index:hover {
-    color: #57dcbd!important;
-    /* text-shadow: 2px 2px 2px #ffffff; */
-  }
 
 #label-text {
   margin: 0;
@@ -475,7 +467,7 @@ span.logo-brackets:hover {
   border: none;
   padding: 0!important;
   margin: 0!important;
-  margin-left: .5em!important;
+  /* margin-left: .5em!important; */
 }
 
 #show-contributor-delete {
@@ -546,7 +538,8 @@ span.logo-brackets:hover {
   background-color: red;
   width: 25px;
   height: 20px;
-  padding: 5px;
+  /* padding: 5px; */
+  padding-bottom: 2px;
   display: inline-block;
   margin: 0;
   margin-right: .45em;
@@ -665,4 +658,45 @@ span.logo-brackets:hover {
   background-color: #000000!important;
   color: #ffffff!important;
   border: 1px solid #2A2A2A!important;
+}
+
+.label-length {
+  /* text-shadow: none; */
+  /* color:#57dcbd!important; */
+  margin-left: .25rem;
+  color: #1a1a1a;
+  /* display: none; */
+  /* padding-bottom: 10px!important;
+  margin-bottom: 10px!important; */ 
+}
+
+/* .label-length:hover {
+  color:#5727B0!important;
+} */
+
+/* .label-container-index:nth-child(2) {
+  color: red!important;
+}
+
+.label-container-index:hover {
+  color:#57dcbd!important
+} */
+/* 
+.label-buttons:hover {
+  color: red!important;
+  display:contents;
+} */
+
+/* .label-buttons:hover {
+  color: red!important;
+} */
+
+.label-buttons:hover {
+  color: #57dcbd!important;
+  transition: .4s!important
+}
+
+.label-buttons:hover .label-length {
+  color: #57dcbd!important;
+  transition: .4s!important;
 }
