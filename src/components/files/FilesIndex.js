@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
 import ShowFileModal from './ShowFileModal'
+import Container from 'react-bootstrap/Container'
 
 const cardContainerStyle = {
     display: 'flex',
@@ -58,8 +59,10 @@ const FilesIndex = (props) => {
                 <Card className='file-card' key={i}>
                     <Card.Header className='file-card-header'>{file.name}</Card.Header>
                     <Card.Body className='file-card-body'>
-                        <Image style={{ width: '138px', height: '134px' }} className='file-card-image'src={file.url} thumbnail/>
-                        <Button type='submit' className='file-card-button pe-1' onClick={onClick} value={file._id}><Image style={{ width: '25%' }} className='pe-1' src='/icons/outline_launch_white_24dp.png' />View File</Button>
+                        <Image style={{ width: '138px', height: '134px' }} className='file-card-image' src={file.url} thumbnail />
+                        <Container className='d-flex justify-content-end align-items-end p-0 pe-2 pb-2'>
+                            <Button type='submit' className='file-card-button' onClick={onClick} value={file._id}><Image style={{ maxWidth: '22px', pointerEvents: 'none' }} src='/icons/outline_launch_white_24dp.png' /></Button>
+                        </Container>
                     </Card.Body>
                 </Card>
             </>

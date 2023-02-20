@@ -55,21 +55,24 @@ const Home = (props) => {
 		<>
 			<Container fluid className="m-0" style={homeContainerStyles}>
 				<Row>
-					<Col md={2} id='labels-column' className='pe-2'>
-						<p className='fs-3 mt-1 mb-2 fw-semibold align-middle'><Image id='title-label-icon' className='pb-1' src='/icons/label_white_24dp.svg'/>Labels</p>
-						<hr className='mt-0 border'/>
+					<Col md={2} id='labels-column' className='container-fluid'>
+						<p className='fs-4 mt-4 mb-0 fw-semibold align-middle' id='labels-header'>Labels</p>
+						<hr id='line' className='mt-0 border border-1'/>
 						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} triggerRefresh={() => setUpdatedLabels(prev => !prev)}/>
 					</Col>
 					<Col md={10}>
 						<Row>
 						<Col md={12} id='utilities-row'>
-							<Container fluid>
-							<Button 
+							<Container fluid className='p-0'>
+								{/* <Button 
                                     className="m-2" id='new-file-button' onClick={() => setNewFileModalShow(true)}
                                 >
                                     Hoist New File
+								</Button> */}
+								<Button onClick={() => setNewFileModalShow(true)} id="new-file-button"><Image style={{ maxWidth: '32px', pointerEvents: 'none'}} src='/icons/baseline_upload_white_48dp.png'/>
 								</Button>
-								<hr className='mt-0 border'/>
+								<p className='fs-4 m-0 fw-semibold align-middle d-inline' id='hoist-header'>Hoist a New File</p>
+								{/* <hr className='mt-0 border'/> */}
 							</Container>
 						</Col>
 						</Row>
