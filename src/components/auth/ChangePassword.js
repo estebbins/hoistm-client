@@ -67,6 +67,7 @@ const ChangePassword = (props) => {
                                 required
                                 name='oldPassword'
                                 value={oldPassword}
+                                style={{color: 'white', opacity: '1'}}
                                 className='auth-form-control'
                                 type='password'
                                 placeholder='Old Password'

@@ -385,11 +385,19 @@ span.logo-brackets:hover {
   border: 1px solid #2A2A2A!important;
 }
 
+#filterValue::placeholder {
+  color:rgb(255, 255, 255, .7)!important;
+}
+
 .contributor-select {
   background-color: #000000!important;
   border: 1px solid #2A2A2A!important;
-  color: rgb(255, 255, 255, .4)!important;
+  color: rgb(255, 255, 255, .7)!important;
   /* font-weight: 400!important; */
+}
+
+.contributor-select::placeholder {
+  color:rgb(255, 255, 255, .7)!important;
 }
 
 #contributor-add-submit {
@@ -419,7 +427,11 @@ span.logo-brackets:hover {
 .edit-form-control {
   background-color: #000000!important;
   border: 1px solid #2A2A2A!important;
-  color: rgb(255, 255, 255, .4)!important;
+  color: rgb(255, 255, 255, .7)!important;
+}
+
+.edit-form-control::placeholder {
+  color:rgb(255, 255, 255, .7)!important
 }
 
 #edit-file-submit {
@@ -461,7 +473,11 @@ span.logo-brackets:hover {
 .label-form-control {
   background-color: #000000!important;
   border: 1px solid #2A2A2A!important;
-  color: rgb(255, 255, 255, .4)!important;
+  color: rgb(255, 255, 255, .7)!important;
+}
+
+.label-form-control::placeholder {
+  color:rgb(255, 255, 255, .7)!important
 }
 
 #label-form-submit {
@@ -672,6 +688,10 @@ span.logo-brackets:hover {
   background-color: #000000!important;
   color: #ffffff!important;
   border: 1px solid #2A2A2A!important;
+}
+
+.auth-form-control::placeholder {
+  color: rgb(255, 255, 255, .7)!important;
 }
 
 .label-length {
