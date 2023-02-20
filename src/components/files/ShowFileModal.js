@@ -307,7 +307,7 @@ const ShowFileModal = (props) => {
                                         onClick={() => setEditFileModalShow(true)}
                                     ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_edit_note_white_24dp.png'/>
                                     </Button>
-                                    <Button className='m-1 show-file-button' variant='danger' id='delete-file-button' onClick={() => removeFile()}><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button>
+                                    {/* <Button className='m-1 show-file-button' variant='danger' id='delete-file-button' onClick={() => removeFile()}><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button> */}
                                     <Button 
                                         className="m-1 show-file-button" variant="warning" id='add-label-button'
                                         onClick={() => setAddLabelModalShow(true)}
@@ -348,6 +348,7 @@ const ShowFileModal = (props) => {
                 msgAlert={msgAlert}
                 triggerFileRefresh={() => setUpdatedFile(prev => !prev)}
                 triggerRefresh={triggerRefresh}
+                removeFile={removeFile}
             />
             <AddLabelModal 
                 file={file}

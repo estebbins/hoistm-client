@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Modal, Button, Image } from 'react-bootstrap'
 import { updateFile} from '../../api/files'
 import FileForm from '../shared/FileForm'
 import messages from '../shared/AutoDismissAlert/messages'
 
 const EditFileModal = (props) => {
     // destructure our props
-    const { user, show, handleClose, msgAlert, triggerRefresh, triggerFileRefresh } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh, triggerFileRefresh, removeFile } = props
     console.log('the file in edit file', props.file)
     const [file, setFile] = useState({})
 
@@ -64,6 +64,15 @@ const EditFileModal = (props) => {
         <>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton closeVariant='white' id='edit-file-header'>
+                    <Button 
+                        className='m-1 show-file-button' 
+                        variant='danger' 
+                        id='delete-file-button' 
+                        onClick={() => {
+                            removeFile() 
+                            handleClose()}
+                        }
+                    ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button>
                     <Modal.Title>Edit File Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body id='edit-file-body'>
@@ -73,6 +82,7 @@ const EditFileModal = (props) => {
                         handleSubmit={onSubmit}
                         heading={'Edit File Details'}
                     />
+
                 </Modal.Body>
             </Modal>
         </>
