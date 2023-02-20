@@ -8,16 +8,17 @@ import FilesContainer from './shared/FilesContainer.js'
 import LabelsSidebar from './shared/LabelsSidebar'
 import { getAllLabels } from '../api/labels'
 import NewFileModal from './files/NewFileModal'
-import messages from '../components/shared/AutoDismissAlert/messages'
 import { showLabel } from '../api/labels'
 
 const homeContainerStyles = {
 	backgroundColor: '#000000',
 	color: '#ffffff'
 }
+//////////// This component takes props from App.js  
+//////////// and sends props to LabelsSideBar, FileContainer, and NewFileModal
 
 const Home = (props) => {
-	const { msgAlert, user } = props
+    const { msgAlert, user } = props
     // States for labels index and to pass to files components
 	const [labels, setLabels] = useState(null)
 	const [labelsError, setLabelsError] = useState(false)
@@ -45,11 +46,7 @@ const Home = (props) => {
             getAllLabels(user)
                 .then(res => setLabels(res.data.labels))
                 .catch(err => {
-                    // msgAlert({
-                    //     heading: 'Error getting labels',
-                    //     message: messages.getLabelsFailure,
-                    //     variant: 'danger'
-                    // })
+                    // Set labels error true
                     setLabelsError(true)
                 })
         }
@@ -89,15 +86,9 @@ const Home = (props) => {
 						<Row>
 						<Col md={12} id='utilities-row'>
 							<Container fluid className='p-0'>
-								{/* <Button 
-                                    className="m-2" id='new-file-button' onClick={() => setNewFileModalShow(true)}
-                                >
-                                    Hoist New File
-								</Button> */}
 								<Button onClick={() => setNewFileModalShow(true)} id="new-file-button"><Image style={{ maxWidth: '32px', pointerEvents: 'none'}} src='/icons/baseline_upload_white_48dp.png'/>
 								</Button>
 								<p className='fs-4 m-0 fw-semibold align-middle d-inline' id='hoist-header'>Hoist a New File</p>
-								{/* <hr className='mt-0 border'/> */}
                                 {
                                     filterOn && labelName
                                     ?
