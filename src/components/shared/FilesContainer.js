@@ -15,10 +15,11 @@ const FilesContainer = (props) => {
     const [files, setFiles] = useState(null)
 	const [filesError, setFilesError] = useState(false)
 
-    // console.log('filterOn  files container', filterOn)
-    // console.log('labelFilterfiles container', labelFilter)
+    // console.log('filterOn  filescontainer', filterOn)
+    // console.log('labelFilter filescontainer', labelFilter)
     
     useEffect(() => {
+        // Refresh if files are updated or labelFilter is changed
         // If there's a labelFilter on, get files from that label's document
         if (filterOn && labelFilter) {
             showLabel(user, labelFilter)
@@ -26,7 +27,6 @@ const FilesContainer = (props) => {
                 .catch(err => {
                     msgAlert({
                         heading: 'Error',
-                        // ! Message needed 
                         message: messages.getFilesFromLabelFailure,
                         variant: 'danger'
                     })
@@ -37,11 +37,6 @@ const FilesContainer = (props) => {
             getAllFiles(user)
                 .then(res => setFiles(res.data.files))
                 .catch(err => {
-                    // msgAlert({
-                    //     heading: 'Error getting files',
-                    //     message: 'failed to get files',
-                    //     variant: 'danger'
-                    // })
                     setFilesError(true)
             })
         }

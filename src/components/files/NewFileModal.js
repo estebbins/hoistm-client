@@ -4,30 +4,32 @@ import UploadFileForm from './UploadFileForm'
 import { createFile } from '../../api/files'
 import messages from '../shared/AutoDismissAlert/messages'
 
+//////////// <----This component takes props from Home.js  
+//////////// and sends props to UploadFileForm---->
+
 const NewFileModal = (props) => {
-    // destructure our props
     const { user, show, handleClose, msgAlert, triggerRefresh } = props
-    
+    // Set selectedFile to empty object
     const [selectedFile, setSelectedFile] = useState({})
 
     const onChange = (e) => {
+        // Set selected file to the file in the target array
         e.preventDefault()
-        console.log(e.ta)
         setSelectedFile(e.target.files[0])
-        console.log('file in onChange from newFileModal', selectedFile)
+        // console.log('file in onChange from newFileModal', selectedFile)
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log('selectedFile name in onSubmit', selectedFile)
-
+        // console.log('selectedFile name in onSubmit', selectedFile)
+        // ! JORDAN ADD PSUEDO CODE FOR THESE TWO ROWS
         const formData = new FormData()
         formData.append('file', selectedFile)
 
+        // API call function to create a file document
         createFile(user, formData)
-            // first we'll handle closing the modal
+            // close modal
             .then(() => handleClose())
-            // we'll also send a success message
             .then(() => {
                 msgAlert({
                     heading: 'Oh yeah!',
@@ -35,10 +37,8 @@ const NewFileModal = (props) => {
                     variant: 'success'
                 })
             })
-            // if everything goes according to plan, we need a refresh of the show page
-            // we'll build a function in the ShowPet component that does this for us, and we'll import that here as a prop
+            // if everything goes according to plan, we need a refresh home
             .then(() => triggerRefresh())
-            // maybe useNavigate to redirect to this page instead of triggerRefresh
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({

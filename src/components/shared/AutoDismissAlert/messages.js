@@ -14,8 +14,8 @@ const messages = {
 	contributerDeleteFailure:'Something went wrong!',
 	fileUpdateSuccess: 'successfully updated file',
 	fileUpdateFailure: 'failed to update file',
-	fileCreateSuccess: 'successfully created file',
-	fileCreateFailure: 'failed to create file',
+	fileCreateSuccess: 'File successfully uploaded!',
+	fileCreateFailure: 'Failed to upload file - try again!',
     fileDeleteSuccess: 'delete success!',
     fileDeleteFailure: 'could not delete file',
 	getFilesFailure: 'Failed to get files',
@@ -26,7 +26,7 @@ const messages = {
 	getLabelsFailure: 'Sorry about your labels',
 	getUserFailure:'Unable to get users',
     getFilesFromLabelFailure: 'Unable to get files with this label', 
-    labelDeleteSuccess: 'Label successfully deleted!'
+    labelDeleteSuccess: 'Label successfully deleted!',
 
 
 

@@ -44,7 +44,7 @@ const NewLabelModal = (props) => {
             // send a success message
             .then(() => {
                 msgAlert({
-                    heading: 'Label created successfully!',
+                    heading: 'Success!',
                     message: messages.createLabelSuccess,
                     variant: 'success'
                 })

@@ -11,31 +11,28 @@ const cardContainerStyle = {
     justifyContent: 'start'
 }
 
+//////////// <----This component takes props from FilesContainer  
+//////////// and sends props to ShowFileModal---->
+
 const FilesIndex = (props) => {
-
-    console.log('filesindex props', props)
     const { msgAlert, user, files, labels, filesError, triggerRefresh } = props
-
+    // console.log('filesindex props', props)
+    // State for fileModal show/hide
     const [fileModalShow, setFileModalShow] = useState(false)
+    // State for the fileId to send selected file to show file modal
     const [fileId, setFileId] = useState(null)
-    // console.log('index files', files)
-    // console.log('index file', showFile)
-    console.log('index fileId', fileId)
-    // useEffect(()=> {
-    //     console.log('!!FilesIndex UseEffect Triggered!!!')
-    //     triggerRefresh()
-    // },[updated])
+
+    // console.log('index fileId', fileId)
 
     const onClick = (e) => {
-        // console.log('e', e.target)
-        console.log('!!!!!filesindex onClick Event!!!!!!')
+        // OnClick of viewfile - set fileId to the selected file's Id & set show modal true
         e.preventDefault()
-        // console.log('file index e value', e.target.value)
         setFileId(e.target.value)
         setFileModalShow(true)
     }
 
     const handleClose = () => {
+        // Upon close, set file modal show to false & reset fileId to prevent previous file from populating
         setFileModalShow(false)
         setFileId(null)
     }
@@ -55,7 +52,6 @@ const FilesIndex = (props) => {
         return (
             <>
                 <Card className='file-card' key={i}>
-                    
                     <Card.Header className='file-card-header'>{ file.name.length > 16  ? file.name.substring(0,13) + '...' : file.name}</Card.Header>
                     <Card.Body className='file-card-body'>
                         <Image style={{ width: '138px', height: '134px' }} className='file-card-image' src={file.url} thumbnail />
@@ -69,7 +65,7 @@ const FilesIndex = (props) => {
         )
     })
     
-    // return some jsx, a container with all the pet cards
+    // return JSX with filecards
     return (
         <>
             <div className="container-fluid p-0" style={cardContainerStyle}>
@@ -88,5 +84,4 @@ const FilesIndex = (props) => {
     )
 }
 
-// export our component
 export default FilesIndex
