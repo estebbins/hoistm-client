@@ -53,13 +53,13 @@ const NewLabelModal = (props) => {
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh No! Hoisted by the developers petard!',
+                    heading: "Oh No! Hoisted by the developers' petard!",
                     message: messages.createLabelFailure,
                     variant: 'danger'
                 })
             })
     }
-
+    // Return modal with labelform
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton closeVariant='white' id='new-label-header'>
