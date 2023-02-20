@@ -47,7 +47,7 @@ const EditLabelModal = (props) => {
             // send a success message
             .then(() => {
                 msgAlert({
-                    heading: "Success!",
+                    heading: 'Success!',
                     message: messages.updateLabelSuccess,
                     variant: 'success'
                 })

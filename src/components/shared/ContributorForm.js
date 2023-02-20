@@ -45,27 +45,27 @@ const ContributorForm = (props) => {
     ))
 
     return (
-        <Container className="justify-content-center">
+        <Container className='justify-content-center'>
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='m-2'>
                     <Form.Label>Search for user by e-mail</Form.Label>
                     <Form.Control 
                         placeholder="What is the contributor's e-mail"
-                        name="filterValue"
-                        id="filterValue"
+                        name='filterValue'
+                        id='filterValue'
                         value={filterValue || ''}
                         onChange={handleChange}
                         style={{color: 'white'}}
                     />
                 </Form.Group>
-                <Form.Group className="m-2">
+                <Form.Group className='m-2'>
                     <Form.Label>Select user or continue typing in search bar to narrow results</Form.Label>
                     { props.contributor ? 
                         <Form.Select 
                             className='auth-form-control'
-                            aria-label="email"
-                            name="userRef"
+                            aria-label='email'
+                            name='userRef'
                             defaultValue={props.contributor.email}
                             onChange={handleChoice}
                         >
@@ -75,8 +75,8 @@ const ContributorForm = (props) => {
                         :
                         <Form.Select
                             className='auth-form-control'
-                            aria-label="email"
-                            name="userRef"
+                            aria-label='email'
+                            name='userRef'
                             onChange={handleChoice}
                         >
                             <option>Open this select menu</option>
@@ -84,22 +84,22 @@ const ContributorForm = (props) => {
                         </Form.Select>
                     }
                 </Form.Group>
-                <Form.Group className="m-2">
+                <Form.Group className='m-2'>
                     <Form.Label>Permission Level</Form.Label>
                     <Form.Select 
                         className='auth-form-control'
-                        aria-label="permission level"
-                        name="permissionLevel"
+                        aria-label='permission level'
+                        name='permissionLevel'
                         value={props.contributor.permissionLevel || ''}
                         onChange={handleChoice}
                     >
                         <option>Open this select menu</option>
-                        <option value="read only">read only</option>
-                        <option value="read and write">read and write</option>
+                        <option value='read only'>read only</option>
+                        <option value='read and write'>read and write</option>
                     </Form.Select>
                 </Form.Group>
                 <Container className='d-flex justify-content-end p-0'>
-                    <Button className='m-2' id='contributor-add-submit' type="submit">Submit</Button>
+                    <Button className='m-2' id='contributor-add-submit' type='submit'>Submit</Button>
                 </Container>
             </Form>
         </Container>

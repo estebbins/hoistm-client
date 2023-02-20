@@ -44,7 +44,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar id="navbar"bg='dark' variant='dark' expand='md' className='justify-content-end fw-semibold p-0'>
+	<Navbar id='navbar'bg='dark' variant='dark' expand='md' className='justify-content-end fw-semibold p-0'>
 		<Navbar.Brand className='me-4 ms-2'>
             <Link to='/' style={linkStyle} id='logo' className='fs-2 fw-semibold'>
 				hoist<span className='logo-brackets'>&#x7B;</span><span id='hoist-m'>m</span><span className='logo-brackets'>&#x7D;</span>
