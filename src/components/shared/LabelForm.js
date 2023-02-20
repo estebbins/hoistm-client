@@ -13,7 +13,7 @@ const LabelForm = (props) => {
                     <Form.Control 
                         className='label-form-control'
                         placeholder='What is the name of the label'
-                        name='label-name'
+                        name='name'
                         id='name'
                         value={label.name || ''}
                         onChange={handleChange}

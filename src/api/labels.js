@@ -57,8 +57,8 @@ export const getAllLabels = (user) => {
 })}
 
 export const addFileToLabel = (user, file, label) => {
-    console.log('axios label', label)
-    console.log('axios file', file)
+    // console.log('axios label', label)
+    // console.log('axios file', file)
     return axios({
         url: `${apiUrl}/labels/${label._id}/${file._id}`, 
         method: 'PATCH',
@@ -69,7 +69,7 @@ export const addFileToLabel = (user, file, label) => {
 }
 
 export const getLabelsOnFile = (user, fileId) => {
-    console.log('getlabelsonfile', fileId)
+    // console.log('getlabelsonfile', fileId)
     return axios({
         url: `${apiUrl}/filelabels/${fileId}`, 
         method: 'GET',
@@ -80,8 +80,8 @@ export const getLabelsOnFile = (user, fileId) => {
 }
 
 export const removeFileFromLabel = (user, file, labelId) => {
-    console.log('axios label', labelId)
-    console.log('axios file', file)
+    // console.log('axios label', labelId)
+    // console.log('axios file', file)
     return axios({
         url: `${apiUrl}/removeLabel/${labelId}/${file._id}`, 
         method: 'PATCH',

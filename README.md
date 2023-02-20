@@ -84,11 +84,14 @@ This app allows users to upload files into a virtual file system where the user 
 **Using the application**
 
 ## Unsolved problems/Next Version Notes
--.dmg files will upload successfully but can not be downloaded, attempt of download of such a file type will result in a fatal error that will crash app.   
+- dmg files will upload successfully but can not be downloaded, attempt of download of such a file type will result in a fatal error that will crash app.   
 - Contributor rights currently don't impact that user
 - Filtering with multiple labels
 - Search bar
 - Large files take a long time to upload/download with no messages to the users
+- Key error still occurring for FilesIndex
+- Success/Error Messages to be revised or removed
+- File previews for non-images are not great
 
 ## Media sources
 - Icons: https://fonts.google.com/icons?icon.set=Material+Icons

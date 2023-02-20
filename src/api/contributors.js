@@ -2,7 +2,7 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const updateContributor = (user, file, updatedContributor) => {
-    console.log('updatedContributor', updatedContributor)
+    // console.log('updatedContributor', updatedContributor)
     return axios({
         url: `${apiUrl}/contributors/${file._id}/${updatedContributor._id}`, 
         method: 'PATCH',
@@ -24,7 +24,7 @@ export const getFilteredUsers = (user, filter) => {
 }
 
 export const createContributor = (user, file, newContributor) => {
-    console.log(newContributor)
+    // console.log(newContributor)
     return axios({
         url: `${apiUrl}/contributors/${file._id}`, 
         method: 'POST',

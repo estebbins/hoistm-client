@@ -12,7 +12,7 @@ export const getAllFiles = (user) => {
 }
 
 export const getOneFile = (user, id) => {
-    console.log('getonefile', id)
+    // console.log('getonefile', id)
     return axios({
         url: `${apiUrl}/files/${id}`, 
         method: 'GET',
@@ -34,7 +34,7 @@ export const updateFile = (user, updatedFile) => {
 }
 
 export const createFile = (user, file) => {
-    console.log('file in axios:', file)
+    // console.log('file in axios:', file)
     return axios({
         url: `${apiUrl}/files`,
         method: 'POST',
