@@ -25,6 +25,7 @@ const LabelForm = (props) => {
                         className='label-form-control'
                         type='color'
                         name='color'
+                        style={{width: '100%', padding: '0'}}
                         id='type'
                         value={label.color || '#1a1a1a'}
                         onChange={handleChange}
