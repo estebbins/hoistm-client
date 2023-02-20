@@ -46,7 +46,7 @@ const SignIn = (props) => {
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 {/* <h3>Sign In</h3> */}
-                <h1 to='/' className='fw-semibold text-center auth-header'>
+                <h1 className='fw-semibold text-center auth-header'>
 				Sign In
                 </h1>
                 <Container className='auth-container'>
