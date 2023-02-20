@@ -68,7 +68,7 @@ const FilesIndex = (props) => {
     // return JSX with filecards
     return (
         <>
-            <div className="container-fluid p-0" style={cardContainerStyle}>
+            <div className="container-fluid p-0" style={cardContainerStyle} key='fileindex'>
                 { fileCards }
             </div>
             <ShowFileModal
