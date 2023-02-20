@@ -33,7 +33,7 @@ const Home = (props) => {
 
     useEffect (() => {
         // If label filter is not null, get & set the name of the label
-        if (labelFilter) {
+        if (labelFilter && user) {
             showLabel(user, labelFilter)
                 .then(res => setLabelName(res.data.label.name))
         }
@@ -41,16 +41,18 @@ const Home = (props) => {
 
 	useEffect(() => {
         // Get all the labels for the user and set labels
-        getAllLabels(user)
-            .then(res => setLabels(res.data.labels))
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error getting labels',
-                    message: messages.getLabelsFailure,
-                    variant: 'danger'
+        if (user) {
+            getAllLabels(user)
+                .then(res => setLabels(res.data.labels))
+                .catch(err => {
+                    // msgAlert({
+                    //     heading: 'Error getting labels',
+                    //     message: messages.getLabelsFailure,
+                    //     variant: 'danger'
+                    // })
+                    setLabelsError(true)
                 })
-                setLabelsError(true)
-            })
+        }
         // This updates if someone adds or edits a label
     }, [updatedLabels])
 

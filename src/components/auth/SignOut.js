@@ -7,7 +7,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 const SignOut = (props) => {
 	const { msgAlert, clearUser, user } = props
-    console.log(props)
+    // console.log('signout props', props)
 
     const navigate = useNavigate()
 

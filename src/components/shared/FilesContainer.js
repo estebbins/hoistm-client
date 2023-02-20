@@ -32,11 +32,11 @@ const FilesContainer = (props) => {
         } else { getAllFiles(user)
             .then(res => setFiles(res.data.files))
             .catch(err => {
-                msgAlert({
-                    heading: 'Error getting files',
-                    message: 'failed to get files',
-                    variant: 'danger'
-                })
+                // msgAlert({
+                //     heading: 'Error getting files',
+                //     message: 'failed to get files',
+                //     variant: 'danger'
+                // })
                 setFilesError(true)
             })
         }
