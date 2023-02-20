@@ -241,7 +241,7 @@ const ShowFileModal = (props) => {
     }
 
     const downloadFileFromAWS = (e) => {
-        downloadFile(file)
+        downloadFile(user, file)
             .then((response) => {
                 console.log('download response: ', response)
                 blobToDataUrl(response.data, function(dataurl) {
