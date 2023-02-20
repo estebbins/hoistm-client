@@ -61,13 +61,13 @@ const LabelsIndex = (props) => {
                 { labelButtons }
             </div>
             <EditLabelModal
-                    user={user}
-                    editLabel={updateLabel}
-                    msgAlert={msgAlert}
-                    triggerRefresh={triggerRefresh}
-                    show={editModalShow}
-                    handleClose={() => setEditModalShow(false)}
-                />
+                user={user}
+                editLabel={updateLabel}
+                msgAlert={msgAlert}
+                triggerRefresh={triggerRefresh}
+                show={editModalShow}
+                handleClose={() => setEditModalShow(false)}
+            />
         </>
     )
 }

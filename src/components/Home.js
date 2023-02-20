@@ -77,7 +77,7 @@ const Home = (props) => {
                             msgAlert={msgAlert} 
                             user={user} 
                             labels={labels}
-                            abelsError={labelsError} 
+                            labelsError={labelsError} 
                             triggerRefresh={() => setUpdatedLabels(prev => !prev)}
                             onLabelFilter={onLabelFilter}
                         />
