@@ -14,8 +14,8 @@ const homeContainerStyles = {
 	backgroundColor: '#000000',
 	color: '#ffffff'
 }
-//////////// This component takes props from App.js  
-//////////// and sends props to LabelsSideBar, FileContainer, and NewFileModal
+//////////// <----This component takes props from App.js  
+//////////// and sends props to LabelsSideBar, FileContainer, and NewFileModal---->
 
 const Home = (props) => {
     const { msgAlert, user } = props

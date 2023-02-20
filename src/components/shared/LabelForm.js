@@ -1,6 +1,6 @@
 import { Container, Form, Button } from 'react-bootstrap'
 
-//////////// This component takes props from NewLabelModal & EditLabelModal  
+//////////// <----This component takes props from NewLabelModal & EditLabelModal  
 
 const LabelForm = (props) => {
     const { label, handleSubmit, handleChange } = props

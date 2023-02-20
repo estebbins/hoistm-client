@@ -4,8 +4,8 @@ import LabelForm from '../shared/LabelForm'
 import { createLabel } from '../../api/labels'
 import messages from '../shared/AutoDismissAlert/messages'
 
-//////////// This component takes props from LabelsSidebar.js  
-//////////// and sends props to LabelForm
+//////////// <----This component takes props from LabelsSidebar.js  
+//////////// and sends props to LabelForm---->
 
 const NewLabelModal = (props) => {
     const { user, show, handleClose, msgAlert, triggerRefresh } = props
