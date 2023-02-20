@@ -85,6 +85,7 @@ code {
 
 #hoist-m:hover {
   color: #E91E63;
+  transition: .4s;
 }
 
 span.logo-brackets {
@@ -96,6 +97,7 @@ span.logo-brackets {
 
 span.logo-brackets:hover {
   color: #272Ab0;
+  transition: .4s;
 }
 
 #logo:hover {
@@ -564,6 +566,7 @@ span.logo-brackets:hover {
 #download:hover {
   background-color: #000000;
   border: 2px solid #5727B0;
+  transition: .4s;
 }
 
 #user-email {
@@ -607,4 +610,54 @@ span.logo-brackets:hover {
 
 #new-label-text {
   text-shadow: 2px 2px 2px #000000!important;
+}
+
+.auth-header {
+  color: #ffffff;
+  font-size: 4em!important;
+  text-shadow: 2px 2px 0px #4A4A4A, 3px 3px 1px #5a5a5a!important;
+  margin-bottom: .5em;
+}
+
+.auth-header:hover {
+  color: #57dcbd!important;
+  transition: .4s;
+}
+
+.auth-container {
+  background-color: #0D0D0D;
+  border: 1px solid #2A2A2A!important;
+  border-radius: 1%;
+  padding: 2em;
+  padding-bottom: 1.5em;
+}
+
+.auth-form {
+  color: #ffffff;
+  font-size: 1.25em;
+  /* text-shadow: 2px 2px 0px #4A4A4A!important; */
+}
+
+.auth-submit {
+  padding: .25em .5em;
+  /* box-sizing: content-box; */
+  /* margin-right: 1em; */
+  background-color: #5727B0!important;
+  border: 2px solid #5727B0!important;
+  box-shadow: 2px 2px 0px 0px #5A5A5A, 3px 3px 0px 0px #4A4A4A!important;
+  width: 30%;
+  /* font-weight: 500!important; */
+  font-size: 1em!important;
+}
+
+.auth-submit:hover {
+  background-color: #000000!important;
+  border: 2px solid #5727B0!important;
+  transition: .4s;
+}
+
+.auth-form-control {
+  background-color: #000000!important;
+  color: #ffffff!important;
+  border: 1px solid #2A2A2A!important;
 }
