@@ -4,18 +4,21 @@ import LabelForm from '../shared/LabelForm'
 import { createLabel } from '../../api/labels'
 import messages from '../shared/AutoDismissAlert/messages'
 
+//////////// <----This component takes props from LabelsSidebar.js  
+//////////// and sends props to LabelForm---->
+
 const NewLabelModal = (props) => {
     const { user, show, handleClose, msgAlert, triggerRefresh } = props
 
     const [label, setLabel] = useState(null)
 
-    // const navigate = useNavigate()
-
     useEffect(() => {
+        // When show is updated, label is reset
         setLabel({})
     }, [show])
 
     const onChange = (e) => {
+        // On change on label form, set the label to the new information
         e.persist()
         
         setLabel(prevLabel => {
@@ -25,10 +28,8 @@ const NewLabelModal = (props) => {
             const updatedLabel = {
                 [updatedName] : updatedValue
             }
-            
-            console.log('the label', updatedLabel)
-            console.log('the label (state)', label)
-
+            // console.log('the label', updatedLabel)
+            // console.log('the label (state)', label)
             return {
                 ...prevLabel, ...updatedLabel
             }
@@ -43,17 +44,16 @@ const NewLabelModal = (props) => {
             // send a success message
             .then(() => {
                 msgAlert({
-                    heading: 'Hoist with someone elses petard!',
+                    heading: 'Label created successfully!',
                     message: messages.createLabelSuccess,
                     variant: 'success'
                 })
             })
             .then(() => triggerRefresh())
-            // .then(() => {navigate('/')})
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh No! Hoisted by our petard!',
+                    heading: 'Oh No! Hoisted by the developers petard!',
                     message: messages.createLabelFailure,
                     variant: 'danger'
                 })
@@ -71,7 +71,6 @@ const NewLabelModal = (props) => {
                     label={label}
                     handleSubmit={onSubmit}
                     handleChange={onChange}
-                    heading={'Add Label'}
                 />
             </Modal.Body>
         </Modal>

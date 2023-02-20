@@ -1,11 +1,12 @@
 import { Container, Form, Button } from 'react-bootstrap'
 
+//////////// <----This component takes props from NewLabelModal & EditLabelModal  
+
 const LabelForm = (props) => {
-    const { label, handleSubmit, handleChange, heading } = props
+    const { label, handleSubmit, handleChange } = props
 
     return (
         <Container className='justify-content-center'>
-            {/* <h3>{heading}</h3> */}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='m-2'>
                     <Form.Label>Name:</Form.Label>

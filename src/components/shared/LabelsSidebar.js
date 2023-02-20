@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import LabelsIndex from '../Labels/LabelsIndex'
 import NewLabelModal from '../Labels/NewLabelModal'
 
+//////////// <----This component takes props from Home.js  
+//////////// and sends props to LabelsIndex, NewLabelModal---->
+
 const LabelsSidebar = (props) => {
     const { user, msgAlert, labels, triggerRefresh, labelsError, onLabelFilter } = props
-    
+    // State for newlabelmodal to show or hide
     const [modalShow, setModalShow] = useState(false)
 
     return (
