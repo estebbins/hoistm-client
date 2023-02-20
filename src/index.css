@@ -178,6 +178,7 @@ span.logo-brackets:hover {
 .file-card-button:hover {
   background-color: #000000!important;
   border: 1px solid #272Ab0!important;
+  transition: .4s;
   /* color:#16DB65!important; */
   /* font-weight: 500!important; */
   /* border-color: #16DB65!important; */
@@ -194,6 +195,7 @@ span.logo-brackets:hover {
 #new-file-button:hover {
   background-color: #000000;
   border: 2px solid #5727B0;
+  transition: .4s;
 }
 
 #new-label-button {
@@ -207,6 +209,7 @@ span.logo-brackets:hover {
 #new-label-button:hover {
   background-color: #000000!important;
   border: 1px solid #60c689;
+  transition: .4s;
 }
 
 .label-buttons {
@@ -290,6 +293,7 @@ span.logo-brackets:hover {
 #add-contributor-button:hover {
   background-color: #000000!important;
   border-color: #60c689!important;
+  transition: .4s;
 }
 
 #edit-file-button {
@@ -302,6 +306,7 @@ span.logo-brackets:hover {
 #edit-file-button:hover {
   background-color: #000000!important;
   border-color: #272ab0!important;
+  transition: .4s;
 }
 
 #delete-file-button {
@@ -314,6 +319,7 @@ span.logo-brackets:hover {
 #delete-file-button:hover {
   background-color: #000000!important;
   border-color: #c21858!important;
+  transition: .4s;
 }
 
 #add-label-button {
@@ -326,6 +332,7 @@ span.logo-brackets:hover {
 #add-label-button:hover {
   background-color: #000000!important;
   border-color: #5727B0!important;
+  transition: .4s;
 }
 
 #new-file-header {
@@ -358,6 +365,7 @@ span.logo-brackets:hover {
 #upload-file-button:hover {
   background-color: #000000!important;
   border-color: #5727B0!important;
+  transition: .4s;
 }
 
 #contributor-modal-header {
@@ -377,11 +385,19 @@ span.logo-brackets:hover {
   border: 1px solid #2A2A2A!important;
 }
 
+#filterValue::placeholder {
+  color:rgb(255, 255, 255, .7)!important;
+}
+
 .contributor-select {
   background-color: #000000!important;
   border: 1px solid #2A2A2A!important;
-  color: rgb(255, 255, 255, .4)!important;
+  color: rgb(255, 255, 255, .7)!important;
   /* font-weight: 400!important; */
+}
+
+.contributor-select::placeholder {
+  color:rgb(255, 255, 255, .7)!important;
 }
 
 #contributor-add-submit {
@@ -393,6 +409,7 @@ span.logo-brackets:hover {
 #contributor-add-submit:hover {
   background-color: #000000!important;
   border-color: #60c689!important;
+  transition: .4s;
 }
 
 #edit-file-header {
@@ -410,7 +427,11 @@ span.logo-brackets:hover {
 .edit-form-control {
   background-color: #000000!important;
   border: 1px solid #2A2A2A!important;
-  color: rgb(255, 255, 255, .4)!important;
+  color: rgb(255, 255, 255, .7)!important;
+}
+
+.edit-form-control::placeholder {
+  color:rgb(255, 255, 255, .7)!important
 }
 
 #edit-file-submit {
@@ -422,6 +443,7 @@ span.logo-brackets:hover {
 #edit-file-submit:hover {
   background-color: #000000!important;
   border-color: #272ab0!important;
+  transition: .4s;
 }
 
 #add-label-header {
@@ -451,7 +473,11 @@ span.logo-brackets:hover {
 .label-form-control {
   background-color: #000000!important;
   border: 1px solid #2A2A2A!important;
-  color: rgb(255, 255, 255, .4)!important;
+  color: rgb(255, 255, 255, .7)!important;
+}
+
+.label-form-control::placeholder {
+  color:rgb(255, 255, 255, .7)!important
 }
 
 #label-form-submit {
@@ -463,6 +489,7 @@ span.logo-brackets:hover {
 #label-form-submit:hover {
   background-color: #000000!important;
   border-color: #5727B0!important;
+  transition: .4s;
 }
 
 #show-contributor-edit {
@@ -663,6 +690,10 @@ span.logo-brackets:hover {
   border: 1px solid #2A2A2A!important;
 }
 
+.auth-form-control::placeholder {
+  color: rgb(255, 255, 255, .7)!important;
+}
+
 .label-length {
   /* text-shadow: none; */
   /* color:#57dcbd!important; */
@@ -737,6 +768,7 @@ span.logo-brackets:hover {
 #clear-filter-button:hover {
   background-color: #000000!important;
   border: 1px solid #c21858;
+  transition: .4s;
 }
 
 #label-name-span {
