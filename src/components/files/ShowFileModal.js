@@ -261,15 +261,15 @@ const ShowFileModal = (props) => {
         <>
             <Modal id='show-file-modal' show={show} onHide={handleClose}>
                 <Modal.Header id='show-file-header' closeButton closeVariant='white'>
-                    <Modal.Title>{file.name}</Modal.Title>
                     <Button
                     type="submit"
                     onClick={downloadFileFromAWS}
                     variant="warning"
                     id="download"
                     value={JSON.stringify(file)}
-                ><Image style={{ width: '80%'}} src='/icons/baseline_download_white_48dp.png'/>
-                </Button>
+                ><Image style={{ maxWidth: '32px', pointerEvents: 'none'}} src='/icons/baseline_download_white_48dp.png'/>
+                    </Button>
+                    <Modal.Title>{file.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body id='show-file-body'>
                     <Image id='show-file-image' src={file.url} thumbnail className='border-0' style={{ width: '100%', maxHeight: '400px' }} />
@@ -288,33 +288,34 @@ const ShowFileModal = (props) => {
                         :
                         null
                     }
-                    <p><span className='show-span'>Hoisted On:</span>    {convertTimestamps(file.createdAt)}</p>
-                    <p><span className='show-span'>Last Modified:</span>  {convertTimestamps(file.updatedAt)}</p>
+                    <Container className='p-0 d-flex justify-content-between'>
+                        <p><span className='show-span'>Hoisted On:</span>    {convertTimestamps(file.createdAt)}</p>
+                        <p><span className='show-span'>Last Modified:</span>  {convertTimestamps(file.updatedAt)}</p>
+                    </Container>
                         {
                             file.owner && user && file.owner._id === user._id
                             ?
-                            <>
-                                <p><span className='show-span'>Owner:</span> {file.owner.email}</p>
-                                <Button 
-                                    className="m-2 show-file-button" variant="warning" id='add-contributor-button'
-                                    onClick={() => setContributorShow(true)}
-                                >
-                                    Add Contributor
-                                </Button>
-                                <Button 
-                                    className="m-2 show-file-button" variant="warning" id='edit-file-button'
-                                    onClick={() => setEditFileModalShow(true)}
-                                >
-                                    Edit File
-                                </Button>
-                                <Button className='m-2 show-file-button' variant='danger' id='delete-file-button' onClick={() => removeFile()}>Delete</Button>
-                                <Button 
-                                    className="m-2 show-file-button" variant="warning" id='add-label-button'
-                                    onClick={() => setAddLabelModalShow(true)}
-                                >
-                                    Add Label
-                                </Button>
-                            </>
+                            <Container className='d-flex p-0 justify-content-between'>
+                                <p className='mb-0'><span className='show-span'>Owner:</span> {file.owner.email}</p>
+                                <Container className='d-flex p-0 justify-content-end' style={{maxWidth: '50%', margin: 0 }}>
+                                    <Button 
+                                        className="m-1 show-file-button" variant="warning" id='add-contributor-button'
+                                        onClick={() => setContributorShow(true)}
+                                    ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_person_add_alt_1_white_24dp.png'/>
+                                    </Button>
+                                    <Button 
+                                        className="m-1 show-file-button" variant="warning" id='edit-file-button'
+                                        onClick={() => setEditFileModalShow(true)}
+                                    ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_edit_note_white_24dp.png'/>
+                                    </Button>
+                                    <Button className='m-1 show-file-button' variant='danger' id='delete-file-button' onClick={() => removeFile()}><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button>
+                                    <Button 
+                                        className="m-1 show-file-button" variant="warning" id='add-label-button'
+                                        onClick={() => setAddLabelModalShow(true)}
+                                    ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_new_label_white_24dp.png'/>
+                                        </Button>
+                                    </Container>
+                            </Container>
                             :
                             null
                         }

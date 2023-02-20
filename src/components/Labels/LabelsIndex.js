@@ -34,14 +34,13 @@ const LabelsIndex = (props) => {
         // console.log('mapped labels', label)
         return (
             <Container id='label-container-index' className='mb-2 px-0'>
-                
                 <Button
                     id='label-buttons'    
                     className='m-2'
                     key={i}
                     // onClick={onClick}
                     // value={JSON.stringify(label)}
-                ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
+                ><div id='label-tag' style={{backgroundColor:`${label.color}`, boxShadow: `inset -6px 0px 0px 0px ${label.color}, 2px -2px 0px 0px #5A5A5A inset, 1px -1px 0px 0px #4A4A4A inset`}}></div>{label.name}</Button>
                 <Button
                     // onClick={() => setEditModalShow(true)}
                     variant="warning"

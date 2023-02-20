@@ -11,7 +11,7 @@ const FilesContainer = (props) => {
 
     const [files, setFiles] = useState(null)
 	const [filesError, setFilesError] = useState(false)
-
+    
     useEffect(() => {
         getAllFiles(user)
             .then(res => setFiles(res.data.files))

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 import LabelsIndex from '../Labels/LabelsIndex'
 import NewLabelModal from '../Labels/NewLabelModal'
@@ -18,7 +18,9 @@ const LabelsSidebar = (props) => {
                 labelsError={labelsError}
                 triggerRefresh={triggerRefresh}
             />
-            <Button className="m-2" id='new-label-button' onClick={()=>setModalShow(true)}><Image src='/icons/baseline_new_label_white_24dp.png'/>New Label</Button>
+            <Container className='p-0 d-flex justify-content-end'>
+                <Button className="m-2" id='new-label-button' onClick={()=>setModalShow(true)}><Image style={{maxWidth: '24px', pointerEvents: 'none'}} src='/icons/baseline_new_label_white_48dp.png'/></Button>
+            </Container>
             <NewLabelModal 
                 user={user}
                 show={modalShow}
