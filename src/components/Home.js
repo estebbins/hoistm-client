@@ -9,6 +9,7 @@ import LabelsSidebar from './shared/LabelsSidebar'
 import { getAllLabels } from '../api/labels'
 import NewFileModal from './files/NewFileModal'
 import messages from '../components/shared/AutoDismissAlert/messages'
+import { showLabel } from '../api/labels'
 
 const homeContainerStyles = {
 	backgroundColor: '#000000',
@@ -16,26 +17,30 @@ const homeContainerStyles = {
 }
 
 const Home = (props) => {
-	// console.log('props in home', props)
-
 	const { msgAlert, user } = props
-
-	// const [files, setFiles] = useState(null)
-	// const [filesError, setFilesError] = useState(false)
-	
+    // States for labels index and to pass to files components
 	const [labels, setLabels] = useState(null)
 	const [labelsError, setLabelsError] = useState(false)
-
+    // State to show or hide new file modal
 	const [newFileModalShow, setNewFileModalShow] = useState(false)
-
+    // States for rerendering components when updates occur
     const [updatedFiles, setUpdatedFiles] = useState(false)
     const [updatedLabels, setUpdatedLabels] = useState(false)
+    // States for label filter & header
+    const [labelFilter, setLabelFilter] = useState(null)
+    const [filterOn, setFilterOn] = useState(false)
+    const [labelName, setLabelName] = useState(null)
 
-    // useEffect(() => {
-    //     console.log(updatedFiles)
-    // }, [updatedFiles])
+    useEffect (() => {
+        // If label filter is not null, get & set the name of the label
+        if (labelFilter) {
+            showLabel(user, labelFilter)
+                .then(res => setLabelName(res.data.label.name))
+        }
+    }, [labelFilter])
 
 	useEffect(() => {
+        // Get all the labels for the user and set labels
         getAllLabels(user)
             .then(res => setLabels(res.data.labels))
             .catch(err => {
@@ -46,7 +51,21 @@ const Home = (props) => {
                 })
                 setLabelsError(true)
             })
+        // This updates if someone adds or edits a label
     }, [updatedLabels])
+
+    const onLabelFilter = (e) => {
+        // If a label in the sidebar is clicked, the filter turns 'on'
+        setFilterOn(true)
+        // the label filter is set to the labels' id
+        setLabelFilter(e.target.value)
+    }
+    const clearLabelFilter = () => {
+        // When user clicks 'clear filter', the filter turns off
+        setFilterOn(false)
+        // Label is set to null
+        setLabelFilter(null)
+    }
 
 	return (
 		<>
@@ -55,7 +74,14 @@ const Home = (props) => {
 					<Col md={2} id='labels-column' className='container-fluid'>
 						<p className='fs-4 mt-4 mb-0 fw-semibold align-middle' id='labels-header'>Labels</p>
 						<hr id='line' className='mt-0 border border-1'/>
-						<LabelsSidebar msgAlert={msgAlert} user={user} labels={labels} labelsError={labelsError} triggerRefresh={() => setUpdatedLabels(prev => !prev)}/>
+						<LabelsSidebar 
+                            msgAlert={msgAlert} 
+                            user={user} 
+                            labels={labels}
+                            abelsError={labelsError} 
+                            triggerRefresh={() => setUpdatedLabels(prev => !prev)}
+                            onLabelFilter={onLabelFilter}
+                        />
 					</Col>
 					<Col md={10}>
 						<Row>
@@ -70,13 +96,28 @@ const Home = (props) => {
 								</Button>
 								<p className='fs-4 m-0 fw-semibold align-middle d-inline' id='hoist-header'>Hoist a New File</p>
 								{/* <hr className='mt-0 border'/> */}
+                                {
+                                    filterOn && labelName
+                                    ?
+                                    <>
+                                        <p>Filtered on: {labelName}</p>
+                                        <Button onClick={() => clearLabelFilter()}>Clear Filter</Button>
+                                    </>
+                                    :
+                                    null
+                                }
 							</Container>
 						</Col>
 						</Row>
 						<Row>
-							<FilesContainer msgAlert={msgAlert} user={user} labels={labels} 
-                            triggerRefresh={() => setUpdatedFiles(prev => !prev)} 
-                            updatedFiles={updatedFiles}
+							<FilesContainer 
+                                msgAlert={msgAlert} 
+                                user={user} 
+                                labels={labels} 
+                                triggerRefresh={() => setUpdatedFiles(prev => !prev)} 
+                                updatedFiles={updatedFiles} 
+                                filterOn={filterOn}
+                                labelFilter={labelFilter}
                             />
 						</Row>
 					</Col>

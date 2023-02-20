@@ -5,7 +5,7 @@ import LabelsIndex from '../Labels/LabelsIndex'
 import NewLabelModal from '../Labels/NewLabelModal'
 
 const LabelsSidebar = (props) => {
-    const { user, msgAlert, labels, triggerRefresh, labelsError } = props
+    const { user, msgAlert, labels, triggerRefresh, labelsError, onLabelFilter } = props
     
     const [modalShow, setModalShow] = useState(false)
 
@@ -17,6 +17,7 @@ const LabelsSidebar = (props) => {
                 labels={labels}
                 labelsError={labelsError}
                 triggerRefresh={triggerRefresh}
+                onLabelFilter={onLabelFilter}
             />
             <hr id='new-label-line' className='mt-2 border border-1'/>
             <Container className='p-0 d-flex justify-content-start align-items-center mt-0 mb-2'>

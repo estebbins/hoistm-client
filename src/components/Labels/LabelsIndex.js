@@ -3,7 +3,7 @@ import EditLabelModal from './EditLabelModal'
 import { useState, useEffect } from 'react'
 
 const LabelsIndex = (props) => {
-    const { msgAlert, user, labels, labelsError, triggerRefresh } = props
+    const { msgAlert, user, labels, labelsError, triggerRefresh, onLabelFilter } = props
 
     const [editModalShow, setEditModalShow] = useState(false)
     const [updateLabel, setUpdateLabel] = useState({})
@@ -38,8 +38,8 @@ const LabelsIndex = (props) => {
                     id='label-buttons'    
                     className='m-2'
                     key={i}
-                    // onClick={onClick}
-                    // value={JSON.stringify(label)}
+                    onClick={onLabelFilter}
+                    value={label._id}
                 ><div id='label-tag' style={{backgroundColor:`${label.color}`, boxShadow: `inset -6px 0px 0px 0px ${label.color}, 2px -2px 0px 0px #5A5A5A inset, 1px -1px 0px 0px #4A4A4A inset`}}></div>{label.name}</Button>
                 <Button
                     // onClick={() => setEditModalShow(true)}

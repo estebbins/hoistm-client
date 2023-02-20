@@ -23,9 +23,9 @@ export const updateLabel = (user, newLabel) => {
         }
     });
 }
-export const showLabel = (user, newLabel) => {
+export const showLabel = (user, labelId) => {
     return axios({
-        url: `${apiUrl}/labels/${newLabel._id}`, 
+        url: `${apiUrl}/labels/${labelId}`, 
         method: 'GET',
         headers: {
             Authorization: `Token token=${user.token}`
