@@ -48,7 +48,7 @@ const LabelsIndex = (props) => {
                     id="show-contributor-edit"
                     onClick={onClick}
                     value={JSON.stringify(label)}
-                ><Image style={{ width: '90%', pointerEvents: 'none'}} src='/icons/baseline_edit_white_24dp.png'/>
+                ><Image style={{ width: '90%', pointerEvents: 'none', opacity: '.5'}} src='/icons/baseline_edit_white_24dp.png'/>
                 </Button>
             </Container>
         )
