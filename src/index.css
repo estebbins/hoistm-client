@@ -387,6 +387,7 @@ span.logo-brackets:hover {
 #contributor-add-submit {
   background-color: #60c689!important;
   border: 1px solid #60c689;
+  box-shadow: 2px 2px 0px 0px #5A5A5A, 3px 3px 0px 0px #4A4A4A!important;
 }
 
 #contributor-add-submit:hover {
@@ -415,6 +416,7 @@ span.logo-brackets:hover {
 #edit-file-submit {
   background-color: #272ab0;
   border: 1px solid #272ab0;
+  box-shadow: 2px 2px 0px 0px #5A5A5A, 3px 3px 0px 0px #4A4A4A!important;
 }
 
 #edit-file-submit:hover {
@@ -455,6 +457,7 @@ span.logo-brackets:hover {
 #label-form-submit {
   background-color: #5727B0;
   border: 1px solid #5727B0;
+  box-shadow: 2px 2px 0px 0px #5A5A5A, 3px 3px 0px 0px #4A4A4A!important;
 }
 
 #label-form-submit:hover {
@@ -669,27 +672,6 @@ span.logo-brackets:hover {
   /* padding-bottom: 10px!important;
   margin-bottom: 10px!important; */ 
 }
-
-/* .label-length:hover {
-  color:#5727B0!important;
-} */
-
-/* .label-container-index:nth-child(2) {
-  color: red!important;
-}
-
-.label-container-index:hover {
-  color:#57dcbd!important
-} */
-/* 
-.label-buttons:hover {
-  color: red!important;
-  display:contents;
-} */
-
-/* .label-buttons:hover {
-  color: red!important;
-} */
 
 .label-buttons:hover {
   color: #57dcbd!important;

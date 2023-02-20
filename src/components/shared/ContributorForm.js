@@ -53,6 +53,7 @@ const ContributorForm = (props) => {
                     <Form.Label>Select user or continue typing in search bar to narrow results</Form.Label>
                     { props.contributor ? 
                         <Form.Select 
+                            className='auth-form-control'
                             aria-label="email"
                             name="userRef"
                             defaultValue={props.contributor.email}
@@ -62,7 +63,8 @@ const ContributorForm = (props) => {
                             { filteredUsers }
                         </Form.Select>
                         :
-                        <Form.Select 
+                        <Form.Select
+                            className='auth-form-control'
                             aria-label="email"
                             name="userRef"
                             onChange={handleChoice}
@@ -74,6 +76,7 @@ const ContributorForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Select 
+                        className='auth-form-control'
                         aria-label="permission level"
                         name="permissionLevel"
                         defaultValue={props.contributor.permissionLevel}
@@ -84,7 +87,9 @@ const ContributorForm = (props) => {
                         <option value="read and write">read and write</option>
                     </Form.Select>
                 </Form.Group>
-                <Button className="m-2" type="submit">Submit</Button>
+                <Container className='d-flex justify-content-end p-0'>
+                    <Button className='m-2' id='contributor-add-submit' type="submit">Submit</Button>
+                </Container>
             </Form>
         </Container>
     )
