@@ -7,6 +7,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 const SignUp = (props) => {
 	// constructor(props) {
@@ -59,44 +60,51 @@ const SignUp = (props) => {
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Sign Up</h3>
-                <Form onSubmit={onSignUp}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                            required
-                            type='email'
-                            name='email'
-                            value={email}
-                            placeholder='Enter email'
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            required
-                            name='password'
-                            value={password}
-                            type='password'
-                            placeholder='Password'
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId='passwordConfirmation'>
-                        <Form.Label>Password Confirmation</Form.Label>
-                        <Form.Control
-                            required
-                            name='passwordConfirmation'
-                            value={passwordConfirmation}
-                            type='password'
-                            placeholder='Confirm Password'
-                            onChange={e => setPasswordConfirmation(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Button variant='dark' type='submit'>
-                        Submit
-                    </Button>
-                </Form>
+                <Container className='auth-container'>
+                    <Form onSubmit={onSignUp} className='auth-form'>
+                        <Form.Group controlId='email'>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                                required
+                                type='email'
+                                name='email'
+                                className='auth-form-control'
+                                value={email}
+                                placeholder='Enter email'
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId='password' className='pt-2'>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                required
+                                name='password'
+                                value={password}
+                                className='auth-form-control'
+                                type='password'
+                                placeholder='Password'
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId='passwordConfirmation' className='pt-2'>
+                            <Form.Label>Password Confirmation</Form.Label>
+                            <Form.Control
+                                required
+                                name='passwordConfirmation'
+                                value={passwordConfirmation}
+                                className='auth-form-control mb-4'
+                                type='password'
+                                placeholder='Confirm Password'
+                                onChange={e => setPasswordConfirmation(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Container className='d-flex justify-content-center'>
+                            <Button variant='dark' type='submit' className='auth-submit'>
+                                Submit
+                            </Button>
+                        </Container>
+                    </Form>
+                </Container>
             </div>
         </div>
     )

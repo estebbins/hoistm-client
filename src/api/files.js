@@ -59,8 +59,11 @@ export const deleteFile = (user, file) => {
 
 
 
-export const downloadFile = (file) => {
+export const downloadFile = (user, file) => {
     return axios.get(`${apiUrl}/files/download/${file._id}`, {
-        responseType: 'blob'
+        responseType: 'blob',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
     })
 }
