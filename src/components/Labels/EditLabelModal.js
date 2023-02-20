@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Modal, Button, Container } from 'react-bootstrap'
+import { Modal, Button, Image, Container } from 'react-bootstrap'
 import LabelForm from '../shared/LabelForm'
 import { updateLabel, deleteLabel } from '../../api/labels'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -81,10 +81,15 @@ const EditLabelModal = (props) => {
             })
         })
     }
-
     return (
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton closeVariant='white' id='edit-label-header'>
+            <Button     
+                className='m-1 show-file-button' 
+                variant='danger' 
+                id='delete-file-button' 
+                onClick={() => removeLabel()}
+            ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button>
             <Modal.Title>Edit Label</Modal.Title>
         </Modal.Header>
         <Modal.Body id='edit-label-body'>
@@ -95,7 +100,6 @@ const EditLabelModal = (props) => {
                 heading={'Edit Label'}
             />
             <Container className='d-flex flex-row justify-content-end'>
-                <Button id='delete-file-button' className='m-2 text-white' variant='warning' onClick={() => removeLabel()}>Delete</Button>
             </Container>
         </Modal.Body>
     </Modal>
