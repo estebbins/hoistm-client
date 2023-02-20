@@ -65,6 +65,7 @@ const ShowFileModal = (props) => {
                     setUpdatedFile(prev => !prev)
                     setUpdatedLabels(prev => !prev)
                     triggerRefresh()
+                    triggerLabelsRefresh()
                 })
                 .catch(err => {
                     msgAlert({
@@ -78,6 +79,7 @@ const ShowFileModal = (props) => {
 
     const onClick = (e) => {
         e.preventDefault()
+        // triggerLabelsRefresh()
         setRemoveLabelId(e.target.value)
     }
 
