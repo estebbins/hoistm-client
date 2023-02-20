@@ -55,7 +55,8 @@ const FilesIndex = (props) => {
         return (
             <>
                 <Card className='file-card' key={i}>
-                    <Card.Header className='file-card-header'>{file.name}</Card.Header>
+                    
+                    <Card.Header className='file-card-header'>{ file.name.length > 16  ? file.name.substring(0,12) + '...' : file.name}</Card.Header>
                     <Card.Body className='file-card-body'>
                         <Image style={{ width: '138px', height: '134px' }} className='file-card-image' src={file.url} thumbnail />
                         <Container className='d-flex justify-content-start px-1 align-items-end p-0 pb-2 pt-1' id='file-card-container'>
