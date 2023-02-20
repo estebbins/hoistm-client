@@ -3,13 +3,18 @@ import { useState, useEffect } from 'react'
 import { getFilteredUsers } from '../../api/contributors'
 import messages from '../shared/AutoDismissAlert/messages'
 
+//////////// <----This component takes props from EditContributorModal & NewContributorModal  
+
 const ContributorForm = (props) => {
     const { user, filterValue, handleChange, handleSubmit, handleChoice, heading, triggerRefresh, msgAlert } = props
-    const [userList, setUserList] = useState([])
-    const [error, setError] = useState(false)
-    const [contributor, setContributor] = useState(props.contributor)
 
-    console.log('cont form contributor', contributor)
+    // Set list of users matching the filter
+    const [userList, setUserList] = useState([])
+    // Set the contributor from props
+
+    const [error, setError] = useState(false)
+
+    // console.log('cont form contributor', contributor)
 
     useEffect(() => {
         // console.log('useeffect filterValue', filterValue)
@@ -29,10 +34,11 @@ const ContributorForm = (props) => {
         }
     }, [filterValue])
 
-    useEffect(() => {
-        console.log('useeffect', contributor)
-        // setContributor(contributor)
-    }, [contributor])
+    // useEffect(() => {
+    //     // Refresh form if contributor changes
+    //     // console.log('useeffect contributor(form)', contributor)
+    //     // setContributor(contributor)
+    // }, [contributor])
 
     const filteredUsers = userList.map((user, i) => (
         <option value={user._id} key={i}>{user.email}</option>
@@ -42,14 +48,15 @@ const ContributorForm = (props) => {
         <Container className="justify-content-center">
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="m-2">
+                <Form.Group className='m-2'>
                     <Form.Label>Search for user by e-mail</Form.Label>
                     <Form.Control 
                         placeholder="What is the contributor's e-mail"
                         name="filterValue"
                         id="filterValue"
-                        defaultValue={filterValue}
+                        value={filterValue || ''}
                         onChange={handleChange}
+                        style={{color: 'white'}}
                     />
                 </Form.Group>
                 <Form.Group className="m-2">
@@ -78,11 +85,12 @@ const ContributorForm = (props) => {
                     }
                 </Form.Group>
                 <Form.Group className="m-2">
+                    <Form.Label>Permission Level</Form.Label>
                     <Form.Select 
                         className='auth-form-control'
                         aria-label="permission level"
                         name="permissionLevel"
-                        defaultValue={props.contributor.permissionLevel}
+                        value={props.contributor.permissionLevel || ''}
                         onChange={handleChoice}
                     >
                         <option>Open this select menu</option>

@@ -1,12 +1,11 @@
 import { Form, Button, Container } from 'react-bootstrap'
 
 const FileForm = (props) => {
-    const { file, handleChange, handleSubmit, heading } = props
+    const { file, handleChange, handleSubmit } = props
     console.log('fileform file')
 
     return (
         <Container className='justify-content-center'>
-            {/* <h3>{heading}</h3> */}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='m-2'>
                     <Form.Label>Name:</Form.Label>

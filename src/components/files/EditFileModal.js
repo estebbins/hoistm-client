@@ -80,9 +80,7 @@ const EditFileModal = (props) => {
                         file={file}
                         handleChange={onChange}
                         handleSubmit={onSubmit}
-                        heading={'Edit File Details'}
                     />
-
                 </Modal.Body>
             </Modal>
         </>

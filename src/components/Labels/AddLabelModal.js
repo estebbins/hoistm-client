@@ -1,26 +1,25 @@
 import { useEffect, useState } from 'react'
 import { addFileToLabel } from '../../api/labels'
-import { Button, Image, Modal } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
+import messages from '../shared/AutoDismissAlert/messages'
 
+//////////// <----This component takes props from ShowFileModal
 
 const AddLabelModal = (props) => {
     const { file, labels, user, show, handleClose, msgAlert, triggerRefresh } = props
-
+    // State for label to be added
     const [label, setLabel] = useState(null)
 
-    // useEffect(() => {
-    //     console.log(label)
-    // }, [label])
-
     useEffect(() => {
+        // If theres a change in label state, refresh
+        // If the label is not null/false, then run API call to add the file to the label
         if (label) {
             addFileToLabel(user, file, label)
                 .then(() => handleClose())
                 .then(() => {
                     msgAlert({
-                        heading: 'Hoist more specifically!',
-                        // !message: messages.addFileToLabelSuccess
-                        message: 'Label successfully added!',
+                        heading: 'Success!',
+                        message: messages.addFileToLabelSuccess,
                         variant: 'success'
                     })
                 })
@@ -28,9 +27,8 @@ const AddLabelModal = (props) => {
                 // if there is an error, tell the user about it
                 .catch(() => {
                     msgAlert({
-                        heading: 'Oh No! Hoisted by our petard!',
-                        // !message: messages.addFileToLabelFailure
-                        message: 'Label not added',
+                        heading: 'Oh No!',
+                        message: messages.addFileToLabelFailure,
                         variant: 'danger'
                     })
                 })
@@ -38,32 +36,12 @@ const AddLabelModal = (props) => {
     }, [label])
 
     const onClick = (e) => {
+        // onClick of a label, set the label to parsed button value
         e.preventDefault()
         setLabel(JSON.parse(e.target.value))
-        // console.log('label in onclick', label)
-        // let addLabel = JSON.parse(e.target.value)
-        // addFileToLabel(user, file, addLabel)
-        //     .then(() => handleClose())
-        //     .then(() => {
-        //         msgAlert({
-        //             heading: 'Hoist more specifically!',
-        //             // !message: messages.addFileToLabelSuccess
-        //             message: 'Label successfully added!',
-        //             variant: 'success'
-        //         })
-        //     })
-        //     .then(() => triggerRefresh())
-        //     // if there is an error, tell the user about it
-        //     .catch(() => {
-        //         msgAlert({
-        //             heading: 'Oh No! Hoisted by our petard!',
-        //             // !message: messages.addFileToLabelFailure
-        //             message: 'Label not added',
-        //             variant: 'danger'
-        //         })
-        //     })
     }
 
+    // Create label buttons
     let labelsList
     if (labels && labels.length > 0) {
         labelsList = labels.map((label, i) => (
@@ -75,6 +53,7 @@ const AddLabelModal = (props) => {
                 ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
         ))
     }
+    // Return the label modal
     return (
         <>
             <Modal show={show} onHide={handleClose}>

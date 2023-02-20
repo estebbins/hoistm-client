@@ -4,6 +4,9 @@ import ContributorForm from '../shared/ContributorForm'
 import { createContributor } from '../../api/contributors'
 import messages from '../shared/AutoDismissAlert/messages'
 
+//////////// <----This component takes props from ShowContributor 
+//////////// and sends props to ContributorForm---->
+
 const NewContributorModal = (props) => {
     const { user, file, show, handleClose, msgAlert, triggerRefresh } = props
 
@@ -13,7 +16,7 @@ const NewContributorModal = (props) => {
     useEffect(() => {
         setContributor({})
         setFilterValue('')
-    }, [file])
+    }, [show])
 
     const onChoice = (e) => {
         e.persist()
@@ -26,8 +29,8 @@ const NewContributorModal = (props) => {
                 [updatedName] : updatedValue
             }
             
-            console.log('the contributor', updatedContributor)
-            console.log('the contributor (state)', contributor)
+            // console.log('the contributor', updatedContributor)
+            // console.log('the contributor (state)', contributor)
 
             return {
                 ...prevContributor, ...updatedContributor
@@ -54,7 +57,7 @@ const NewContributorModal = (props) => {
             // send a success message
             .then(() => {
                 msgAlert({
-                    heading: 'Hoist with someone elses petard!',
+                    heading: "Hoist with someone else's petard!",
                     message: messages.createContributorSuccess,
                     variant: 'success'
                 })
@@ -63,7 +66,7 @@ const NewContributorModal = (props) => {
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh No! Hoisted by our petard!',
+                    heading: 'Oh No!',
                     message: messages.createContributorFailure,
                     variant: 'danger'
                 })
@@ -83,7 +86,6 @@ const NewContributorModal = (props) => {
                     handleChange={onChange}
                     handleSubmit={onSubmit}
                     handleChoice={onChoice}
-                    // heading={'Add Contributor'}
                     triggerRefresh={()=> triggerRefresh()}
                     msgAlert={msgAlert}
                 />

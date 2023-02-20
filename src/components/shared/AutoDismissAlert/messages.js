@@ -29,6 +29,8 @@ const messages = {
 	getUserFailure:'Unable to get users',
     getFilesFromLabelFailure: 'Unable to get files with this label', 
     removeLabelFailure: 'Something went wrong when removing the label',
+    addFileToLabelSuccess: 'Hoist with more specificity!',
+    addFileToLabelFailure: "Couldn't add that label",
 
 
 
