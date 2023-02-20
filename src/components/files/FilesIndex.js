@@ -58,8 +58,9 @@ const FilesIndex = (props) => {
                     <Card.Header className='file-card-header'>{file.name}</Card.Header>
                     <Card.Body className='file-card-body'>
                         <Image style={{ width: '138px', height: '134px' }} className='file-card-image' src={file.url} thumbnail />
-                        <Container className='d-flex justify-content-end align-items-end p-0 pe-2 pb-2'>
-                            <Button type='submit' className='file-card-button' onClick={onClick} value={file._id}><Image style={{ maxWidth: '18px', pointerEvents: 'none' }} src='/icons/outline_launch_white_24dp.png' /></Button>
+                        <Container className='d-flex justify-content-start px-1 align-items-end p-0 pb-2 pt-1' id='file-card-container'>
+                            <Button type='submit' className='file-card-button me-2' onClick={onClick} value={file._id}><Image style={{ maxWidth: '18px', pointerEvents: 'none' }} src='/icons/outline_launch_white_24dp.png' /></Button>
+                            <p className='fs-6 m-0 fw-semibold align-middle d-inline' id='view-file-text'>View File</p>
                         </Container>
                     </Card.Body>
                 </Card>

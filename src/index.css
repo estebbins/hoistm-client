@@ -588,3 +588,23 @@ span.logo-brackets:hover {
 #hoist-header {
   text-shadow: 3px 3px 3px #000000;
 }
+
+#new-label-line {
+  border: 1px solid #7A7A7A!important;
+  border-bottom: none!important;
+  width: 100%;
+  margin-bottom: .5em;
+}
+
+#file-card-container {
+  border-top: 1px solid #2A2A2A;
+}
+
+#view-file-text {
+  text-shadow: 2px 2px 2px #000000!important;
+  font-weight: 500!important;
+}
+
+#new-label-text {
+  text-shadow: 2px 2px 2px #000000!important;
+}

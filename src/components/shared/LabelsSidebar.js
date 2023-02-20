@@ -18,8 +18,10 @@ const LabelsSidebar = (props) => {
                 labelsError={labelsError}
                 triggerRefresh={triggerRefresh}
             />
-            <Container className='p-0 d-flex justify-content-end'>
-                <Button className="m-2" id='new-label-button' onClick={()=>setModalShow(true)}><Image style={{maxWidth: '24px', pointerEvents: 'none'}} src='/icons/baseline_new_label_white_48dp.png'/></Button>
+            <hr id='new-label-line' className='mt-2 border border-1'/>
+            <Container className='p-0 d-flex justify-content-start align-items-center mt-0 mb-2'>
+                <Button className="me-2" id='new-label-button' onClick={() => setModalShow(true)}><Image style={{ maxWidth: '24px', pointerEvents: 'none' }} src='/icons/baseline_new_label_white_48dp.png' /></Button>
+                <p className='fs-5 m-0 fw-semibold align-middle d-inline' id='new-label-text'>New Label</p>
             </Container>
             <NewLabelModal 
                 user={user}
