@@ -11,7 +11,7 @@ import AddLabelModal from '../Labels/AddLabelModal.js'
 
 const ShowFileModal = (props) => {
     console.log('showfilemodal props', props)
-    const { user, show, fileId, allLabels, handleClose, msgAlert, triggerRefresh } = props
+    const { user, show, fileId, allLabels, handleClose, msgAlert, triggerRefresh, triggerLabelsRefresh } = props
     // console.log('show props.file', props.file)
     console.log('showFileModal fielId', fileId)
     const [file, setFile] = useState(null)
@@ -360,6 +360,7 @@ const ShowFileModal = (props) => {
                 triggerRefresh={() => {
                     setUpdatedLabels(prev => !prev)
                     setUpdatedFile(prev => !prev)
+                    triggerLabelsRefresh()
                 }}
             />
         </>

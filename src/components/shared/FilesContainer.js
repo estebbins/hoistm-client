@@ -9,7 +9,7 @@ import messages from './AutoDismissAlert/messages'
 //////////// and sends props to FilesIndex---->
 
 const FilesContainer = (props) => {
-    const { user, updatedFiles, labels, msgAlert, triggerRefresh, filterOn, labelFilter} = props
+    const { user, updatedFiles, labels, msgAlert, triggerRefresh, filterOn, labelFilter, triggerLabelsRefresh } = props
     // console.log('files in filesContainer: ', files)
     // State for files & fileError
     const [files, setFiles] = useState(null)
@@ -51,6 +51,7 @@ const FilesContainer = (props) => {
                 filesError={filesError}
                 labels={labels}
                 triggerRefresh={triggerRefresh}
+                triggerLabelsRefresh={triggerLabelsRefresh}
             />
         </div>
     )

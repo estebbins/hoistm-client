@@ -108,6 +108,7 @@ const Home = (props) => {
                                 user={user} 
                                 labels={labels} 
                                 triggerRefresh={() => setUpdatedFiles(prev => !prev)} 
+                                triggerLabelsRefresh={() => setUpdatedLabels(prev => !prev)}
                                 updatedFiles={updatedFiles} 
                                 filterOn={filterOn}
                                 labelFilter={labelFilter}

@@ -15,7 +15,7 @@ const cardContainerStyle = {
 //////////// and sends props to ShowFileModal---->
 
 const FilesIndex = (props) => {
-    const { msgAlert, user, files, labels, filesError, triggerRefresh } = props
+    const { msgAlert, user, files, labels, filesError, triggerRefresh, triggerLabelsRefresh } = props
     // console.log('filesindex props', props)
     // State for fileModal show/hide
     const [fileModalShow, setFileModalShow] = useState(false)
@@ -78,6 +78,7 @@ const FilesIndex = (props) => {
                 handleClose={handleClose}
                 msgAlert={msgAlert}
                 triggerRefresh={triggerRefresh}
+                triggerLabelsRefresh={triggerLabelsRefresh}
                 allLabels={labels}
             />
         </>
