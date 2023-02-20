@@ -1,8 +1,10 @@
 import { Form, Button, Container } from 'react-bootstrap'
 
+//////////// <----This component takes props from EditFileModal 
+
 const FileForm = (props) => {
     const { file, handleChange, handleSubmit } = props
-    console.log('fileform file')
+    // console.log('fileform file')
 
     return (
         <Container className='justify-content-center'>

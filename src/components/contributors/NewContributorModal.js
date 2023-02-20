@@ -4,16 +4,17 @@ import ContributorForm from '../shared/ContributorForm'
 import { createContributor } from '../../api/contributors'
 import messages from '../shared/AutoDismissAlert/messages'
 
-//////////// <----This component takes props from ShowContributor 
+//////////// <----This component takes props from ShowFileModal
 //////////// and sends props to ContributorForm---->
 
 const NewContributorModal = (props) => {
     const { user, file, show, handleClose, msgAlert, triggerRefresh } = props
-
+    // States for contributor & the filter value
     const [contributor, setContributor] = useState(null)
     const [filterValue, setFilterValue] = useState(null)
 
     useEffect(() => {
+        // When component is shown or hidden, reset the states 
         setContributor({})
         setFilterValue('')
     }, [show])
@@ -39,18 +40,15 @@ const NewContributorModal = (props) => {
     }
 
     const onChange = (e) => {
+        // On typing user's email, update the filter value
         e.preventDefault()
-        // const filter = e.target.value
-        // console.log(e.target.value)
-        // console.log('filterValue', filterValue)
         setFilterValue(e.target.value)
-        // console.log('filterValue', filterValue)
-
     }
 
 
     const onSubmit = (e) => {
         e.preventDefault()
+        // On form submit, API Call to create the contributor
         createContributor(user, file, contributor)
             // close the modal
             .then(() => handleClose())

@@ -4,13 +4,17 @@ import { updateFile} from '../../api/files'
 import FileForm from '../shared/FileForm'
 import messages from '../shared/AutoDismissAlert/messages'
 
+//////////// <----This component takes props from ShowFileModal
+//////////// and sends props to FileForm---->
+
 const EditFileModal = (props) => {
-    // destructure our props
     const { user, show, handleClose, msgAlert, triggerRefresh, triggerFileRefresh, removeFile } = props
-    console.log('the file in edit file', props.file)
+    // console.log('the file in edit file', props.file)
+    // Set file state to empty object
     const [file, setFile] = useState({})
 
     useEffect(() => {
+        // When the file from props changes, update it
         setFile(props.file)
     }, [props.file])
 
@@ -33,8 +37,7 @@ const EditFileModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-
-        // updateFile(user, file)
+        // API Call to update the file
         updateFile(user, file)
             // first we'll handle closing the modal
             .then(() => handleClose())
@@ -46,11 +49,9 @@ const EditFileModal = (props) => {
                     variant: 'success'
                 })
             })
-            // if everything goes according to plan, we need a refresh of the show page
-            // we'll build a function in the ShowPet component that does this for us, and we'll import that here as a prop
+            // Refresh multiple components
             .then(() => triggerFileRefresh())
             .then(() => triggerRefresh())
-            // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No!',
