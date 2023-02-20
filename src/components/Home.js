@@ -68,7 +68,7 @@ const Home = (props) => {
 
 	return (
 		<>
-			<Container fluid className="m-0" style={homeContainerStyles}>
+			<Container fluid className='m-0' style={homeContainerStyles}>
 				<Row>
 					<Col md={2} id='labels-column' className='container-fluid'>
 						<p className='fs-4 mt-4 mb-0 fw-semibold align-middle' id='labels-header'>Labels</p>
@@ -86,7 +86,7 @@ const Home = (props) => {
 						<Row>
 						<Col md={12} id='utilities-row'>
 							<Container fluid className='p-0'>
-								<Button onClick={() => setNewFileModalShow(true)} id="new-file-button"><Image style={{ maxWidth: '32px', pointerEvents: 'none'}} src='/icons/baseline_upload_white_48dp.png'/>
+								<Button onClick={() => setNewFileModalShow(true)} id='new-file-button'><Image style={{ maxWidth: '32px', pointerEvents: 'none'}} src='/icons/baseline_upload_white_48dp.png'/>
 								</Button>
 								<p className='fs-4 m-0 fw-semibold align-middle d-inline' id='hoist-header'>Hoist a New File</p>
                                 {
@@ -96,7 +96,6 @@ const Home = (props) => {
 										<p id='filtered-on'>Filtered on: <span id='label-name-span'>{labelName}</span></p>
 										<Button id='clear-filter-button' onClick={() => clearLabelFilter()}><Image style={{ maxWidth: '18px', pointerEvents: 'none' }} src='/icons/baseline_label_off_white_24dp.png' /></Button>
                             			<p className='fs-6 m-0 fw-semibold align-middle d-inline ms-2' id='view-file-text'>Clear Filter</p>
-												
                                     </>
                                     :
                                     null

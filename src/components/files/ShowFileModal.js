@@ -9,33 +9,47 @@ import EditFileModal from './EditFileModal'
 import ShowContributor from '../contributors/ShowContributor.js'
 import AddLabelModal from '../Labels/AddLabelModal.js'
 
+//////////// <----This component takes props from FilesIndex 
+//////////// and sends props to AddLabelModal, ShowContributor, NewContributorModal, EditFileModal---->
+
 const ShowFileModal = (props) => {
-    console.log('showfilemodal props', props)
+    // console.log('showfilemodal props', props)
     const { user, show, fileId, allLabels, handleClose, msgAlert, triggerRefresh, triggerLabelsRefresh } = props
-    // console.log('show props.file', props.file)
-    console.log('showFileModal fielId', fileId)
+
+    // console.log('showFileModal fileId', fileId)
+    // State for which file to show
     const [file, setFile] = useState(null)
+    // States for layered modals
     const [contributorModalShow, setContributorShow] = useState(false)
     const [editFileModalShow, setEditFileModalShow] = useState(false)
     const [addLabelModalShow, setAddLabelModalShow] = useState(false)
+    // State for the labels associated with the file
     const [labels, setLabels] = useState([])
+    // Update States
     const [updatedFile, setUpdatedFile] = useState(false)
     const [updatedLabels, setUpdatedLabels] = useState(false)
+    // State for labelId selected for removal
     const [removeLabelId, setRemoveLabelId] = useState(null)
-    const [imgFromStorage, setImgFromStorage] = useState('')
+    // State for file download
+    const [fileFromStorage, setFileFromStorage] = useState('')
+
     // console.log('show file file', file)
     // console.log('show file labels', labels)
     // console.log('email', file.owner)
 
     useEffect(() => {
+        // If the fileId changes or file is updated, refresh
+        // If fileId is not null, then get the file associated with that from API call
         if (fileId) {
             getOneFile(user, fileId)
+                // set file to that file
                 .then(res => setFile(res.data.file))
+                // Refresh labels
                 .then(() => setUpdatedLabels(prev => !prev))
                 .catch(err => {
                     msgAlert({
-                        heading: 'Error getting File',
-                        message: 'something went wrong',
+                        heading: 'Error',
+                        message: messages.getOneFileFailure,
                         variant: 'danger'
                     })
                 })
@@ -43,14 +57,15 @@ const ShowFileModal = (props) => {
     }, [fileId, updatedFile])
 
     useEffect(() => {
+        // If the fileId changes or labels are updated, refresh
+       // If fileId is not null, then get the labels that have that file in their fileRef, through the API call
         if (fileId) {
             getLabelsOnFile(user, fileId)
                 .then(res => setLabels(res.data.labels))
                 .catch(err => {
                     msgAlert({
-                        heading: 'Error getting labels',
-                        // ! message: messages.getLabelsOnFileFailure
-                        message: 'Oops! Could not retrieve labels!',
+                        heading: 'Error',
+                        message: messages.getLabelsOnFileFailure,
                         variant: 'danger'
                     })
                 })
@@ -58,10 +73,14 @@ const ShowFileModal = (props) => {
     }, [fileId, updatedLabels])
 
     useEffect(() => {
+        // If the removeLabelID changes, refresh
+        // If there is a removeLabelId, then find the label and remove the file
         if(removeLabelId) {
             removeFileFromLabel(user, file, removeLabelId)
                 .then(() => {
+                    // Reset the removeLabelId
                     setRemoveLabelId(null)
+                    // Refresh other components
                     setUpdatedFile(prev => !prev)
                     setUpdatedLabels(prev => !prev)
                     triggerRefresh()
@@ -70,7 +89,7 @@ const ShowFileModal = (props) => {
                 .catch(err => {
                     msgAlert({
                         heading: 'Error removing label',
-                        message: 'something went wrong with removing the label',
+                        message: messages.removeLabelFailure,
                         variant: 'danger'
                     })
                 })
@@ -78,76 +97,18 @@ const ShowFileModal = (props) => {
     }, [removeLabelId])
 
     const onClick = (e) => {
+        // When a label is clicked, set the removeLabelId to that label's ID
         e.preventDefault()
-        // triggerLabelsRefresh()
         setRemoveLabelId(e.target.value)
     }
 
-    // useEffect(() => {
-    //     // set file to the file passed down from FileIndex & re-render
-    //     setFile(props.file)
-    // }, [props.file])
-
-    // useEffect(() => {
-    //     // !Don't want to delete yet!
-    //     // console.log('props.file._id', props.file._id)
-    //     // getOneFile(user, props.file._id)
-    //     //     .then(res => setFile(res.data.file))
-    //     //     .then(()=>triggerRefresh())
-    //     //     .catch(err => {
-    //     //         msgAlert({
-    //     //             heading: 'Error getting File',
-    //     //             message: 'something went wrong',
-    //     //             variant: 'danger'
-    //     //         })
-    //     //     })
-    //     getLabelsOnFile(user, fileId)
-    //         .then(res => setLabels(res.data.labels))
-    //         // .then(()=>triggerRefresh())
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error getting labels',
-    //                 // ! message: messages.getLabelsOnFileFailure
-    //                 message: 'Oops! Could not retrieve labels!',
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }, [updatedLabels])
-
-    // useEffect(() => {
-    //     getOneFile(user, props.file._id)
-    //         .then(res => setFile(res.data.file))
-    //         .then(()=>triggerRefresh())
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error getting File',
-    //                 message: 'something went wrong',
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }, [updated])
-
-    // console.log('show file modal labels')
-
-    // useEffect(() => {
-    //     getLabelsOnFile(user, file)
-    //         .then(res => setLabels(res.data.labels))
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error getting labels',
-    //                 // ! message: messages.getLabelsOnFileFailure
-    //                 message: 'Oops! Could not retrieve labels!',
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }, [])
-
     const removeFile = () => {
+        // API Call to delete file document
         deleteFile(user, file)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
-                    heading: 'Hoist with someone elses petard!',
+                    heading: 'Success!',
                     message: messages.fileDeleteSuccess,
                     variant: 'success'
                 })
@@ -156,7 +117,7 @@ const ShowFileModal = (props) => {
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh No! Hoisted by our petard!',
+                    heading: 'Oh No!',
                     message: messages.fileDeleteFailure,
                     variant: 'danger'
                 })
@@ -164,6 +125,7 @@ const ShowFileModal = (props) => {
     }
 
     const convertTimestamps = (timestamp) => {
+        // Converting timestamps from mongo to readable format
         const formatted = new Date(timestamp)
         const date = formatted.getDate()
         const month = formatted.getMonth() + 1;
@@ -171,11 +133,12 @@ const ShowFileModal = (props) => {
         const hours = formatted.getHours()
         let minutes = formatted.getMinutes()
         if (minutes < 10) {
-            minutes = "0" + minutes
+            minutes = '0' + minutes
         }
         return `${month}/${date}/${year} ${hours}:${minutes}`
     }
 
+    // Create ShowContributor components
     let contributorList
     if (file && file.contributors) {
         if (file.contributors.length > 0) {
@@ -192,17 +155,10 @@ const ShowFileModal = (props) => {
             )
         }
     }
+    // Create label remove buttons
     let labelsList
     if (labels && labels.length > 0) {
         labelsList = labels.map((label, i) => (
-            // <Button
-            //     id='label-buttons'    
-            //     className="m-2"
-            //     style={{backgroundColor:`${label.color}`}}
-            //     key={label._id}
-            //     onClick={onClick}
-            //     value={label._id}
-            // >{label.name}</Button>
             <Button
                     className='m-1 label-buttons mb-0'
                     id='show-file-label-buttons'
@@ -212,7 +168,6 @@ const ShowFileModal = (props) => {
                 ><div id='label-tag' style={{backgroundColor:`${label.color}`}}></div>{label.name}</Button>
         ))
     }
-    // console.log(imgFromStorage)
 
     // source code for downloads: https://stackoverflow.com/questions/70534780/convert-weird-image-characters-for-use-in-image-src
 
@@ -220,35 +175,41 @@ const ShowFileModal = (props) => {
         // console.log('blob', blob)
         let a = new FileReader()
         // console.log('a:', a)
+        // Create HTML element
         let link = document.createElement('a')
-
+        // Split the name of the file
         let linkArray = file.awsKey.split('_')
+        // Remove the last item in the array & rejoin the name to get the extension(the date/time that creates the unique AWS key)
         linkArray.pop()
         let downloadLink = linkArray.join('')
-        console.log(downloadLink)
+        // console.log('download link', downloadLink)
+        // Set the download attribute of the a tag to the downloadLink
         link.download = downloadLink
-        // console.log('split awsKey', file.awsKey.split('_'))
+
         a.onload = function (e) {
+            // Onload of the filereader, set the href to the file data
             // console.log('e.target.result', e.target.result)
             link.href = e.target.result
+            // Append the link to the document & "click" from backend, then remove the link
             document.body.appendChild(link)
             link.click()
             document.body.removeChild(link)
             // let targetResult = e.target.result
             callback(link.href)
-            // Code for window.open: https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab
-            // window.open(targetResult, '_blank')
         }
+        // Read the blob as a URL
         a.readAsDataURL(blob)
     }
 
     const downloadFileFromAWS = (e) => {
+        // Onclick of download button, send API Call to get file data
         downloadFile(user, file)
             .then((response) => {
-                console.log('download response: ', response)
+                // console.log('download response: ', response)
                 blobToDataUrl(response.data, function(dataurl) {
                     // console.log('dataurl', dataurl)
-                    setImgFromStorage(dataurl)
+                    // Set the file to the data URL
+                    setFileFromStorage(dataurl)
                 })
             })
             .catch(err => console.log(err))
@@ -264,10 +225,10 @@ const ShowFileModal = (props) => {
             <Modal id='show-file-modal' show={show} onHide={handleClose}>
                 <Modal.Header id='show-file-header' closeButton closeVariant='white'>
                     <Button
-                    type="submit"
+                    type='submit'
                     onClick={downloadFileFromAWS}
-                    variant="warning"
-                    id="download"
+                    variant='warning'
+                    id='download'
                     value={JSON.stringify(file)}
                 ><Image style={{ maxWidth: '32px', pointerEvents: 'none'}} src='/icons/baseline_download_white_48dp.png'/>
                     </Button>
@@ -301,18 +262,17 @@ const ShowFileModal = (props) => {
                                 <p className='mb-0'><span className='show-span'>Owner:</span> {file.owner.email}</p>
                                 <Container className='d-flex p-0 justify-content-end' style={{maxWidth: '50%', margin: 0 }}>
                                     <Button 
-                                        className="m-1 show-file-button" variant="warning" id='add-contributor-button'
+                                        className='m-1 show-file-button' variant='warning' id='add-contributor-button'
                                         onClick={() => setContributorShow(true)}
                                     ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_person_add_alt_1_white_24dp.png'/>
                                     </Button>
                                     <Button 
-                                        className="m-1 show-file-button" variant="warning" id='edit-file-button'
+                                        className='m-1 show-file-button' variant='warning' id='edit-file-button'
                                         onClick={() => setEditFileModalShow(true)}
                                     ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_edit_note_white_24dp.png'/>
                                     </Button>
-                                    {/* <Button className='m-1 show-file-button' variant='danger' id='delete-file-button' onClick={() => removeFile()}><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_delete_forever_white_24dp.png'/></Button> */}
                                     <Button 
-                                        className="m-1 show-file-button" variant="warning" id='add-label-button'
+                                        className='m-1 show-file-button' variant='warning' id='add-label-button'
                                         onClick={() => setAddLabelModalShow(true)}
                                     ><Image style={{ width: '100%', pointerEvents: 'none'}} src='/icons/baseline_new_label_white_24dp.png'/>
                                         </Button>
@@ -340,7 +300,6 @@ const ShowFileModal = (props) => {
                 show={contributorModalShow}
                 handleClose={() => setContributorShow(false)}
                 msgAlert={msgAlert}
-                //! IS SETUPDATEDFILECORRECT??
                 triggerRefresh={() => setUpdatedFile(prev => !prev)}
             /> 
             <EditFileModal
@@ -371,16 +330,3 @@ const ShowFileModal = (props) => {
 }
 
 export default ShowFileModal
-
-// file name (possible Modal.Title), description, uploaded on, last modified, owner
-
-// labels, list all labels associated
-
-// edit and delete components nested in Modal.Footer
-
-// user
-// show
-// handleClose
-// updateFile
-// msgAlert
-// triggerRefresh

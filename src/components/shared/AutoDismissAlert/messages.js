@@ -19,6 +19,7 @@ const messages = {
     fileDeleteSuccess: 'delete success!',
     fileDeleteFailure: 'could not delete file',
 	getFilesFailure: 'Failed to get files',
+    getOneFileFailure: 'There was an issue retrieving this file',
 	updateLabelSuccess: 'Label successfully edited!',
 	updateLabelFailure:'Label not edited',
 	createLabelSuccess:'Label successfully added!',
@@ -27,6 +28,7 @@ const messages = {
     labelDeleteSuccess: 'Label successfully deleted!',
 	getUserFailure:'Unable to get users',
     getFilesFromLabelFailure: 'Unable to get files with this label', 
+    removeLabelFailure: 'Something went wrong when removing the label',
 
 
 
